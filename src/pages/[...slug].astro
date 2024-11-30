@@ -1,0 +1,55 @@
+---
+import dayjs from "dayjs";
+import { getCollection, getEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import TableOfContents from "~/components/TableOfContents.astro";
+import TagButton from "~/components/TagButton.astro";
+
+export async function getStaticPaths() {
+  const blogs = await getCollection("blog");
+  const headings = await Promise.all(
+    blogs.map(async (post: any) => {
+      const data = await post.render();
+      return data.headings;
+    })
+  );
+
+  return blogs.map((blog: { slug: any }, index:number) => ({
+    params: { slug: blog.slug },
+    props: { ...blog, headings: headings[index] },
+  }));
+}
+const { slug, headings } = Astro.props;
+
+const entry = await getEntry("blog", slug);
+const { Content } = await entry?.render();
+---
+
+<Layout title={entry?.data.title ?? ""}>
+  <div class="container max-w-3xl mx-auto px-5 lg:px-0 py-5 text-left">
+    <div class="py-5 border-b mb-5 border-[#222]">
+      <h1 class="text-3xl font-bold">
+        <a>
+          {entry?.data.title ?? ""}
+        </a>
+      </h1>
+      <div class="text-xs md:text-sm text-gray-400 pt-5">
+        🗓 Published at : {dayjs(entry?.data.date).format("MMMM D, YYYY")}
+      </div>
+    </div>
+    <div class="flex flex-row flex-wrap gap-2">
+      {entry?.data.categories?.map( async (category: { slug: string; }) => {
+        const categoryEntries = await getCollection('categories', (entry:any) => entry.slug === category.slug)
+        return (
+          <TagButton href={`/category/${category.slug}`} title={categoryEntries[0].data.title}>
+            {categoryEntries[0].data.title}
+          </TagButton>
+        )
+      })}
+    </div>
+    <div class="prose">
+      <TableOfContents headings={headings} />
+      <Content />
+    </div>
+  </div>
+</Layout>

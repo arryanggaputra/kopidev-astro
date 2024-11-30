@@ -1,0 +1,10 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BlogList from "~/components/BlogList.astro";
+---
+
+<Layout title="Welcome to Astro.">
+    <div class="pt-5">
+        <BlogList limit={50} />
+    </div>
+</Layout>

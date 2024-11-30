@@ -1,0 +1,89 @@
+---
+language: "en"
+title: "How to Use Tailwind CSS with CDN in HTML"
+date: 2023-05-09
+categories:
+  - "css"
+  - "html"
+  - "programming"
+slug: "tailwind-css-with-cdn-html"
+coverImage: "./images/kopidev-social-sharing_uri7x2.png"
+---
+
+import GoogleAds from "~/components/Ads.astro";
+
+Tailwind CSS is a popular utility-first CSS framework that can help you create modern and responsive web designs quickly and easily. While you can download and use Tailwind CSS locally in your project, you can also use it with a CDN (Content Delivery Network) in your HTML project.
+
+This allows you to include the necessary CSS and JS files from the CDN instead of downloading them, which can help improve your website's loading time and performance.
+
+In this article, we will show you how to use Tailwind CSS with CDN in your HTML project using the latest version of Tailwind CSS.
+
+<GoogleAds />
+
+## Step 1: Include the Tailwind Library
+
+The first step is to include the necessary TailwindCSS library in your HTML project. You can do this by adding the following code to the head section of your HTML document:
+
+```html
+<head>
+  <!-- Include the Tailwind JS file -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+```
+
+Here, we are including the Tailwind CSS library from the CDN at [https://cdn.tailwindcss.com](https://cdn.tailwindcss.com) which are the minified versions of the files that are smaller in size and faster to load. You can also use the non-minified versions if you need to debug or modify the CSS and JS code.
+
+<GoogleAds />
+
+## Step 2: Use the Tailwind classes in your HTML markup
+
+Once you have included the Tailwind CSS library, you can start using the Tailwind classes in your HTML markup.
+
+Tailwind provides a large set of utility classes that you can use to style your HTML elements.
+
+For example, you can use the `bg-blue-500` class to set the background color of an element to blue:
+
+```html
+<div class="bg-blue-500 text-white p-4">Hello, world!</div>
+```
+
+![How to Use Tailwind CSS with CDN in HTML](./images/hello-world-tailwind.png)
+
+Here, we are using the `bg-blue-500` class to set the background color of the div element to blue and the `text-white` class to set the text color to white. We are also using the `p-4` class to add padding of 4 units to the top, right, bottom, and left sides of the element.
+
+You can find a complete list of Tailwind classes and their descriptions in the Tailwind CSS documentation.
+
+<GoogleAds />
+
+## Step 3: Customize the Tailwind configuration (optional)
+
+If you want to customize the Tailwind configuration, such as changing the colors, fonts, or breakpoints, you can do so by adding a tailwind.config.js file in your project and modifying the configuration options. However, when using Tailwind with CDN, you cannot modify the default configuration file, as it is stored on the CDN. Instead, you can use the Tailwind Config Viewer tool to generate a custom configuration file and then include it in your HTML project.
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <h1 class="text-3xl font-bold underline text-clifford">Hello world!</h1>
+  </body>
+</html>
+```
+
+To use the Tailwind Config, go to https://tailwindcss.com/docs/configuration and select the options that you want to customize. Then, copy the generated configuration code and save it in a tailwind.config.js file in your project. Finally, include the new configuration file in your HTML project.
+
+<GoogleAds />

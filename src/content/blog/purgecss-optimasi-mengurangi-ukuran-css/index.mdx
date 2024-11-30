@@ -1,0 +1,153 @@
+---
+language: "id"
+title: "Mengoptimasi & Mengurangi ukuran CSS dengan PurgeCSS"
+date: 2021-02-07
+categories:
+  - "css"
+  - "javascript"
+  - "programming"
+  - "tips-trick"
+tags:
+  - "css"
+  - "postcss"
+  - "purgecss"
+  - "tutorial"
+slug: "purgecss-optimasi-mengurangi-ukuran-css"
+coverImage: "./images/kopidev-social-sharing_uri7x2.webp"
+---
+
+Banyak dari kita yang menggunakan Kerangka CSS (_CSS Framework_) seperti TailwindCSS, Bootstrap, MaterializeCSS, Foundation, dll. Namun sangat banyak code CSS yang mubadzir, alias tidak digunakan sama sekali.
+
+Contoh saat kita menggunakan Bootstrap Framework, di dalamnya terdapat banyak sekali komponen seperti carousel, dropdown button, button group, dll. Namun apakah kita menggunakan semua komponen tersebut? saya rasa 90% pengguna bootstrap tidak menggunakan semua komponen yang ada.
+
+Komponen yang tidak digunakan akan menjadi sampah, karena code css pada komponen yang tidak digunakan akan terus berada bersama dengan css pada komponen yang benar-benar digunakan.
+
+## Efek Buruk Pada Sebuah Website
+
+Kode-kode sampah pada CSS yang tidak digunakan dapat menimbulkan efek buruk pada sebuah website, salah satunya adalah performa website itu sendiri. Website dapat mengalami penurunan _loading time_ yang diakibatkan oleh banyaknya kode CSS maupun JS yang tidak digunakan, hal ini karena Browser harus mendownload lebih banyak resource daripada yang seharusnya.
+
+Kita ambil contoh salah satu website di Indonesia yaitu dicoding.com, kita coba lihat pada homepage mereka, kira-kira berapa banyak sih CSS yang tidak mereka gunakan pada halaman tersebut?
+
+untuk menampilkan Coverage, cukup buka Chrome Devtools
+
+Saya cukup kaget melihat hasilnya, ?. Ternyata pada homepagenya hampir 90% CSS yang mereka load saat pertama kali itu tidak digunakan.
+
+Kan halaman mereka nggak cuma homepage? Saya setuju, mereka memiliki banyak halaman selain homepage, masih banyak halaman lain lagi. Solusi yang mungkin dapat diberikan adalah dengan melakukan splitting pada CSS.
+
+Splitting maksudnya memisah CSS menjadi beberapa bagian, dan memanggil CSS jika memang dibutuhkan.
+
+## Apa itu PurgeCSS
+
+CSS Code splitting rasanya terlalu advance bagi apra pemula, saya akan membahas dengan cara sederhana saja. Ada sebuah tools bernama PurgeCSS. PurgeCSS adalah sebuah development tool untuk menghapus CSS yang tidak digunakan. PurgeCSS menganalisa dan memilah konten yang kita miliki (contoh: HTML, JSX) dan file CSS.
+
+Pada proses ini PurgeCSS mencocokkan setiap CSS selector pada file HTML, dan memilih _selector_ yang tidak digunakan dari CSS yang kita miliki, lalu menghapusnya untuk menghasilkan file CSS yang lebih kecil.
+
+## Installasi PurgeCSS
+
+Pastikan komputer kita sudah terinstall `npm`. Kita dapat menginstall **PurgeCSS** secara global dengan cara membuka terminal, lalu kita berikan perintah:
+
+```bash
+npm i -g purgecss
+```
+
+Untuk memastikan `purgecss` sudah terinstall secara global, kita coba berikan perintah `purgecss` pada terminal, jika berhasil di install maka akan keluar hasil seperti ini:
+
+```bash
+➜  kopidev ✗ purgecss
+purgecss --css <css> --content <content> [option]
+
+Options:
+  --con, --content  glob of content files                                [array]
+  -c, --config      configuration file                                  [string]
+  -o, --out         Filepath directory to write purified css files to   [string]
+  -w, --whitelist   List of classes that should not be removed
+                                                           [array] [default: []]
+  -h, --help        Show help                                          [boolean]
+  -v, --version     Show version number                                [boolean]
+```
+
+## Cara Sederhana
+
+Anggaplah kita memiliki sebuah project dengan struktur sebagai berikut:
+
+```bash
+- build // folder output
+- index.html
+- boostrap.css
+```
+
+Kita buka terminal, lalu kita berikan perintah:
+
+```bash
+purgecss --css bootstrap.css --content index.html --output ./build
+```
+
+Penjabaran dari perintah diatas adalah _purgecss_ memindai file CSS bernama _bootstrap.css_ dan memindai kontent _index.html_ , jika proses pemindaian dan penghapusan selesai, _purgecss_ akan menyimpan hasilnya ke dalam folder _build_
+
+## Mengurangi CSS dengan PostCSS
+
+Kita installasi dulu library _PurgeCSS_ untuk _PostCSS_:
+
+```bash
+npm i -D @fullhuman/postcss-purgecss
+```
+
+Kita buka file `postcss.config.js` dan tambahkan kode berikut:
+
+```js
+// postcss.config.js
+const purgecss = require('@fullhuman/postcss-purgecss')({
+  // Specify the paths to all of the template files in your project
+  content: [
+    './src/**/*.js',
+    './src/**/*.jsx',
+    './samples/**/*.html'
+    // etc.
+  ],
+
+  // Include any special characters you're using in this regular expression
+  defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+})
+
+module.exports = {
+  plugins: [
+    ...
+    purgecss,
+    ...
+  ]
+}
+```
+
+Untuk lebih lengkapnya baca [disini](https://purgecss.com/plugins/postcss.html#usage)
+
+## Mengurangi CSS pada Gatbsy
+
+```bash
+npm i gatsby-plugin-purgecss
+```
+
+Lalu kita tambahkan kode berikut pada `gatsby-config.js`:
+
+```js
+// gatsy-config.js
+module.exports = {
+  plugins: [
+    `gatsby-plugin-stylus`,
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-less`,
+    `gatsby-plugin-postcss`,
+    // Add after these plugins if used
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        printRejected: true, // Print removed selectors and processed file names
+        // develop: true, // Enable while using `gatsby develop`
+        // tailwind: true, // Enable tailwindcss support
+        // whitelist: ['whitelist'], // Don't remove this selector
+        // ignore: ['/ignored.css', 'prismjs/', 'docsearch.js/'], // Ignore files/folders
+        // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders
+      },
+    },
+  ],
+};
+```

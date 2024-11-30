@@ -1,0 +1,52 @@
+---
+language: "id"
+title: 'How to Fix SDK "iphoneos" cannot be located'
+date: 2021-01-16
+categories:
+  - "community"
+  - "tips-trick"
+slug: "how-to-fix-sdk-iphoneos-cannot-be-located"
+coverImage: "./images/xcode-12-og.jpg"
+---
+
+import GoogleAds from "~/components/Ads.astro";
+
+If you try to run `pod install`  or perform a similar task using the command line in macOS may you  face a problem like this
+
+```bash
+checking whether the C compiler works... no
+xcrun: error: SDK "iphoneos" cannot be located
+xcrun: error: SDK "iphoneos" cannot be located
+xcrun: error: SDK "iphoneos" cannot be located
+xcrun: error: unable to lookup item 'Path' in SDK 'iphoneos'
+
+...
+
+configure: WARNING: 'missing' script is too old or missing
+configure: error: in `/Users/arryangga/Library/Caches/CocoaPods/Pods/Release/Flipper-Glog/0.3.6-1dfd6':
+configure: error: C compiler cannot create executables
+See `config.log' for more details
+```
+
+To fix this issue is very simple, you can fix this using the command line, or by using the Xcode application itself.
+
+<GoogleAds />
+
+## Using Xcode
+
+1. make sure Xcode has installed
+2. open Xcode
+3. open Preferences menu
+4. open Locations tab
+5. make sure “Command Line Tools” has an entry. If not, click on the dropdown and select one (preferably the latest version).
+6. save.
+
+## Using Command Line macOS
+
+```bash
+sudo xcode-select --switch /Applications/Xcode.app
+```
+
+Thats it
+
+<GoogleAds />

@@ -1,0 +1,35 @@
+---
+import generateToc from "src/lib/generateToc";
+import TableOfContentsHeading from "./TableOfContentsHeading.astro";
+const { headings } = Astro.props;
+const toc = generateToc(headings);
+---
+
+<nav class="table-of-contents mb-10">
+  <h2>Table of Contents</h2>
+  <ul>
+    {toc.map((heading: any) => (
+        <TableOfContentsHeading heading={heading} />
+    ))}
+  </ul>
+</nav>
+
+<style>
+
+.table-of-contents ul {
+  @apply relative p-0;
+}
+.table-of-contents ul li {
+  @apply relative pl-6 list-none;
+}
+.table-of-contents ul > li::before {
+  content: "#";
+  position: absolute;
+  background: none;
+  top: 0px;
+  border-radius: 50%;
+  width: 0px;
+  height: 0px;
+  left: 0.25em;
+}
+</style>

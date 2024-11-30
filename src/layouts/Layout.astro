@@ -1,50 +1,76 @@
 ---
+import Footer from "~/components/Footer.astro";
+import Navbar from "~/components/Navbar.astro";
+
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
+const generateTitle = `${title} | Kopidev`;
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{generateTitle}</title>
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9343099184243971"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <Navbar isFullWidht={false} />
+    <main class="container max-w-3xl px-5 lg:px-0 mx-auto">
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  :root {
+    --frist-main-color: #dc2430;
+    --second-main-color: #7b4397;
+    --background-color: #111;
+    --text-color: #fff;
+    --font-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+
+  .prose code::before,
+  .prose code::after {
+    content: "";
+  }
+  .table-of-contents ul {
+    @apply relative p-0;
+  }
+  .table-of-contents ul li {
+    @apply relative pl-6 list-none;
+  }
+  .table-of-contents ul > li::before {
+    content: "#";
+    position: absolute;
+    background: none;
+    top: 0px;
+    border-radius: 50%;
+    width: 0px;
+    height: 0px;
+    left: 0.25em;
+  }
 </style>

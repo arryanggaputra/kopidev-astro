@@ -1,0 +1,41 @@
+---
+language: "id"
+title: "Mengatasi WSL 2 Error 0x8007019e Pada Windows"
+date: 2021-05-08
+categories:
+  - "tips-trick"
+slug: "mengatasi-wsl-2-error-0x8007019e-pada-windows"
+coverImage: "./images/kopidev-social-sharing_uri7x2.webp"
+---
+
+import GoogleAds from "~/components/Ads.astro";
+
+Saat instalalasi [WSL](/a-comprehensive-guide-to-enabling-windows-subsystem-for-linux-wsl) 2 kadang terjadi error, error yang muncul biasanya seperti ini:
+
+<GoogleAds />
+
+```
+C:\>ubuntu
+Installing, this may take a few minutes...
+Installation Failed!
+Error: 0x8007019e
+Press any key to continue...
+```
+
+## Windows Subsystem For Linux
+
+Untuk mengatasi ini caranya sangat mudah, Anda hanya perlu memastikan opsi "[Windows Subsystem For Linux](/a-comprehensive-guide-to-enabling-windows-subsystem-for-linux-wsl)" sudah dicentang
+
+![image](./images/36849844-c57abd74-1d6d-11e8-9e05-d01e5e10073d.png)
+
+Apabila sudah dicentang, silahkan lakukan restart.
+
+## Reset Linux Distribution pada WSL 2
+
+<GoogleAds />
+
+Setelah selesai melakukan restart, pastikan untuk melakukan reset linux distribution pada windows 10, caranya pada menu start kita cari linux distribution yang ingin kita gunakan, setelah itu klik kanan, dan klik setting.
+
+Pada menu setting, kalian tekan tombol reset.
+
+![](./images/6bb177aad97fd2a86b3bf.png)

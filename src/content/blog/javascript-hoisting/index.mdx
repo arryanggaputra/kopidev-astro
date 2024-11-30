@@ -1,0 +1,96 @@
+---
+language: "id"
+title: "Mengenal JavaScript Hoisting"
+date: 2020-07-21
+categories:
+  - "javascript"
+  - "programming"
+tags:
+  - "javascript"
+slug: "javascript-hoisting"
+coverImage: "./images/javascript-hoisting.jpg"
+---
+
+Salah satu hal yang membuat saya aneh (bukan artian negative) pada JavaScript adalah kita dapat menggunakan `variable` dan `function` yang belum di deklarasikan diawal, hal ini biasa disebut dengan `Hoisting` , coba kita perhatikan kode dibawah ini :
+
+```js
+sayHi() // Output : Hi there!
+
+function sayHi() {
+  console.log("Hi there!")
+}
+```
+
+Walaupun fungsi `sayHi()` dipanggil lebih duluan penulisan kode fungsi tersebut, namun kode tersebut akan tetap berjalan normal, dan akan mengeluarkan sebuah `output` alert dengan isi **"Hi there!"** , urutan atau logika script diatas tidak berbeda dengan:
+
+```js
+function sayHi() {
+  console.log("Hi there!")
+}
+
+sayHi() // Output : Hi there!
+```
+
+Hal ini terjadi karena JavaScript masuk kedalam `[compiled language](https://en.wikipedia.org/wiki/Compiled_language)` , oleh karena itu saat kode JavaScript sedang diproses, pada iterasi atau perulangan awal semua `variable` dan `function` akan dideklarasikan di awal, sebelum kode di ekseskusi satu persatu. Maksudnya, apapun urutan yang kita tulisan, variabel dan function akan selalu diatas.
+
+### Only declarations are hoisted
+
+JavaScript Hoisting hanya berlaku pada pendeklarasian saja, bukan pada inisialisasi. Jika sebuah `variable` dideklarasikan dan di inisialisasi setelah **digunakan**, maka hasilnya akan `undefined` , contoh :
+
+```js
+console.log(num) // Returns undefined
+
+var num
+
+num = 6
+```
+
+Namun jika kita melakukan pendeklarasian `variable` setelah digunakan, dan menginisialisasi sebelum digunakan, maka itu akan mereturn value yang di inisialisasi :
+
+```js
+num = 6
+
+console.log(num) // returns 6
+
+var num
+```
+
+Contoh - contoh lain untuk mendemonstrasikan hoisting :
+
+```js
+//Example 1 - Does not hoist
+var x = 1 // Initialize x
+console.log(x + " " + y) // '1 undefined'
+var y = 2 // Initialize y
+//This will not work as JavaScript only hoists declarations
+
+//Example 2 - Hoists
+var num1 = 3 //Declare and initialize num1
+num2 = 4 //Initialize num2
+console.log(num1 + " " + num2) //'3 4'
+var num2 //Declare num2 for hoisting
+
+//Example 3 - Hoists
+a = "Cran" //Initialize a
+b = "berry" //Initialize b
+console.log(a + "" + b) // 'Cranberry'
+var a, b //Declare both a & b for hoisting
+```
+
+Hal lain yang harus diperhatikan adalah pendeklarasian sebuah `Class` tidak dapat di hoisting, kita tidak dapat menggunakan sebuah `Class` sebelum di deklarasikan :
+
+```js
+var john = new Person("John", "Doe") //ReferenceError: Person is not defined
+
+class Person {
+  constructor(name, surname) {
+    this.name = name
+    this.surname = surname
+  }
+}
+
+// This good!!
+var jane = new Person("Jane", "Doe") //No problems here
+```
+
+Jika kalian memiliki masukan, komentar, atau ingin diskusi lebih lanjut, silahkan komentar ya. Terimakasih.

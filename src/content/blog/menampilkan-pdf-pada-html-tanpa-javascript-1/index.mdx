@@ -1,0 +1,57 @@
+---
+language: "id"
+title: "Menampilkan PDF pada HTML tanpa JavaScript"
+date: 2021-01-01
+categories:
+  - "javascript"
+  - "programming"
+  - "tips-trick"
+tags:
+  - "javascript"
+  - "pdf"
+  - "tips-trick"
+slug: "menampilkan-pdf-pada-html-tanpa-javascript-1"
+coverImage: "./images/kopidev-social-sharing_uri7x2.webp"
+---
+
+Jika kita berselancar di dunia maya, kita sering menjumpai berbagai macam tipe file dokumen, seperti audio, picture, pdf, ppt, docx, dan lain sebagainya. Sebagai pelajar atau mahasiswa pasti sangat sering menemukan dokumen tersebut jika sedang mencari tugas di internet.
+
+Orang-orang dapat menemukan file tersebut tidak lain karena sumbangsih dari  para author di Internet yang melakukan upload dokumen. Dokumen tersebut sejatinya hanya bisa di download, namun ada cara agar para penjelajah internet dapat menikmatnya tanpa harus melakukan download terlebih dahulu.
+
+Nah, pada artikel ini, akan dibahas cara untuk menampilkan PDF tanpa JavaScript di Browser
+
+## Html Object element
+
+Pada HTML, mungkin tidak banyak dari kita yang mengetahui sebuah element `<object>` , dengan adanya element `<object>` ini, kita dapat menanamkan (_embed_) file PDF yang kita miliki ke dalam HTML tanpa pustaka pihak ketiga. Caranya sangat mudah :
+
+1. Pastikan kita sudah memiliki URL file pdf yang ingin ditampilkan.
+2. Tambahkan attribute `type` dengan value `application/pdf` ke `object` element.
+3. Tambahkan attribute `data` dengan value URL pdf yang ingin ditampilkan ke `object` element.
+4. Set `height` and `width` sesuai keigininan.
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Embedding pdf</title>
+  </head>
+  <body>
+    <h1>My pdf</h1>
+    <object
+      type="application/pdf"
+      data="URL_pdf_yang_ingin_ditampilkan/sample.pdf"
+      width="600"
+      height="700"
+    >
+    </object>
+  </body>
+</html>
+```
+
+## Output - Menampilkan Pdf tanpa JavaScript
+
+![Menampilkan PDF pada HTML tanpa JavaScript - 1]
+
+## Demo
+
+https://stackblitz.com/edit/js-yuvqcj?embed=1&amp;file=index.html

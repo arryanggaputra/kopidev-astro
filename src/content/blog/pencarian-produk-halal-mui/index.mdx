@@ -1,0 +1,397 @@
+---
+language: "id"
+title: "Tutorial Android - Pencarian Produk Halal MUI"
+date: 2021-04-12
+categories:
+  - "android"
+  - "programming"
+slug: "pencarian-produk-halal-mui"
+coverImage: "./images/demo.png"
+---
+
+Pada artikel ini kita akan belajar membuat aplikasi android sederhana, aplikasi android sederhana ini dibuat untuk melakukan pencarian produk halal MUI. Pada tutorial ini saya menggunakan **Android Studio** versi 3.2.2.
+
+![Tutorial Membuat Aplikasi Android - Studi Kasus Pencarian Produk Halal MUI](./images/demo.png)
+
+## Menyiapkan Project Baru di Android Studio
+
+1. Buat projek baru di **Android Studio**, klik _Start a new Android Studio project_.
+2. Pilih _Empty Activity_, kemudian atur nama _project_, _package name_ dan direktori (folder lokasi) penyimpanan sesuai keinginan kalian.
+3. Untuk bahasa gunakan Java dan minimum API level pilih **API 21**.
+4. Tekan _Chekbox_ (Ceklis) pada _Use AndroidX artifacts,_ lalu klik **Finish** dan tunggu hingga pembuatan projek selesai.
+5. Kemudian tambahkan _repository_ _jitpack.io_ di _build.gradle_ (project)
+
+```gradle
+   allprojects {
+       repositories {
+           . . .
+           maven { url 'https://jitpack.io' }
+           . . .
+       }
+   }
+```
+
+6. Kemudian buka _build.gradle_ ( di dalam app directory) lalu tambahkan library berikut:
+
+```gradle
+   dependencies {
+       . . .
+       implementation 'com.google.android.material:material:1.0.0'
+       implementation 'androidx.recyclerview:recyclerview:1.1.0'
+       implementation 'com.github.JabirDev:HalalMUIAndroid:1.0'
+       . . .
+   }
+```
+
+## Membuat Layout Aplikasi Produk Halal di Android Studio
+
+Buat layout baru caranya klik kanan pada direktori **layout** pilih **new** lalu pilih **Layout resource file** beri nama dengan **item_list**.
+
+\[caption id="" align="alignnone" width="1000"\]![Tutorial Membuat Aplikasi Android - Studi Kasus Pencarian Produk Halal MUI](./images/tutorial%20android%20sederhana%201.png) Tutorial Android - Pencarian Produk Halal MUI\[/caption\]
+
+Lalu, paste kode berikut:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp">
+
+    <TextView
+        android:id="@+id/tv_produk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+
+    <TextView
+        android:id="@+id/tv_produsen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+
+    <TextView
+        android:id="@+id/tv_sertifikat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+    <TextView
+        android:id="@+id/tv_berlaku"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider" />
+</LinearLayout>
+```
+
+## Menambahkan ListAdapter
+
+Selanjutnya buat file java baru untuk adapter _RecyclerView_, beri nama **ListAdapter**.
+
+![Tutorial Android - Pencarian Produk Halal MUI](./images/tutorial%20android%20sederhana%202.png)
+
+Selanjutnya, paste kode berikut ini:
+
+```java
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private Context context;
+    private List<HalalData> items;
+
+    public ListAdapter(Context context, List<HalalData> items) {
+        this.context = context;
+        this.items = items;
+    }
+
+    class ListHolder extends RecyclerView.ViewHolder {
+
+        TextView produk, produsen, sertifikat, berlaku;
+
+        public ListHolder(@NonNull View itemView) {
+            super(itemView);
+            produk = itemView.findViewById(R.id.tv_produk);
+            produsen = itemView.findViewById(R.id.tv_produsen);
+            sertifikat = itemView.findViewById(R.id.tv_sertifikat);
+            berlaku = itemView.findViewById(R.id.tv_berlaku);
+        }
+
+        public void setData(HalalData data) {
+            produk.setText(data.getNamaProduk());
+            produsen.setText(data.getNamaProdusen());
+            sertifikat.setText(data.getNomorSertifikat());
+            berlaku.setText(data.getTanggalValid());
+        }
+    }
+
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.item_list, parent, false);
+        return new ListHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ListHolder h = (ListHolder) holder;
+        h.setData(items.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
+}
+```
+
+Sekarang buka _MainActivity.xml_. Di sini saya menggunakan:
+
+1. **EditText** untuk menginputkan teks.
+2. **Radio Button** di dalam **Radio Group** untuk memilih kategori.
+3. **RecyclerView** untuk menampilkan daftar produk.
+
+Berikut kode layoutnya kalian bisa desain sesuai keinginan atau copy paste aja:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/input_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Cari produk"
+        android:inputType="textPersonName" />
+
+    <RadioGroup
+        android:id="@+id/rg_kategori"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_produk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Produk" />
+
+        <RadioButton
+            android:id="@+id/rb_produsen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Produsen" />
+
+        <RadioButton
+            android:id="@+id/rb_sertifikat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nomor Sertifikat" />
+    </RadioGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
+```
+
+Lanjut buka file **MainActivity.java**. Kemudian paste kode berikut:
+
+```java
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
+    private String kategori;
+    private List<HalalData> items = new ArrayList<>();
+    private ListAdapter adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        adapter = new ListAdapter(this, items);
+        RecyclerView rv = findViewById(R.id.recyclerview);
+        rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
+        EditText inputQuery = findViewById(R.id.input_query);
+        RadioGroup rgKategori = findViewById(R.id.rg_kategori);
+        final RadioButton produk = findViewById(R.id.rb_produk);
+        final RadioButton produsen = findViewById(R.id.rb_produsen);
+
+        rgKategori.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // Ketika Radio Group dipilih
+                if (checkedId == produk.getId()){
+                    kategori = "produk";
+                } else if (checkedId == produsen.getId()){
+                    kategori = "produsen";
+                } else {
+                    kategori = "sertifikat";
+                }
+            }
+        });
+
+        inputQuery.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Ketika user memasukkan teks pada edit text
+                String q = s.toString();
+                if (TextUtils.isEmpty(q)){
+                    // Jika teks kosong maka akan menampilkan toast berikut
+                    Toast.makeText(MainActivity.this, "Input text", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Jika teks tidak kosong maka akan melakukan pencarian sesuai dengan teks yang sudah dimasukkan
+                    pencarian(q);
+                }
+            }
+        });
+
+    }
+
+    // Fungsi untuk mencari produk
+    private void pencarian(String q) {
+        items.clear();
+        if (TextUtils.isEmpty(kategori)){
+            // Jika kategori tidak dipilih maka akan menampikan toast dengan pesan berikut
+            Toast.makeText(MainActivity.this, "Pilih kategori pencarian", Toast.LENGTH_SHORT).show();
+        } else if (kategori.equals("produk")){
+            // Jika kategori yang dipilih adalah produk
+            HalalMui.byNamaProduk(q, new HalalListener() {
+                @Override
+                public void ketikaSukses(List<HalalData> halalData) {
+                    items.addAll(halalData);
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void ketikaTidakAdaData(String s) {
+                    Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void ketikaGagal(Throwable t) {
+                    Log.e(TAG, "ketikaGagal: ", t);
+                    Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else if (kategori.equals("produsen")){
+            // Jika kategori yang dipilih adalah produsen
+            HalalMui.byNamaProdusen(q, new HalalListener() {
+                @Override
+                public void ketikaSukses(List<HalalData> halalData) {
+                    items.addAll(halalData);
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void ketikaTidakAdaData(String s) {
+                    Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void ketikaGagal(Throwable t) {
+                    Log.e(TAG, "ketikaGagal: ", t);
+                    Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else if (kategori.equals("sertifikat")){
+            // Jika kategori yang dipilih adalah sertifikat
+            HalalMui.byNomorSertifikat(q, new HalalListener() {
+                @Override
+                public void ketikaSukses(List<HalalData> halalData) {
+                    items.addAll(halalData);
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void ketikaTidakAdaData(String s) {
+                    Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void ketikaGagal(Throwable t) {
+                    Log.e(TAG, "ketikaGagal: ", t);
+                    Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+}
+```
+
+Terakhir buka file **AndroidManifest.xml** lalu tambahkan permission untuk mengakses internet, seperti berikut:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jabirdeveloper.halalmui">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+</manifest>
+```
+
+Sekarang jalan projek bisa menggunakan device android kalian atau bisa juga menggunakan emulator. Tekan **Shift + F10**, berikut tampilan **Aplikasi Halal MUI** yang sudah kita buat.

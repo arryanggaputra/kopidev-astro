@@ -1,0 +1,268 @@
+---
+language: "en"
+title: "Yaml Tutorial for Beginner"
+date: 2021-08-15
+categories:
+  - "programming"
+slug: "yaml-tutorial-beginner"
+coverImage: "./images/kopidev-social-sharing_uri7x2.webp"
+---
+
+YAML Ain't Markup Language (YAML) is a serialization language that has become popular in recent years. It is commonly used as a configuration file format, but its object serialization capabilities make it a viable alternative to languages ​​such as JSON.
+
+This YAML tutorial will demonstrate the language's syntax through a guide and some simple Python coding examples. YAML has extensive language support and can be easily mapped to native data structures.
+
+It's also easy to read for humans, making them a good choice for settings. The acronym for YAML is the acronym for Yet Another Markup Language. However, the maintainer renamed it YAML Ain't Markup Language to emphasize its data-driven functions.
+
+## A YAML Simple File
+
+Let's take a look at a YAML file for a brief overview.
+
+```yaml
+---
+username: arryanggaputra
+bio: I’m a front end & mobile developer
+avatar: https://secure.gravatar.com/avatar/f9a2288e1579de6d0c47f317faa2dc09?s=192&d=mm&r=g
+age: 27
+pi: 3.14159
+writer: true
+hobbies:
+  - cycling
+  - reading
+social:
+  twitter: "arryanggaputra"
+  github: "arryanggaputra"
+  facebook: "arryanggaputra"
+```
+
+The file begins with three dashed. These dashes indicate the beginning of a new YAML document. YAML supports multiple copies, and the supported parser will recognize each set of dashed as the beginning of a new hyphen.
+
+The following is most of the structure that makes up a typical YAML document: key-value pairs. YAML supports more than just string values. **Username** is a key that points to a string value: **arryanggaputra**.
+
+They have four different types of data. **Username** and **bio** are strings. **Pi** is a floating-point number. **Writer** is a Boolean value. The **Age** is an integer. You can enclose the string in single or double quotation marks or without quotation marks.
+
+YAML recognizes unquoted numbers as integers or floating-point numbers. The **hobbies** element is an array. **Hobbies** have four parts, and a dash represents each element.
+
+I indented the aspects in the hobbies with two spaces. Indentation is the way YAML represents nesting. The number of spaces may vary from file to file, but tabs are not allowed. Next, we will see how the indentation works.
+
+Finally, we see **Social**, which has 3 elements, each of which is indented. We can think of the **social** as a dictionary containing strings, and another dictionary. YAML supports nested key-value pairs and type mixing. Before we dig deeper, let's see what this document looks like in JSON. I will include it in this convenient JSON to YAML converter.
+
+```json
+{
+  "username": "arryanggaputra",
+  "bio": "I’m a front end & mobile developer",
+  "avatar": "https://secure.gravatar.com/avatar/f9a2288e1579de6d0c47f317faa2dc09?s=192&d=mm&r=g",
+  "age": 27,
+  "pi": 3.14159,
+  "writer": true,
+  "hobbies": ["cycling", "reading"],
+  "social": {
+    "twitter": "arryanggaputra",
+    "github": "arryanggaputra",
+    "facebook": "arryanggaputra"
+  }
+}
+```
+
+JSON and YAML have similar capabilities, and you can convert most documents between the formats.
+
+## Indentation and Whitespace
+
+Outline indentation and spaces Spaces are part of the YAML format. Unless otherwise stated, a newline indicates the end of the field. You structure a YAML document with indentation. The indentation level can be one or more spaces. The specification prohibits the use of tabs because the tools handle them differently. Consider this file. Elements in things are indented with two spaces.
+
+```bash
+foo: bar
+     pleh: help
+     stuff:
+       foo: bar
+       bar: foo
+```
+
+Let's take a look at how a simple Python script looks at this document. We save it as a file named foo.yaml. The PyYAML package maps YAML file sequences to dictionaries.
+
+We will traverse the outermost set of keys and values ​​and print each value's key and string representation. You can find processors for your favorite platform here.
+
+```py
+import yaml
+
+if __name__ == '__main__':
+
+    stream = open("foo.yaml", 'r')
+    dictionary = yaml.load(stream)
+    for key, value in dictionary.items():
+        print (key + " : " + str(value))
+
+```
+
+The output
+
+```bash
+foo : bar
+pleh : help
+stuff : {'foo': 'bar', 'bar': 'foo'}
+```
+
+When we tell Python to print the dictionary as a string, it uses the inline syntax we will see next. We can see from the output that our document is a Python dictionary containing two lines and another dictionary nested in it. The simple nesting of YAML allows us to build complex objects. But this is only the beginning.
+
+## Comments
+
+Comments begin with a pound sign. They can appear after a document value or take up an entire line.
+
+```yaml
+___
+# This is a full line comment
+foo: bar # this is a comment, too
+```
+
+Comments are for humans to read, and YAML processors will ignore them.
+
+## YAML Datatypes
+
+The values ​​in YAML key-value pairs are scalars. Their function is similar to the scalar types in languages ​​such as Perl, Javascript, and Python. It is usually sufficient to enclose the string in quotation marks, use numbers without quotation marks, and let the parser calculate it. But this is only the tip of the iceberg. YAML can do more.
+
+### Key-Value Pairs and Dictionaries
+
+Key-values ​​are the building blocks of YAML. Every item in the YAML document is a member of at least one dictionary. The key is always a string. The value is a scalar so that it can be any data type. Therefore, as we have already seen, the value can be a string, number, or another dictionary.
+
+### Numeric types
+
+YAML recognizes numeric types. We saw floating point numbers and integers above. YAML supports several other number types. Integers can be decimal, hexadecimal or octal.
+
+```yaml
+---
+foo: 12345
+bar: 0x12d4
+plop: 023332
+```
+
+Let's run our python script on this document.
+
+```bash
+foo : 12345
+ bar : 4820
+ plop : 9946
+```
+
+As you might expect, Ox means that the value is hexadecimal, and a leading zero means an octal value. YAML supports fixed and exponential floating-point numbers.
+
+```yaml
+---
+foo: 1230.15
+bar: 12.3015e+05
+```
+
+When we evaluate these entries we'll see:
+
+```bash
+foo : 1230.15
+ bar : 1230150.0
+```
+
+Last, we can represent not-a-number (NAN) or infinity value.
+
+```yaml
+---
+foo: .inf
+bar: -.Inf
+plop: .NAN
+```
+
+Foo is infinity. Bar is negative infinity, and plop is NAN.
+
+### Strings
+
+YAML strings are Unicode. In most cases, you do not need to enclose them in quotation marks.
+
+```yaml
+---
+foo: this is a normal string
+```
+
+Our test program return this as:
+
+```bash
+foo: this is a normal string
+```
+
+But if we want to deal with escape sequences, we need to use double quotes.
+
+```yaml
+---
+foo: "this is not a normal string\n"
+bar: this is not a normal string\n
+```
+
+YAML processes the first value so that it ends with a carriage return and line feed. Since the second value is not quoted, YAML treats \n as two characters.
+
+### Nulls
+
+You can enter nulls with a tilde or the unquoted null string literal.
+
+```yaml
+---
+foo: ~
+bar: null
+```
+
+Our program prints:
+
+```bash
+foo : None
+bar : None
+```
+
+Python's representation for null is None.
+
+### Booleans
+
+YAML uses the keywords True, On, and Yes to represent Boolean values ​​and represent true. False is represented by False, Off, or No.
+
+```yaml
+---
+foo: True
+bar: False
+light: On
+TV: Off
+```
+
+### Arrays
+
+We can specify arrays or lists in a single line or multiple line
+
+```yaml
+---
+items: [1, 2, 3, 4, 5]
+names: ["one", "two", "three", "four"]
+
+---
+items:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+names:
+  - "one"
+  - "two"
+  - "three"
+  - "four"
+```
+
+The multi-line format is useful for lists that contain complex objects instead of scalars.
+
+```yaml
+___
+items:
+  - things:
+      thing1: huey
+      things2: dewey
+      thing3: louie
+  - other things:
+      key: value
+```
+
+An array can contain any valid YAML value. The values in a list do not have to be the same type.
+
+## Conclusion
+
+YAML is a powerful language used for configuration files, messages between applications, and saving application state. We introduced its most commonly used functions, including using built-in data types and building complex documents. Some platforms support advanced YAML features, including custom data types.

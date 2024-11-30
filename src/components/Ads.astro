@@ -1,0 +1,45 @@
+<div id="ads-container"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    const adClient = "ca-pub-9343099184243971";
+    const mobileAdSlot = "2443792134";
+    const desktopAdSlot = "4126057001";
+    const adWidth = 728;
+    const adHeight = 90;
+
+    const isMobile = window.innerWidth <= 768; // Adjust the breakpoint as needed
+    const adsContainer = document.getElementById('ads-container');
+
+    const adElement = document.createElement('ins');
+    adElement.className = 'adsbygoogle';
+
+    if (isMobile) {
+      // Mobile ad settings
+      adElement.style.display = 'block';
+      adElement.style.textAlign = 'center';
+      adElement.style.width = '100%';
+      adElement.dataset.adLayout = 'in-article';
+      adElement.dataset.adFormat = 'fluid';
+      adElement.dataset.adClient = `${adClient}`;
+      adElement.dataset.adSlot = `${mobileAdSlot}`;
+    } else {
+      // Desktop ad settings
+      adElement.style.display = 'inline-block';
+      adElement.style.width = `${adWidth}px`;
+      adElement.style.height = `${adHeight}px`;
+      adElement.dataset.adClient = `${adClient}`;
+      adElement.dataset.adSlot = `${desktopAdSlot}`;
+    }
+
+    adsContainer?.appendChild(adElement);
+
+    // Initialize Google Ads
+    try {
+      window.adsbygoogle = window.adsbygoogle || [];
+      window.adsbygoogle.push({});
+    } catch (error) {
+      console.error('Ad loading error:', error);
+    }
+  });
+</script>

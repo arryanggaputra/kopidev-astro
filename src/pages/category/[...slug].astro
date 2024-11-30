@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "src/layouts/Layout.astro";
+import BlogList from "~/components/BlogList.astro";
+export async function getStaticPaths() {
+    const categories = await getCollection("categories");
+    return categories.map((category: { slug: any }) => ({
+        params: { slug: category.slug },
+        props: { ...category },
+    }));
+}
+
+const {slug, data} = Astro.props;
+---
+
+<Layout title={data.title}>
+    <div class="bg-[#222] my-5 p-5 rounded-md border-t-4 border-yellow-400">
+        <h1 class="text-2xl md:text-4xl font-bold pb-5">
+            <span class="text-yellow-400">#</span>{" "}
+            {slug}
+        </h1>
+        <span class="text-sm md:text-base text-gray-300">
+            {data?.description}
+        </span>
+    </div>
+
+    <BlogList category={slug} limit={6} />
+       
+</Layout>

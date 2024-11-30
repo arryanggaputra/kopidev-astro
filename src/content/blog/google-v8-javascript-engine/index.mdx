@@ -1,0 +1,78 @@
+---
+language: "id"
+title: "Berkenalan Dengan V8 Javascript Engine"
+date: 2020-06-19
+categories:
+  - "javascript"
+  - "programming"
+tags:
+  - "chrome-v8"
+  - "v8-engine"
+slug: "google-v8-javascript-engine"
+coverImage: ./images/JavaScript-V8-Engine.jpg
+---
+
+Chrome V8 atau bisa juga disebut dengan **V8 Engine**, adalah JavaScript Engine yang bersifat _open source_ yang dikembangkan oleh **The Chromium Project** untuk **Google Chrome** dan **Chromium**. Versi pertama dari V8 Engine dirilis bersamaan dengan versi pertama Chrome Browser pada 2 September 2008.
+
+V8 Engine berfungsi untuk memparsing/membaca kode javascript kita agar dapat dibaca oleh mesin/computer untuk kemudian di eksekusi, dan hasil nya dapat terlihat oleh mata kita di browser atau di console. V8 Engine juga bertugas untuk mengatur mekanisme, prioritas dna urutan eksekusi dari kode javascript yang kita buat.
+
+## V8 release v7.6
+
+Versi V8 saat ini sudah menjadi versi 7.6, namun masih Beta Version, dan akan dirilis secara resmi bersama dengan Google Chrome veri 76 di beberapa minggu kedepan. Berikut adalah beberapa pembaharuan yang akan dibawa oleh V8 7.6 :
+
+## JSON Parse Improvement
+
+Dalam aplikasi JavaScript modern, JSON biasanya digunakan sebagai format untuk mengkomunikasikan data yang terstruktur. Dengan mempercepat penguraian (_parsing_) JSON, kita dapat mengurangi latensi komunikasi ini.
+
+Pada V8 v7.6, tim Google telah merombak `JSON.parser` menjadi lebih cepat dalam memindai dan mem-parsing JSON. Ini menghasilkan penguraian (_parsing_) data 2,7 kali lebih cepat
+
+![](https://v8.dev/_img/v8-release-76/json-parsing.svg)
+
+Chart menunjukan kenaikan performa untuk `JSON.parse` di berbagai macam website
+
+## Improved BigInt support
+
+BigInt sekarang memiliki dukungan API yang lebih baik dalam berbagai bahasa (_Internationalization_). Anda sekarang dapat memformat `BigInt` sesuai dengan bahasa yang diinginkan, dengan menggunakan metode `toLocaleString`.
+
+```js
+12345678901234567890n.toLocaleString("en")
+// result '12,345,678,901,234,567,890'
+
+12345678901234567890n.toLocaleString("de")
+// result '12.345.678.901.234.567.890'
+```
+
+## Intl.DateTimeFormat improvements
+
+Pada sebuah aplikasi biasanya terdapat sebuah fitur untuk menunjukkan sebuah rentang tanggal suatu acara, seperti tanggal reservasi hotel, periode penagihan suatu layanan, dan lain sebagainya. Dengan menggunakan `Intl.DateTimeFormat` API, sekarang telah mendukung metode `formatRange` dang `formatRangeToParts`  untuk dengan mempermudah dalam melakukan format rentang tanggal sesuai dengan spesifiki lokaliasi yang kita tentukan. Contohnya seperti ini
+
+```js
+const start = new Date("2019-05-07T09:20:00")
+// → 'May 7, 2019'
+
+const end = new Date("2019-05-09T16:00:00")
+// → 'May 9, 2019'
+
+const fmt = new Intl.DateTimeFormat("en", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+})
+
+const output = fmt.formatRange(start, end)
+// → 'May 7 – 9, 2019'
+```
+
+```js
+const parts = fmt.formatRangeToParts(start, end)
+// result
+[
+  { type: 'month', value: 'May', source: 'shared' },
+  { type: 'literal', value: ' ', source: 'shared' },
+  { type: 'day', value: '7', source: 'startRange' },
+  { type: 'literal', value: ' – ', source: 'shared' },
+  { type: 'day', value: '9', source: 'endRange' },
+  { type: 'literal', value: ', ', source: 'shared' },
+  { type: 'year', value: '2019', source: 'shared' },
+]
+```

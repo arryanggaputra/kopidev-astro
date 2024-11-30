@@ -1,0 +1,93 @@
+---
+language: "id"
+title: "Apa kelebihan Tailwindcss dibanding Bootstrap?"
+date: 2020-09-18
+categories:
+  - "css"
+  - "html"
+tags:
+  - "css"
+  - "postcss"
+  - "purgecss"
+  - "tailwindcss"
+slug: "apa-kelebihan-tailwindcss-dibanding-bootstrap"
+coverImage: "./images/kopidev-social-sharing_uri7x2.webp"
+---
+
+import TailwindComponentHorizontalLists from "~/components/TailwindComponentHorizontalLists.astro";
+
+Tailwindcss itu sangat berbeda dengan dengan Framework lainnya seperti Bootstrap, Foundation, atau Bulma, karena Framework tersebut merupakan sebuah UI Kit, sedangkan tailwindcss bukanlah UI Kit. Tailwindcss tidak memiliki template yang disuguhkan secara default, dan juga tailwindcss tidak memiliki component yang siap digunakan. Dalam artian lain Tailwindcss nggak ngurusin template website yang kamu miliki jadinya seperti apa, Tailwindcss males ngurusin beginian, karena mereka ngurusin Tailwindcss sendiri udah capek \*_canda njir_.
+
+### Apakah ini saat yang tepat untuk pindah ke Tailwindcss?
+
+weitss... sabar sob, kalau kalian mengharapkan sebuah framework CSS yang sudah menyediakan banyak component seperti button, card, carousel, dan tete\* bengek lainnya, well.... framework ini nggak cocok sama sekali dengan kalian, dan saran saya, kalian nggak usah lagi baca artikel ini. Mending kalian baca berita tentang _Lucinta Luna_ yang barusan release Kopi **Ko&thol**. ?
+
+Nah, yang cocok untuk pengguna Tailwindcss adalah mereka yang ingin mengimplement sebuah UI yang **"gue banget"**, ngerti maksudnya? Mudahnya, framework ini cocok bagi mereka yang ingin memiliki UI dengan sense berbeda dari yang lainnya.
+
+<TailwindComponentHorizontalLists />
+
+### Low Level Class
+
+Tailwindcss menyediakan class utility yang cukup low level dan composable, yang menjadikan Tailwindcss mudah untuk membangun sebuah UI interface yang kompleks dan memiliki ciri khas tersendiri. Dibandingkan bootstrap yang sering kita temui sebuah situs sangat terasa sekali Bootstrapnya. Dibawah ini adalah contoh penggunaan class di Tailwindcss:
+
+<p
+  class="codepen"
+  style={{
+    height: "343px",
+    boxSizing: "border-box",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "2px solid",
+    margin: "1em 0",
+    padding: "1em",
+  }}
+  data-height="343"
+  data-theme-id="dark"
+  data-default-tab="html,result"
+  data-user="arryanggaputra"
+  data-slug-hash="zYOmqOJ"
+  data-pen-title="Tailwindcss Example"
+>
+  See the Pen
+  <a href="https://codepen.io/arryanggaputra/pen/zYOmqOJ/">
+    Tailwindcss Example
+  </a>
+  by Arryangga Aliev Pratamaputra (
+  <a href="https://codepen.io/arryanggaputra">@arryanggaputra</a>) on
+  <a href="https://codepen.io">CodePen</a>.
+</p>
+
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<TailwindComponentHorizontalLists />
+
+### Component Friendly
+
+Meskipun kalian dapat melakukan banyak hal hanya dengan utility-class seperti diatas, ada saat dimana kalian ingin membuat sebuah komponen yang dapat di re-use berkali-kali. Tailwindcss menyediakan sebuah tools untuk mengekstraksi class dari sebuah komponen, sehingga mudah untuk memperbarui beberapa instance komponen dari satu tempat, contoh saya ingin membuat sebuah button:
+
+```html
+<button
+  class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
+>
+  Button
+</button>
+
+<button class="btn btn-blue">Button</button>
+
+<style>
+  .btn {
+    @apply font-bold py-2 px-4 rounded;
+  }
+  .btn-blue {
+    @apply bg-blue text-white;
+  }
+  .btn-blue:hover {
+    @apply bg-blue-dark;
+  }
+</style>
+```
+
+<TailwindComponentHorizontalLists />
+
+Sebetulnya masih banyak lagi yang ingin ditulis, tapi aku butuh bantuan dari kalian semua, semoga kalian bersedia membantu untuk menambahkannya, ataupun memberikan artikel lain.

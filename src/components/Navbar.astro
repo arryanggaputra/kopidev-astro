@@ -1,0 +1,58 @@
+---
+interface Props {
+  isFullWidht: boolean;
+}
+
+const { isFullWidht } = Astro.props;
+---
+
+<nav
+  class:list={[
+    " dark py-3 md:py-0  mx-auto flex flex-row items-center justify-between",
+    { "container max-w-3xl  px-5 lg:px-0": !isFullWidht },
+    { "px-8": isFullWidht },
+  ]}
+>
+  <a title={"Kopidev"} class="text-xl md:text-2xl font-bold" href="/">
+    Kopidev
+  </a>
+  <ul class="text-xs md:text-base flex">
+    <li>
+      <a
+        href="/about/"
+        title="About Us"
+        class="px-2 md:px-4 block py-2 md:py-4 hover:bg-white hover:bg-opacity-10"
+      >
+        About
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="/blog/"
+        title="Blog"
+        class="px-2 md:px-4 block py-2 md:py-4 hover:bg-white hover:bg-opacity-10"
+      >
+        Blog
+      </a>
+    </li>
+    <!-- <li>
+      <a
+        href="/category/community/"
+        title="Community hrefpic"
+        class="px-2 md:px-4 block py-2 md:py-4 hover:bg-white hover:bg-opacity-10"
+      >
+        Community
+      </a>
+    </li> -->
+    <li>
+      <a
+        href="/tailwind/"
+        title="Tailwind Components"
+        class="px-2 md:px-4 block py-2 md:py-4 hover:bg-white hover:bg-opacity-10"
+      >
+        Tailwind
+      </a>
+    </li>
+  </ul>
+</nav>

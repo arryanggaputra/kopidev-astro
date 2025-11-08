@@ -94,32 +94,94 @@ const allCategories = Array.from(categoryGroups.entries()).map(([name, total]) =
       </div>
 
       <div class="flex flex-col lg:flex-row gap-8">
-        <!-- Sidebar Categories -->
-        <div class="lg:w-60 flex-shrink-0">
-          <h2 class="text-xl font-semibold mb-4">Categories</h2>
-          <div class="space-y-2">
-            <a
-              href="/tailwind/"
-              class="flex justify-between items-center py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors duration-200"
-            >
-              <span>All Components</span>
-            </a>
-            {allCategories.map(cat => (
+        <!-- Enhanced Sidebar Categories -->
+        <div class="lg:w-72 flex-shrink-0">
+          <div class="bg-gray-900 rounded-lg p-6 sticky top-8">
+            <h2 class="text-xl font-semibold mb-4 text-white flex items-center">
+              <svg class="w-5 h-5 mr-2 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-6H5m14 12H5"></path>
+              </svg>
+              Categories
+            </h2>
+            
+            <!-- Search Categories -->
+            <div class="mb-4">
+              <div class="relative">
+                <input
+                  type="text"
+                  placeholder="Search categories..."
+                  id="categorySearch"
+                  class="w-full bg-gray-800 text-white placeholder-gray-400 border border-gray-600 rounded-lg px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+                <svg class="w-4 h-4 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Categories Container -->
+            <div class="space-y-3 max-h-96 overflow-y-auto custom-scrollbar" id="categoriesContainer">
+              <!-- All Components Link -->
               <a
-                href={`/tailwind/category/${cat.name}/1/`}
-                class={`flex justify-between items-center py-2 px-4 rounded-lg transition-colors duration-200 capitalize ${
-                  cat.name === categoryName 
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-gray-800 hover:bg-gray-700'
-                }`}
-                title={`${cat.name} Tailwind Component`}
+                href="/tailwind/"
+                class="flex justify-between items-center py-3 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all duration-200 shadow-sm border border-gray-700 hover:border-gray-600"
               >
-                <span>{cat.name}</span>
-                <div class="bg-blue-500 text-white text-xs font-bold rounded-full min-w-[24px] h-6 flex items-center justify-center px-2">
-                  {cat.total}
+                <span class="text-gray-200 hover:text-white font-medium flex items-center">
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-6H5m14 12H5"></path>
+                  </svg>
+                  All Components
+                </span>
+                <div class="bg-gray-700 text-gray-300 text-xs font-bold rounded-full min-w-[28px] h-7 flex items-center justify-center px-2">
+                  {allComponents.length}
                 </div>
               </a>
-            ))}
+
+              <!-- Category Items -->
+              {allCategories.sort((a, b) => b.total - a.total).map(cat => {
+                const isCurrentCategory = cat.name === categoryName;
+                return (
+                  <a
+                    href={`/tailwind/category/${cat.name}/`}
+                    class={`category-item flex justify-between items-center py-3 px-4 rounded-lg transition-all duration-200 group border ${
+                      isCurrentCategory 
+                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 border-blue-500 shadow-md' 
+                        : 'bg-gray-800 hover:bg-gray-700 border-gray-700 hover:border-gray-600'
+                    }`}
+                    title={`${cat.name} Components (${cat.total})`}
+                    data-category={cat.name.toLowerCase()}
+                  >
+                    <span class={`capitalize font-medium flex items-center ${
+                      isCurrentCategory 
+                        ? 'text-white' 
+                        : 'text-gray-200 group-hover:text-white'
+                    }`}>
+                      <div class={`w-2 h-2 rounded-full mr-3 transition-colors ${
+                        isCurrentCategory 
+                          ? 'bg-white' 
+                          : 'bg-blue-400 group-hover:bg-blue-300'
+                      }`}></div>
+                      {cat.name}
+                    </span>
+                    <div class={`text-xs font-bold rounded-full min-w-[28px] h-7 flex items-center justify-center px-2 transition-all duration-200 ${
+                      isCurrentCategory 
+                        ? 'bg-white bg-opacity-20 text-white' 
+                        : 'bg-gray-700 group-hover:bg-blue-600 text-gray-300 group-hover:text-white'
+                    }`}>
+                      {cat.total}
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="mt-6 pt-4 border-t border-gray-700">
+              <div class="text-sm text-gray-400 text-center">
+                <span class="font-medium text-blue-400">{allCategories.length}</span> categories • 
+                <span class="font-medium text-blue-400">{allComponents.length}</span> components
+              </div>
+            </div>
           </div>
         </div>
 
@@ -230,3 +292,93 @@ const allCategories = Array.from(categoryGroups.entries()).map(([name, total]) =
     </div>
   </div>
 </Layout>
+
+<style>
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #374151;
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #6b7280;
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  /* Smooth transitions */
+  .category-item {
+    transform: translateY(0);
+  }
+  
+  .category-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+</style>
+
+<script>
+  // Category search functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('categorySearch');
+    const categoriesContainer = document.getElementById('categoriesContainer');
+    
+    if (searchInput && categoriesContainer) {
+      searchInput.addEventListener('input', function(this: HTMLInputElement) {
+        const searchTerm = this.value.toLowerCase().trim();
+        const categoryItems = categoriesContainer.querySelectorAll('.category-item');
+        
+        categoryItems.forEach(item => {
+          const categoryName = item.getAttribute('data-category') || '';
+          const categoryText = item.textContent.toLowerCase();
+          
+          if (categoryName.includes(searchTerm) || categoryText.includes(searchTerm)) {
+            item.style.display = 'flex';
+            item.style.opacity = '1';
+          } else {
+            item.style.display = 'none';
+            item.style.opacity = '0';
+          }
+        });
+
+        // Show "no results" message if no categories match
+        const visibleItems = Array.from(categoryItems).filter(item => 
+          (item as HTMLElement).style.display !== 'none'
+        );
+        
+        let noResultsMsg = categoriesContainer.querySelector('.no-results');
+        if (visibleItems.length === 0 && searchTerm) {
+          if (!noResultsMsg) {
+            noResultsMsg = document.createElement('div');
+            noResultsMsg.className = 'no-results text-center py-4 text-gray-400';
+            noResultsMsg.innerHTML = `
+              <svg class="w-8 h-8 mx-auto mb-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m-6-8h6m-3 0V4"></path>
+              </svg>
+              No categories found for "${searchTerm}"
+            `;
+            categoriesContainer.appendChild(noResultsMsg);
+          }
+        } else if (noResultsMsg) {
+          noResultsMsg.remove();
+        }
+      });
+
+      // Clear search on escape key
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          this.value = '';
+          this.dispatchEvent(new Event('input'));
+          this.blur();
+        }
+      });
+    }
+  });
+</script>

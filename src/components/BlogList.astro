@@ -1,20 +1,60 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { formatDateForBlog } from "../lib";
 import TagButton from "./TagButton.astro";
-const {category} = Astro.props;
-const blogs = await getCollection('blog')
-let sortedBlogs = blogs.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-if(category){
-    const filteredBlogs = sortedBlogs.filter((blog) => blog.data.categories?.some((cat) => cat.slug === category))
-    sortedBlogs = filteredBlogs
+
+interface Props {
+  category?: string;
+  limit?: number;
 }
-const { limit = 6 } = Astro.props;
-const firstTwelvePost = sortedBlogs.slice(0, limit);
+
+const { category, limit = 6 }: Props = Astro.props;
+
+// Get all blogs and handle potential errors
+let blogs: CollectionEntry<'blog'>[];
+try {
+  blogs = await getCollection('blog');
+} catch (error) {
+  console.error('Error loading blog collection:', error);
+  blogs = [];
+}
+
+// Get all categories for title lookup
+let categories: CollectionEntry<'categories'>[];
+try {
+  categories = await getCollection('categories');
+} catch (error) {
+  console.error('Error loading categories collection:', error);
+  categories = [];
+}
+
+// Create a map for quick category lookup
+const categoryMap = new Map<string, string>();
+categories.forEach(cat => {
+  categoryMap.set(cat.slug, cat.data.title);
+});
+
+// Sort blogs by date
+let sortedBlogs: CollectionEntry<'blog'>[] = blogs
+  .filter((blog): blog is CollectionEntry<'blog'> => Boolean(blog && blog.data)) // Type guard filter
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Filter by category if specified
+if(category && sortedBlogs.length > 0){
+    const filteredBlogs = sortedBlogs.filter((blog) => {
+      if (!blog.data.categories) return false;
+      
+      // Categories are now strings, so we can directly compare
+      return blog.data.categories.some((cat: string) => cat === category);
+    });
+    sortedBlogs = filteredBlogs;
+}
+
+const firstTwelvePost: CollectionEntry<'blog'>[] = sortedBlogs.slice(0, limit);
 ---
 
 <ul>
-    {firstTwelvePost.map(async item => {
+    {firstTwelvePost.map(item => {
       return (
         <li
           class="py-5  block border-b border-[#333] "
@@ -31,11 +71,12 @@ const firstTwelvePost = sortedBlogs.slice(0, limit);
           </a>
 
           <div class="flex flex-row flex-wrap gap-2 pt-2">
-            {item.data.categories?.map( async (category: { slug: string; }) => {
-              const categoryEntries = await getCollection('categories', entry => entry.slug === category.slug)
+            {item.data.categories?.map((category: string) => {
+              const categoryTitle = categoryMap.get(category) || category;
+              
               return (
-                <TagButton href={`/category/${category.slug}`} title={categoryEntries[0].data.title}>
-                  {categoryEntries[0].data.title}
+                <TagButton href={`/category/${category}`} title={categoryTitle}>
+                  {categoryTitle}
                 </TagButton>
               )
             })}

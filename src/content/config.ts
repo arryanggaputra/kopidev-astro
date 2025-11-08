@@ -6,7 +6,7 @@ const blogCollection = defineCollection({
     language: z.string(),
     title: z.string(),
     date: z.date(),
-    categories: z.array(reference("categories")).optional(),
+    categories: z.array(z.string()).optional(), // Changed from reference to string array
     // slug: z.string(),
     coverImage: z.string().optional(),
   }),
@@ -14,10 +14,7 @@ const blogCollection = defineCollection({
 
 const categoryCollection = defineCollection({
   type: "content",
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-  }),
+  schema: z.object({ title: z.string(), description: z.string() }),
 });
 
 export const collections = {

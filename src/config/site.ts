@@ -1,15 +1,29 @@
 // Site configuration
 export const SITE_CONFIG = {
   title: "Kopidev",
-  description: "Berbagi tentang programming dan teknologi",
+  description:
+    "Kopidev is a leading developer community and technology media platform, featuring the latest information about technology, programming, tutorials, and developer events.",
   url: "https://kopi.dev",
   author: "Arryangga Aliev Pratamaputra",
-  locale: "id-ID",
+  locale: "en-US",
+
+  // Organization info
+  organization: {
+    name: "Kopidev",
+    alternateName:
+      "Kopidev - Developer Community, Software Development, Tech Education",
+    logo: "/images/kopidev_logo.png",
+    foundingDate: "2019",
+    email: "hello@kopi.dev",
+    phone: "+6281931520239",
+  },
 
   // Social links
   social: {
     twitter: "@arryangga",
-    github: "arryangga",
+    github: "arryanggaputra",
+    facebook: "kopidev",
+    linkedin: "arryanggaputra",
     youtube: "UC...", // Add your YouTube channel ID if needed
   },
 

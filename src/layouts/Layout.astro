@@ -21,16 +21,29 @@ const {
 
 const generateTitle = `${title} | ${SITE_CONFIG.title}`;
 const currentUrl = canonical || new URL(Astro.url.pathname, SITE_CONFIG.url).href;
-const imageUrl = image ? new URL(image, SITE_CONFIG.url).href : undefined;
+const defaultImage = new URL("/images/default-social-sharing.jpeg", SITE_CONFIG.url).href;
+const imageUrl = image ? new URL(image, SITE_CONFIG.url).href : defaultImage;
 ---
 
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Favicon and Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/images/icon-512x512.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#dc2430" />
+    <meta name="msapplication-TileColor" content="#dc2430" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
     <meta name="generator" content={Astro.generator} />
     
     <!-- SEO Meta Tags -->
@@ -45,18 +58,31 @@ const imageUrl = image ? new URL(image, SITE_CONFIG.url).href : undefined;
     <meta property="og:url" content={currentUrl} />
     <meta property="og:site_name" content={SITE_CONFIG.title} />
     <meta property="og:locale" content={SITE_CONFIG.locale} />
-    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:creator" content={SITE_CONFIG.social.twitter} />
-    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={title} />
     
     <!-- Additional SEO -->
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
+    <meta name="keywords" content="programming, technology, development, tutorial, software engineering, web development, javascript, react, tailwind css, developer community, coding tutorials, tech news" />
+    <meta name="rating" content="general" />
+    <meta name="distribution" content="global" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/images/kopidev_logo.png" as="image" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com" />
     
     <!-- AdSense -->
     <link rel="preconnect" href="https://pagead2.googlesyndication.com">
@@ -65,6 +91,46 @@ const imageUrl = image ? new URL(image, SITE_CONFIG.url).href : undefined;
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9343099184243971"
       crossorigin="anonymous"
     ></script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Corporation",
+      "name": SITE_CONFIG.title,
+      "alternateName": SITE_CONFIG.organization.alternateName,
+      "url": SITE_CONFIG.url,
+      "logo": `${SITE_CONFIG.url}${SITE_CONFIG.organization.logo}`,
+      "description": SITE_CONFIG.description,
+      "foundingDate": SITE_CONFIG.organization.foundingDate,
+      "founder": {
+        "@type": "Person",
+        "name": SITE_CONFIG.author
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": SITE_CONFIG.organization.phone,
+        "contactType": "technical support",
+        "areaServed": ["US", "Global"],
+        "availableLanguage": ["en", "English"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US",
+        "addressRegion": "Global"
+      },
+      "sameAs": [
+        `https://facebook.com/${SITE_CONFIG.social.facebook}`,
+        `https://twitter.com/${SITE_CONFIG.social.twitter.replace('@', '')}`,
+        `https://github.com/${SITE_CONFIG.social.github}`,
+        `https://linkedin.com/in/${SITE_CONFIG.social.linkedin}`
+      ],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${SITE_CONFIG.url}/search?q={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    })}>
+    </script>
   </head>
   <body>
     <Navbar isFullWidht={fullWidth} />

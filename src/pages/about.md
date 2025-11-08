@@ -1,33 +1,34 @@
 ---
 layout: ../layouts/LayoutSinglePage.astro
-title: Cerita tentang Kopidev
-description: Halaman ini menceritakan semua tentang Kopidev.
+title: About Kopidev
+description: Learn about Kopidev - a leading developer community and technology platform.
 ---
 
-# Apa itu Kopidev?
+# What is Kopidev?
 
-Untuk menjawab apa itu Kopidev, jawaban saya sangat sederhana, Kopidev adalah sebuah _Website_, sebuah _Fanpage_ di halaman Facebook, atau mungkin juga bisa disebut dengan Komunitas, atau bahkan mungkin jika kalian mau, dapat juga disebut sebagai sebuah _company_, mungkin sih.
+To answer what Kopidev is, my answer is quite simple: Kopidev is a **Website**, a **Community**, and a **Technology Media Platform** that serves as a hub for developers, IT enthusiasts, and technology professionals worldwide.
 
-Jika ditelaah dari sudut pandang pribadi diri saya, karena saya juga _owner_ dari _website_ ini, Kopidev merupakan **“sesuatu”**, sesuatu yang dapat menjadi sebuah wadah untuk para _programmer_, pecinta IT, _hacker_, atau apalah itu. Pokoknya berkaitan dengan Teknologi & Informasi. Wadah yang dimaksud pada kata diatas adalah wadah belajar, berkumpul, dan saling berbagi.
+From my personal perspective as the owner of this website, Kopidev represents **"something special"** - a platform that serves as a gathering place for programmers, tech enthusiasts, developers, and anyone passionate about Technology & Information. This platform is designed to be a space for learning, connecting, and sharing knowledge.
 
-# Asal mula nama Kopidev
+# The Origin of the Name "Kopidev"
 
-Mmmmm… gimana ya, kita iseng sih ngasih nama Kopidev. Ya mungkin idenya datang dari kata **“dev”** yang merupakan singkatan _“Developer”_ karena faktanya semua pembaca rata-rata adalah seorang _Software Developer_.
+The name "Kopidev" came from a creative combination of two elements that resonate with the developer community:
 
-Dan kata **“kopi”** diambil dari minuman Kopi, karena banyak _Software Developer_ yang menyukai kopi, dan setiap bekerja selalu ditemani Kopi. Mungkin seperti itu asal mula nama Kopidev.
+The word **"dev"** is short for **"Developer"** - since most of our community members are Software Developers.
 
-# Sejarah Kopidev
+The word **"kopi"** (coffee in Indonesian) represents the beloved beverage that many Software Developers enjoy, and which accompanies them during their work sessions. Coffee and coding go hand in hand in developer culture.
 
-Sebetulnya Kopidev sudah ada sejak 2015, pada tahun itu saya dan teman saya **Davis Rifandi** membuat ide untuk membuat sebuah media tentang IT, karena pada saat itu kita memang sama-sama tergabung di _Microsoft Student Partner_, yang mana _Microsoft Student Partner_ ini memiliki tanggung jawab untuk Sharing pengetahuan kita tentang teknologi
+# History of Kopidev
 
-Setelah itu salah satu teman saya yang lain bernama **Christian Saragih** yang juga tergabung di _Microsoft Student Partner_ juga ikut andil dalam mengurus Kopidev.
-Jadi kami bertiga mengurus website dan fanpage Kopidev sejak tahun 2014. 2 tahun setelah itu dikarenakan kesibukan masing-masing, karena ada tugas kuliah dan lain sebagainya, kita semua memutuskan untuk memberhentikan website Kopidev.
+Kopidev actually started back in 2015, when my friend **Davis Rifandi** and I came up with the idea to create an IT media platform. At that time, we were both part of the Microsoft Student Partner program, which gave us the responsibility to share our technology knowledge with others.
 
-Kita benar-benar berhenti, website, fanpage, dan twitter tidak ada aktivitas sama sekali, bahkan saya sempat lupa seluruh credentials untuk akun Kopidev ini. Tapi saat ini semuanya telah kembali lagi. Saya ucapkan terimakasih pada _Google Chrome_ karena ada fitur _Sync_ pada Browsernya.
+Later, another friend of mine named **Christian Saragih**, who was also a Microsoft Student Partner, joined us in managing Kopidev. So the three of us ran the website and social media pages starting from 2014.
 
-Pada tahun **2019** lalu, semangat untuk _sharing_ atau berbagai kepada publik melalui tulisan mulai tumbuh lagi pada diri saya. Daripada membuat ulang sebuah website dan fanpage di facebook, yang capek juga mulainya, saya menggunakan lagi nama Kopidev, dengan domain [kopi.dev](http://kopi.dev).
+After 2 years, due to individual commitments like college coursework and other responsibilities, we all decided to pause Kopidev activities. We completely stopped - the website, social media pages, and Twitter had no activity at all. I even forgot all the credentials for the Kopidev accounts. But now everything is back online again. I have to thank Google Chrome for its sync feature!
 
-Tapi saya akui interaksinya tidak sebagus saat kami bertiga. Karena tidak mungkin untuk menyamakan kinerja 1 orang dengan 3 orang. Dan sekarang di tahun 2020 ini, Christian Saragih jadi seorang software engineer di Bali, dan Davis Rifandi menjadi seoarang guru di Malang. Saya sendiri juga masih menjadi seorang Remote Software Engineer. Saya berdoa semoga mereka semua sukses di jalan masing-masing. Sangat senang memiliki teman seperti mereka.
+In **2019**, my passion for sharing knowledge with the public through writing began to grow again. Instead of creating a new website and social media presence from scratch, I decided to revive the Kopidev name, this time with the domain [kopi.dev](http://kopi.dev).
+
+Currently, I'm running Kopidev solo, focusing on creating valuable content for the global developer community. Christian Saragih is now a software engineer in Bali, and Davis Rifandi became a teacher in Malang. I myself continue as a Remote Software Engineer. I pray for their continued success in their respective paths, and I'm grateful to have had such amazing collaborators.
 
 # Kenangan Kopidev Yang Dulu
 

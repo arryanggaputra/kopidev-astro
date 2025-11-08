@@ -1,25 +1,64 @@
 ---
 import Footer from "~/components/Footer.astro";
 import Navbar from "~/components/Navbar.astro";
+import { SITE_CONFIG } from "../config/site";
 
 interface Props {
   title: string;
+  description?: string;
   fullWidth?: boolean;
+  image?: string;
+  canonical?: string;
 }
 
-const { title, fullWidth = false } = Astro.props;
-const generateTitle = `${title} | Kopidev`;
+const { 
+  title, 
+  description = SITE_CONFIG.description,
+  fullWidth = false,
+  image,
+  canonical
+} = Astro.props;
+
+const generateTitle = `${title} | ${SITE_CONFIG.title}`;
+const currentUrl = canonical || new URL(Astro.url.pathname, SITE_CONFIG.url).href;
+const imageUrl = image ? new URL(image, SITE_CONFIG.url).href : undefined;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
     <title>{generateTitle}</title>
+    <meta name="author" content={SITE_CONFIG.author} />
+    <link rel="canonical" href={currentUrl} />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:site_name" content={SITE_CONFIG.title} />
+    <meta property="og:locale" content={SITE_CONFIG.locale} />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:creator" content={SITE_CONFIG.social.twitter} />
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+    
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    
+    <!-- AdSense -->
     <link rel="preconnect" href="https://pagead2.googlesyndication.com">
     <script
       async

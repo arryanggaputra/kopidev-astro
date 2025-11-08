@@ -1,6 +1,13 @@
 <div id="ads-container"></div>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const containerId = 'ads-container';
+    const container = document.getElementById(containerId);
+    
+    // Prevent duplicate initialization
+    if (!container || container.dataset.initialized === 'true') {
+      return;
+    }
 
     const adClient = "ca-pub-9343099184243971";
     const mobileAdSlot = "2443792134";
@@ -8,11 +15,13 @@
     const adWidth = 728;
     const adHeight = 90;
 
-    const isMobile = window.innerWidth <= 768; // Adjust the breakpoint as needed
-    const adsContainer = document.getElementById('ads-container');
+    const isMobile = window.innerWidth <= 768;
+    const adId = `dynamic-ad-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
 
     const adElement = document.createElement('ins');
     adElement.className = 'adsbygoogle';
+    adElement.id = adId;
+    adElement.dataset.adInitialized = 'false';
 
     if (isMobile) {
       // Mobile ad settings
@@ -21,25 +30,45 @@
       adElement.style.width = '100%';
       adElement.dataset.adLayout = 'in-article';
       adElement.dataset.adFormat = 'fluid';
-      adElement.dataset.adClient = `${adClient}`;
-      adElement.dataset.adSlot = `${mobileAdSlot}`;
+      adElement.dataset.adClient = adClient;
+      adElement.dataset.adSlot = mobileAdSlot;
     } else {
       // Desktop ad settings
       adElement.style.display = 'inline-block';
       adElement.style.width = `${adWidth}px`;
       adElement.style.height = `${adHeight}px`;
-      adElement.dataset.adClient = `${adClient}`;
-      adElement.dataset.adSlot = `${desktopAdSlot}`;
+      adElement.dataset.adClient = adClient;
+      adElement.dataset.adSlot = desktopAdSlot;
     }
 
-    adsContainer?.appendChild(adElement);
+    container.appendChild(adElement);
+    container.dataset.initialized = 'true';
 
-    // Initialize Google Ads
-    try {
-      window.adsbygoogle = window.adsbygoogle || [];
-      window.adsbygoogle.push({});
-    } catch (error) {
-      console.error('Ad loading error:', error);
-    }
+    // Initialize with intersection observer for better performance
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && adElement.dataset.adInitialized !== 'true') {
+          try {
+            adElement.dataset.adInitialized = 'true';
+            
+            setTimeout(() => {
+              if (typeof window !== 'undefined') {
+                (window as any).adsbygoogle = (window as any).adsbygoogle || [];
+                (window as any).adsbygoogle.push({});
+              }
+            }, 100);
+            
+          } catch (error) {
+            console.error('Ad loading error:', error);
+            adElement.dataset.adInitialized = 'false';
+          } finally {
+            observer.unobserve(adElement);
+          }
+        }
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    observer.observe(adElement);
   });
 </script>

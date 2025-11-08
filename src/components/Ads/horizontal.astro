@@ -3,36 +3,60 @@ const adClient = "ca-pub-9343099184243971";
 const adSlot = "4126057001";
 const adWidth = 728;
 const adHeight = 90;
+const adId = `horizontal-ad-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <div class="ad-container" style={`display: inline-block; width: ${adWidth}px; height: ${adHeight}px;`}>
   <ins
-    class="adsbygoogle adsbygoogle-container"
+    id={adId}
+    class="adsbygoogle"
     style={`display: inline-block; width: ${adWidth}px; height: ${adHeight}px;`}
     data-ad-client={adClient}
     data-ad-slot={adSlot}
+    data-ad-initialized="false"
   ></ins>
 </div>
 
-<script>
+<script define:vars={{ adId }}>
   (() => {
-    const ref = document.querySelector('.adsbygoogle-container');
+    const adElement = document.getElementById(adId);
+    if (!adElement || adElement.dataset.adInitialized === 'true') {
+      return;
+    }
+
+    // Create a unique observer for this ad
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && adElement.dataset.adInitialized !== 'true') {
           try {
-            if (typeof window !== 'undefined') {
-              (window as any).adsbygoogle = (window as any).adsbygoogle || [];
-              (window as any).adsbygoogle.push({});
-            }
+            // Mark as initialized immediately to prevent race conditions
+            adElement.dataset.adInitialized = 'true';
+            
+            // Small delay to ensure DOM is ready
+            setTimeout(() => {
+              if (typeof window !== 'undefined') {
+                window.adsbygoogle = window.adsbygoogle || [];
+                window.adsbygoogle.push({});
+              }
+            }, 50);
+            
           } catch (error) {
             console.error('Ad loading error:', error);
+            // Reset on error to allow retry
+            adElement.dataset.adInitialized = 'false';
+          } finally {
+            // Always unobserve to prevent multiple calls
+            observer.unobserve(adElement);
           }
         }
       },
-      { threshold: 0.1 }
+      { 
+        threshold: 0.1,
+        rootMargin: '50px' // Load ads slightly before they come into view
+      }
     );
-    if (ref) observer.observe(ref);
+    
+    observer.observe(adElement);
   })();
 </script>
 </div>

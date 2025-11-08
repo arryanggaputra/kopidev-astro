@@ -1,54 +1,212 @@
-# Astro Starter Kit: Basics
+# KopiAstro 🚀
 
-```sh
-npm create astro@latest -- --template basics
-```
+> A modern blog and Tailwind CSS component library built with Astro v5
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+**KopiAstro** is a comprehensive platform that combines a programming blog with an interactive Tailwind CSS component library. It features a modern code playground experience for exploring and testing Tailwind components.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+🌐 **Live Site**: [https://kopi.dev](https://kopi.dev)
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## ✨ Features
+
+### 📝 **Blog Platform**
+
+- **Content Collections**: Organized blog posts with metadata and categories
+- **MDX Support**: Rich content with React components in Markdown
+- **SEO Optimized**: Comprehensive meta tags, Open Graph, and Twitter Cards
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Dynamic Sitemap**: Auto-generated sitemap with all content
+
+### 🎨 **Tailwind Component Library**
+
+- **600+ Components**: Extensive collection of ready-to-use Tailwind components
+- **Interactive Playground**: CodePen-style preview with live editing
+- **Responsive Testing**: Desktop, tablet, and mobile view switcher
+- **Code Highlighting**: Syntax-highlighted code with copy functionality
+- **Fullscreen Preview**: Distraction-free component testing
+- **Category Filtering**: Organized components with search functionality
+- **Pagination**: Optimized performance with 24 components per page
+
+### � **Technical Stack**
+
+- **Astro v5.15.4**: Modern static site generator
+- **TypeScript**: Type-safe development
+- **Tailwind CSS v3.4.18**: Utility-first CSS framework
+- **Content Collections**: Type-safe content management
+- **Responsive Images**: Optimized image handling
+- **AdSense Integration**: Monetization ready
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
-
 ```text
-/
-├── public/
-│   └── favicon.svg
+├── public/                     # Static assets
+│   └── clients/               # Client logos and images
 ├── src/
-│   ├── components/
-│   │   └── Card.astro
+│   ├── components/            # Reusable Astro components
+│   │   ├── Ads/              # Advertisement components
+│   │   ├── BlogList.astro    # Blog listing component
+│   │   ├── Footer.astro      # Site footer
+│   │   ├── Navbar.astro      # Navigation bar
+│   │   └── TailwindComponentsLayout.astro  # Component library layout
+│   ├── config/
+│   │   └── site.ts           # Site configuration and constants
+│   ├── content/              # Content collections
+│   │   ├── blog/             # Blog posts in MDX format
+│   │   ├── categories/       # Blog categories
+│   │   └── tailwind-components/  # Component library content
 │   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   │   ├── Layout.astro      # Main site layout
+│   │   └── LayoutSinglePage.astro  # Single page layout
+│   ├── lib/                  # Utility functions
+│   │   ├── generateToc.ts    # Table of contents generator
+│   │   └── index.ts          # Shared utilities
+│   └── pages/                # Route pages
+│       ├── blog.astro        # Blog listing page
+│       ├── tailwind/         # Component library routes
+│       ├── category/         # Category pages
+│       ├── sitemap.xml.ts    # Dynamic sitemap
+│       ├── robots.txt.ts     # SEO robots file
+│       └── ads.txt.ts        # AdSense verification
+├── astro.config.mjs          # Astro configuration
+├── tailwind.config.mjs       # Tailwind CSS configuration
+└── tsconfig.json             # TypeScript configuration
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🛠️ Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Prerequisites
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Node.js 18+
+- npm or yarn package manager
 
-## 🧞 Commands
+### Installation
 
-All commands are run from the root of the project, from a terminal:
+1. **Clone the repository**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+   ```sh
+   git clone https://github.com/arryangga/kopiastro.git
+   cd kopiastro
+   ```
 
-## 👀 Want to learn more?
+2. **Install dependencies**
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Start development server**
+
+   ```sh
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. **Open your browser**
+   ```
+   http://localhost:4321
+   ```
+
+## 📋 Available Commands
+
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm run dev`     | Start development server at `localhost:4321` |
+| `npm run build`   | Build production site to `./dist/`           |
+| `npm run preview` | Preview production build locally             |
+| `npm run astro`   | Run Astro CLI commands                       |
+
+## 🎯 Key Features in Detail
+
+### Component Playground
+
+- **Tabbed Interface**: Switch between Preview and Code views
+- **Responsive Testing**: Test components across different screen sizes
+- **Syntax Highlighting**: Beautiful code presentation with Prism.js
+- **Copy to Clipboard**: One-click code copying
+- **Fullscreen Mode**: Focus on components without distractions
+
+### Content Management
+
+- **Type-Safe Collections**: Structured content with TypeScript schemas
+- **MDX Integration**: Rich content with React component support
+- **Category System**: Organized content with filtering capabilities
+- **SEO Optimization**: Automatic meta tags and structured data
+
+### Performance
+
+- **Static Generation**: Pre-built pages for optimal performance
+- **Image Optimization**: Automatic image processing and optimization
+- **Code Splitting**: Efficient JavaScript bundling
+- **CDN Ready**: Optimized for global content delivery
+
+## 🔧 Configuration
+
+### Site Settings
+
+Update `src/config/site.ts` to customize:
+
+```typescript
+export const SITE_CONFIG = {
+  title: "Your Site Title",
+  description: "Your site description",
+  url: "https://yourdomain.com",
+  author: "Your Name",
+  // ... other settings
+};
+```
+
+### Content Collections
+
+Add new blog posts in `src/content/blog/` or components in `src/content/tailwind-components/`.
+
+## 🚢 Deployment
+
+### Build for Production
+
+```sh
+npm run build
+```
+
+The built site will be in the `dist/` directory, ready for deployment to any static hosting service.
+
+### Deployment Platforms
+
+- **Vercel**: Zero-config deployment
+- **Netlify**: Drag and drop or Git integration
+- **GitHub Pages**: Free static hosting
+- **Cloudflare Pages**: Global edge network
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👨‍💻 Author
+
+**Arryangga Aliev Pratamaputra**
+
+- Website: [https://kopi.dev](https://kopi.dev)
+- Twitter: [@arryangga](https://twitter.com/arryangga)
+- GitHub: [@arryangga](https://github.com/arryangga)
+
+## 🙏 Acknowledgments
+
+- [Astro](https://astro.build) - The web framework for content-driven websites
+- [Tailwind CSS](https://tailwindcss.com) - A utility-first CSS framework
+- [TypeScript](https://www.typescriptlang.org) - JavaScript with syntax for types
+- [Prism.js](https://prismjs.com) - Syntax highlighting library
+
+---
+
+Built with ❤️ using [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com)

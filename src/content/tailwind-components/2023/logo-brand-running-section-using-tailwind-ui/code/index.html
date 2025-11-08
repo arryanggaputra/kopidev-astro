@@ -1,0 +1,41 @@
+<section class="bg-gray-900">
+  <div class="flex items-center justify-center h-screen">
+    <div class="w-full mx-12 overflow-hidden">
+      <div id="brandSlider" class="flex items-center gap-10 transition-transform duration-300 ease-in-out">
+        <img src="https://seeklogo.com/images/N/nijisanji-logo-6F64846670-seeklogo.com.png" alt="Brand Logo"
+          class="w-full h-full sm:w-2/4 lg:w-1/4">
+        <img src="https://seeklogo.com/images/N/nissan-logo-0B8ACBAD42-seeklogo.com.png" alt="Brand Logo"
+          class="w-full h-full sm:w-2/4 lg:w-1/4">
+        <img src="https://seeklogo.com/images/N/nijisanji-logo-6F64846670-seeklogo.com.png" alt="Brand Logo"
+          class="w-full h-full sm:w-2/4 lg:w-1/4">
+        <img src="https://seeklogo.com/images/P/ponsse-logo-F7951254A1-seeklogo.com.png" alt="Brand Logo"
+          class="w-full h-full sm:w-2/4 lg:w-1/4">
+        <img src="https://seeklogo.com/images/N/nijisanji-logo-6F64846670-seeklogo.com.png" alt="Brand Logo"
+          class="w-full h-full sm:w-2/4 lg:w-1/4">
+        <img src="https://seeklogo.com/images/P/ponsse-logo-F7951254A1-seeklogo.com.png" alt="Brand Logo"
+          class="w-full h-full sm:w-2/4 lg:w-1/4">
+        <img src="https://seeklogo.com/images/P/ponsse-logo-F7951254A1-seeklogo.com.png" alt="Brand Logo"
+          class="w-full h-full sm:w-2/4 lg:w-1/4">
+        <img src="https://seeklogo.com/images/P/ponsse-logo-F7951254A1-seeklogo.com.png" alt="Brand Logo"
+          class="w-full h-full sm:w-2/4 lg:w-1/4">
+      </div>
+    </div>
+  </div>
+  <script>
+    const brandSlider = document.getElementById('brandSlider');
+    const brandLogos = brandSlider.children;
+    let currentPosition = 0;
+
+    function slideBrands() {
+      currentPosition = (currentPosition + 1) % brandLogos.length;
+      brandSlider.style.transform = `translateX(-${currentPosition * 300}px)`; // Sesuaikan dengan ukuran logo + margin
+    }
+
+    function startSlideAnimation() {
+      setInterval(slideBrands, 2000); // Ganti logo setiap 3 detik
+    }
+
+    startSlideAnimation();
+  </script>
+
+</section>

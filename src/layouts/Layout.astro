@@ -4,9 +4,10 @@ import Navbar from "~/components/Navbar.astro";
 
 interface Props {
   title: string;
+  fullWidth?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, fullWidth = false } = Astro.props;
 const generateTitle = `${title} | Kopidev`;
 ---
 
@@ -27,8 +28,8 @@ const generateTitle = `${title} | Kopidev`;
     ></script>
   </head>
   <body>
-    <Navbar isFullWidht={false} />
-    <main class="container max-w-3xl px-5 lg:px-0 mx-auto">
+    <Navbar isFullWidht={fullWidth} />
+    <main class={fullWidth ? "w-full" : "container max-w-3xl px-5 lg:px-0 mx-auto"}>
       <slot />
     </main>
     <Footer />

@@ -1,0 +1,69 @@
+<h1 class="text-center font-bold pt-10 text-3xl mb-4 text-gray-800">Form Layout</h1>
+<div class="w-full md:max-w-2xl mx-auto p-4 md:p-8 rounded-xl space-y-4 flex flex-col mb-16">
+  <h2 class="text-lg font-medium mb-2 text-gray-600">Form layout horizontal</h2>
+  <form action="" class="w-full mx-auto bg-white rounded-lg shadow-md p-6">
+    <div class="flex flex-wrap mb-4 items-center">
+      <label for="name" class="block text-gray-700 text-sm font-semibold w-2/12 my-2">Name:</label>
+      <input type="text" id="name" name="name"
+        class="w-10/12 px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300 my-2"
+        placeholder="Name">
+    </div>
+
+    <div class="flex flex-wrap mb-2 items-center">
+      <label for="email" class="block text-gray-700 text-sm font-semibold w-2/12">Email:</label>
+      <input type="email" id="email" name="email"
+        class="w-10/12 px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        placeholder="your@mail.com">
+    </div>
+
+  </form>
+  <h2 class="text-lg font-medium mb-2 text-gray-600">Form layout vertical</h2>
+  <form class="w-full mx-auto bg-white rounded-lg shadow-md p-6">
+    <div class="mb-4">
+      <label for="name" class="block text-gray-700 text-sm font-semibold mb-2">Name:</label>
+      <input type="text" id="name" name="name"
+        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        placeholder="Name">
+    </div>
+
+    <div class="mb-4">
+      <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">Email:</label>
+      <input type="email" id="email" name="email"
+        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        placeholder="your@mail.com">
+    </div>
+  </form>
+  <h2 class="text-lg font-medium mb-2 text-gray-600">Form layout inline </h2>
+  <form class="w-full mx-auto bg-white rounded-lg shadow-md p-6">
+    <div class="flex md:flex-row flex-col space-y-4 md:space-y-0 mb-4">
+      <div class="inline-flex items-center mr-4">
+        <label for="firstName" class="text-gray-700 text-sm font-semibold mr-2">First Name:</label>
+        <input type="text" id="firstName" name="firstName"
+          class="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="First name">
+      </div>
+
+      <div class="inline-flex items-center">
+        <label for="lastName" class="text-gray-700 text-sm font-semibold mr-2">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"
+          class="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="Last name">
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">Email:</label>
+      <input type="email" id="email" name="email"
+        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        placeholder="your@mail.com">
+    </div>
+
+    <div class="mb-4">
+      <label for="password" class="block text-gray-700 text-sm font-semibold mb-2">Password:</label>
+      <input type="password" id="password" name="password"
+        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        placeholder="Password">
+    </div>
+
+  </form>
+</div>

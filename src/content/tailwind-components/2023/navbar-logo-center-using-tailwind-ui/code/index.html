@@ -1,0 +1,151 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+  rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Cormorant', serif;
+  }
+</style>
+
+<!-- inspired design by https://spaincollection.com/ -->
+<navbar class="bg-gray-100">
+  <nav
+    class="relative flex flex-row-reverse items-center justify-between px-4 py-4 bg-white sm:justify-around sm:flex-row">
+    <div class="sm:hidden">
+      <button class="flex items-center p-3 text-gray-800 navbar-burger">
+        <svg class="block w-10 h-10 fill-current" fill="none" stroke="currentColor" stroke-width="1.5"
+          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"></path>
+        </svg>
+      </button>
+    </div>
+    <ul class="hidden sm:flex sm:mx-auto sm:items-center sm:w-auto sm:space-x-6">
+      <li class="group">
+        <a class="text-lg text-gray-800 hover:text-red-500" href="#">Home</a>
+        <div
+          class="h-0.5 bg-red-500 scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out">
+        </div>
+      </li>
+      <li class="group">
+        <a class="text-lg text-gray-800 hover:text-red-500" href="#">Collections</a>
+        <div
+          class="h-0.5 bg-red-500 scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out">
+        </div>
+      </li>
+    </ul>
+    <img class="w-32" src="https://spainconciergetravel.com/wp-content/themes/spainconciergetravel/img/logo.svg"
+      alt="logo brand">
+    <ul class="hidden sm:flex sm:mx-auto sm:items-center sm:w-auto sm:space-x-6">
+      <li class="group">
+        <a class="text-lg text-gray-800 hover:text-red-500" href="#">Curators</a>
+        <div
+          class="h-0.5 bg-red-500 scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out">
+        </div>
+      </li>
+      <li class="group">
+        <a class="text-lg text-gray-800 hover:text-red-500" href="#">Journal</a>
+        <div
+          class="h-0.5 bg-red-500 scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out">
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <div class="relative z-50 hidden navbar-menu">
+    <nav class="fixed top-0 bottom-0 left-0 flex flex-col w-full px-6 py-6 overflow-y-auto bg-red-500 border-r">
+      <div class="flex items-center justify-end mb-8">
+        <button class="navbar-close">
+          <svg class="w-6 h-6 text-gray-100 cursor-pointer hover:text-gray-50" fill="none" stroke="currentColor"
+            stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="mx-auto">
+        <div class="flex justify-center">
+          <img class="mb-12 w-36"
+            src="https://spainconciergetravel.com/wp-content/themes/spainconciergetravel/img/logo.svg">
+        </div>
+        <ul class="space-y-6">
+          <li>
+            <a class="block text-4xl font-normal text-center text-gray-900 hover:text-white" href="#">Home</a>
+          </li>
+          <li>
+            <a class="block text-4xl font-normal text-center text-gray-100 hover:text-white" href="#">Collections</a>
+          </li>
+          <li>
+            <a class="block text-4xl font-normal text-center text-gray-100 hover:text-white" href="#">Curators</a>
+          </li>
+          <li>
+            <a class="block text-4xl font-normal text-center text-gray-100 hover:text-white" href="#">Journal</a>
+          </li>
+        </ul>
+      </div>
+      <div class="mx-auto mt-auto">
+        <ul class="flex items-center w-auto mx-auto space-x-6">
+          <li>
+            <a class="text-sm text-gray-100 hover:text-red-500" href="#">Instagram</a>
+          </li>
+          <li>
+            <a class="text-sm text-gray-100 hover:text-red-500" href="#">Facebook</a>
+          </li>
+          <li>
+            <a class="text-sm text-gray-100 hover:text-red-500" href="#">Youtube</a>
+          </li>
+          <li>
+            <a class="text-sm text-gray-100 hover:text-red-500" href="#">Linkedin</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <header class="w-full px-16 mt-24 text-center xl:px-64 sm:mt-32">
+    <span class="text-4xl font-light">Spain Collection is your expert partner for deluxe bespoke travel experience
+      in</span>
+    <h1 class="mt-16 text-5xl font-medium uppercase sm:text-7xl md:px-40">Spain & Portugal</h1>
+  </header>
+</navbar>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // open
+    const burger = document.querySelectorAll('.navbar-burger');
+    const menu = document.querySelectorAll('.navbar-menu');
+
+    if (burger.length && menu.length) {
+      for (var i = 0; i < burger.length; i++) {
+        burger[i].addEventListener('click', function () {
+          for (var j = 0; j < menu.length; j++) {
+            menu[j].classList.toggle('hidden');
+          }
+        });
+      }
+    }
+
+    // close
+    const close = document.querySelectorAll('.navbar-close');
+    const backdrop = document.querySelectorAll('.navbar-backdrop');
+
+    if (close.length) {
+      for (var i = 0; i < close.length; i++) {
+        close[i].addEventListener('click', function () {
+          for (var j = 0; j < menu.length; j++) {
+            menu[j].classList.toggle('hidden');
+          }
+        });
+      }
+    }
+
+    if (backdrop.length) {
+      for (var i = 0; i < backdrop.length; i++) {
+        backdrop[i].addEventListener('click', function () {
+          for (var j = 0; j < menu.length; j++) {
+            menu[j].classList.toggle('hidden');
+          }
+        });
+      }
+    }
+  });
+</script>

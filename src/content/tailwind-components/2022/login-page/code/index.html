@@ -1,0 +1,66 @@
+<div class="min-h-screen flex flex-col justify-center relative overflow-hidden py-8 w-full">
+  <div class="relative bg-white px-6 shadow-xl ring-1 ring-gray-900/5 sm:max-w-xl sm:mx-auto py-4">
+    <div class="float-left px-1 cursor-pointer pt-5 flex items-center text-center m-auto">
+      <img src="https://cdn-icons-png.flaticon.com/128/3845/3845868.png" alt="Logo" class="w-8">
+    </div>
+    <div class="divide-y divide-gray-300/50 py-2">
+      <div class="py-8 text-base leading-7 space-y-6 text-gray-600 flex flex-col items-center mx-8">
+        <form class="w-full mt-12">
+          <div class="relative z-0 mb-6 w-full group">
+            <input type="email" name="login"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-gray-800 focus:border-indigo-800 appearance-none focus:outline-none focus:ring-0 peer"
+              placeholder=" " required />
+            <label for="login"
+              class="absolute uppercase text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 text-gray-800 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Login
+            </label>
+          </div>
+          <div class="relative z-0 mb-6 w-full group">
+            <input type="email" name="password"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-gray-800 focus:border-indigo-800 appearance-none focus:outline-none focus:ring-0 peer"
+              placeholder=" " required />
+            <label for="password"
+              class="absolute uppercase text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 text-gray-800 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Password
+            </label>
+          </div>
+        </form>
+        <div class="flex flex-row overflow-hidden">
+          <button
+            class="bg-white text-gray-700 border border-gray-700 w-full py-2 sm:px-8 px-4 flex flex-row justify-center gap-2 items-center hover:bg-red-600 hover:text-gray-50 duration-100 ease-in-out">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+              role="img" class="w-5" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+              <g fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12c6.627 0 12-5.373 12-12S18.627 0 12 0zm.14 19.018c-3.868 0-7-3.14-7-7.018c0-3.878 3.132-7.018 7-7.018c1.89 0 3.47.697 4.682 1.829l-1.974 1.978v-.004c-.735-.702-1.667-1.062-2.708-1.062c-2.31 0-4.187 1.956-4.187 4.273c0 2.315 1.877 4.277 4.187 4.277c2.096 0 3.522-1.202 3.816-2.852H12.14v-2.737h6.585c.088.47.135.96.135 1.474c0 4.01-2.677 6.86-6.72 6.86z"
+                  fill="currentColor" />
+              </g>
+            </svg>
+            Google
+          </button>
+          <button
+            class="bg-white border border-gray-700 text-gray-700 w-full py-2 sm:px-8 px-4 flex flex-row justify-center gap-2 items-center hover:bg-blue-700 hover:text-gray-50 duration-100 ease-in-out">
+            <svg class="w-5 fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+            Facebook
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col sm:flex-row justify-between items-center text-sm mx-8 text-gray-800 space-y-4 sm:space-y-0">
+      <label class="inline-flex items-center">
+        <input type="checkbox" class=" h-5 w-5 text-gray-600"><span class="ml-2 text-gray-700">Stay Logged in</span>
+      </label>
+      <span class="cursor-pointer hover:text-indigo-700">Forgot Password?</span>
+    </div>
+    <div class="flex flex-row justify-between items-center text-sm text-gray-800 mt-14 space-y-4 sm:space-y-0">
+      <div class="inline-flex items-center cursor-pointer hover:text-indigo-700">
+        Don't have an account? Signup
+      </div>
+      <div class="cursor-pointer bg-gray-800 sm:px-8 px-4 py-3 text-gray-50 uppercase">Log In</div>
+    </div>
+  </div>
+</div>

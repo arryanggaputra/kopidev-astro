@@ -1,0 +1,177 @@
+<style>
+  /* Loading spinners animation */
+
+  @keyframes loader-rotate {
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .loader {
+    border-right-color: transparent;
+    animation: loader-rotate 1s linear infinite;
+  }
+
+  /* Akhir loading spinners animation */
+
+  /* animated ellipsis */
+
+  .loader-dots div {
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+
+  .loader-dots div:nth-child(1) {
+    left: 8px;
+    animation: loader-dots1 0.6s infinite;
+  }
+
+  .loader-dots div:nth-child(2) {
+    left: 8px;
+    animation: loader-dots2 0.6s infinite;
+  }
+
+  .loader-dots div:nth-child(3) {
+    left: 32px;
+    animation: loader-dots2 0.6s infinite;
+  }
+
+  .loader-dots div:nth-child(4) {
+    left: 56px;
+    animation: loader-dots3 0.6s infinite;
+  }
+
+  @keyframes loader-dots1 {
+    0% {
+      transform: scale(0);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes loader-dots3 {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  @keyframes loader-dots2 {
+    0% {
+      transform: translate(0, 0);
+    }
+
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+
+  /* akhir animated ellipsis */
+</style>
+
+<div class="container mx-auto my-8 space-y-10">
+
+  <h1 class="text-center font-bold text-3xl my-10 text-gray-800 font-mono">Loading Component</h1>
+  <div class="max-w-lg mx-auto px-10 py-4 bg-white rounded-lg shadow-lg">
+    <div>
+      <span
+        class="bg-green-100 font-mono text-green-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Loading
+        spinner animation</span>
+    </div>
+    <div class="py-16">
+      <div class="flex items-center justify-center">
+        <div class="w-12 h-12 border-4 border-blue-600 rounded-full loader"></div>
+      </div>
+      <div class="mt-3 text-gray-600 font-mono text-base sm:text-sm text-center">Loading...</div>
+    </div>
+  </div>
+
+  <div class="max-w-lg mx-auto px-10 py-4 bg-white rounded-lg shadow-lg">
+    <div>
+      <span
+        class="bg-red-100 font-mono text-red-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Loading
+        animated ellipsis</span>
+    </div>
+    <div class="flex flex-row items-center py-24 mx-auto justify-center">
+      <div class="mr-3 text-green-600 font-mono font-semibold text-lg sm:text-xl">Loading</div>
+      <div class="loader-dots block relative w-20 h-5 ">
+        <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-green-500"></div>
+        <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-green-500"></div>
+        <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-green-500"></div>
+        <div class="absolute top-0 mt-1 w-3 h-3 rounded-full bg-green-500"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-lg mx-auto px-10 py-4 bg-white rounded-lg shadow-lg">
+    <div>
+      <span
+        class="bg-yellow-100 font-mono text-yellow-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Loading
+        progress bar</span>
+    </div>
+    <div class="py-24">
+      <div class="relative w-full h-8 bg-gray-300 rounded-md overflow-hidden">
+        <div id="progressBar" class="h-full bg-blue-500 animate-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-lg mx-auto px-10 py-4 bg-white rounded-lg shadow-lg">
+    <span
+      class="bg-indigo-100 font-mono text-indigo-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Loading
+      skeleton</span>
+    <div class="py-10">
+      <img src="https://www.fxnetworks.com/img/fpo/placeholder.png" alt="Skeleton Image"
+        class="animate-pulse h-40 w-64 bg-gray-300 rounded-lg mb-4 lazyload">
+      <div class="animate-pulse h-8 w-40 bg-gray-300 rounded-lg mb-2"></div>
+      <div class="animate-pulse h-6 w-80 bg-gray-300 rounded-lg mb-2"></div>
+      <div class="animate-pulse h-6 w-72 bg-gray-300 rounded-lg mb-4"></div>
+      <button
+        class="animate-pulse h-12 w-40 bg-gray-300 rounded-lg text-white font-bold hover:bg-blue-500 hover:text-white">
+        Button
+      </button>
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+  // untuk loading progress bar
+  // Dapatkan elemen progress bar menggunakan JavaScript
+  const progressBar = document.getElementById('progressBar');
+
+  // Definisikan fungsi untuk mengatur ulang progress bar
+  function resetProgressBar() {
+    progressBar.style.width = '0%';
+    progressBar.classList.add('animate-progress');
+  }
+
+  // Jalankan fungsi resetProgressBar secara berulang setelah animasi selesai
+  progressBar.addEventListener('animationend', resetProgressBar);
+
+  // Simulasikan loading menggunakan setInterval
+  function simulateLoading() {
+    let progress = 0;
+    const loadingInterval = setInterval(() => {
+      progress += 10;
+      progressBar.style.width = `${progress}%`;
+
+      if (progress >= 100) {
+        clearInterval(loadingInterval); // Hentikan simulasi loading setelah mencapai 100%
+        progressBar.classList.remove('animate-progress'); // Hentikan animasi
+        setTimeout(simulateLoading, 100); // Mulai kembali simulasi setelah 100ms
+      }
+    }, 500); // Ganti 500 dengan interval (dalam milidetik) sesuai kebutuhan
+  }
+
+  simulateLoading();
+</script>

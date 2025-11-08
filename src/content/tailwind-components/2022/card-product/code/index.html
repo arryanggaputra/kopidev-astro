@@ -1,0 +1,87 @@
+<section class="grid place-items-center h-screen py-8 md:py-0">
+  <div class="flex flex-col md:flex-row gap-4 py-10 px-5 bg-white rounded-md shadow-lg w-3/4 md:max-w-2xl">
+    <div class="flex-1 text-blue-500 flex flex-col justify-between">
+      <nav class="flex justify-start px-2 items-center mb-2">
+        <div>
+          <img src="https://cdn-icons-png.flaticon.com/512/1207/1207228.png" alt="plant icons" class="w-10 md:w-8">
+        </div>
+      </nav>
+      <img src="https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/281/0728157_PE736124_S4.jpg" alt="" />
+    </div>
+    <div class="flex-1 text-blue-500">
+      <h3 class="uppercase text-black text-2xl font-medium">JANINGE</h3>
+      <small class="">Chair, yellow</small>
+      <h1 class="text-2xl font-bold">Rp 755.000</h1>
+      <small class="text-gray-400 mb-2 font-light">67 people have bought this item</small>
+      <p class="text-sm text-gray-600 text-justify mr-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non
+        adipisci natus libero. Ullam doloremque dicta
+        reiciendis.</p>
+      <p class="mb-2 text-gray-700 text-sm font-semibold">Choose color</p>
+      <div class="flex flex-wrap md:flex-nowrap gap-1">
+        <a href="#" class="opacity-75 hover:opacity-100 border hover:border-gray-400">
+          <img src="https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/281/0728157_PE736124_S1.jpg" alt="">
+        </a>
+        <a href="#" class="opacity-75 hover:opacity-100 border hover:border-gray-400">
+          <img src="https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/281/0728156_PE736116_S1.jpg" alt="">
+        </a>
+      </div>
+      <div class="flex items-center py-2 justify-between">
+        <label for="custom-input-number" class="w-full h-full text-gray-700 text-sm font-semibold">Quantity:
+        </label>
+        <div class="flex flex-row h-8 relative">
+          <button data-action="decrement"
+            class="text-gray-600 hover:text-gray-700 hover:bg-gray-100 w-12 h-full border border-gray-300 cursor-pointer outline-none">
+            <span class="m-auto font-thin">−</span>
+          </button>
+          <input type="number"
+            class="outline-none focus:outline-none text-center h-full w-12 border border-gray-300 hover:text-gray-800 focus:text-gray-800 md:text-basecursor-default flex items-center text-gray-700  outline-none"
+            name="custom-input-number" value="0"></input>
+          <button data-action="increment"
+            class="text-gray-600 hover:text-gray-700 hover:bg-gray-100 h-full w-12 border border-gray-300 cursor-pointer">
+            <span class="m-auto font-thin">+</span>
+          </button>
+        </div>
+      </div>
+      <div class="flex mt-2 text-center">
+        <button
+          class="bg-blue-400 text-gray-100 hover:bg-blue-500 hover:text-white block rounded-sm font-bold py-2 px-4 mr-2 flex items-center hover:bg-teal-500 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button
+          class="w-full text-center bg-blue-400 text-gray-100 hover:bg-blue-500 hover:text-white rounded-sm font-bold px-4 items-center">
+          Add to cart
+        </button>
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-gray-600 mt-2">In stock for Online purchase</p>
+        <p class="text-gray-500 font-light text-sm">8 in stock</p>
+      </div>
+    </div>
+  </section>
+</main>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+    body{
+      font-family: 'Poppins', sans-serif;
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .custom-number-input input:focus {
+      outline: none !important;
+    }
+
+    .custom-number-input button:focus {
+      outline: none !important;
+    }
+</style>

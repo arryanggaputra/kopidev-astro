@@ -1,0 +1,119 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+  rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+</style>
+
+
+<!-- inspired design by https://linktr.ee/?ref=pixelfika -->
+<div class="bg-[#254F1A]">
+  <nav
+    class="fixed top-0 w-11/12 px-3 mx-auto transform -translate-x-1/2 translate-y-1/2 bg-white border-gray-200 rounded-full shadow-lg left-1/2 dark:bg-gray-900">
+    <div class="flex flex-wrap items-center justify-between w-full p-4 mx-auto">
+      <div class="flex items-center space-x-4">
+        <a href="#" class="flex items-center">
+          <svg class="h-8 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xml:space="preserve">
+            <path
+              d="m13.511 5.853 4.005-4.117 2.325 2.381-4.201 4.005h5.909v3.305h-5.937l4.229 4.108-2.325 2.334-5.741-5.769-5.741 5.769-2.325-2.325 4.229-4.108H2V8.122h5.909L3.708 4.117l2.325-2.381 4.005 4.117V0h3.473v5.853zM10.038 16.16h3.473v7.842h-3.473V16.16z">
+            </path>
+          </svg>
+        </a>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+          <ul
+            class="flex flex-col p-4 mt-4 font-semibold border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+              <a href="#"
+                class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-[#254F1A] md:p-0 md:dark:text-blue-500"
+                aria-current="page">Templates</a>
+            </li>
+            <li>
+              <a href="#"
+                class="block py-2 pl-3 pr-4 text-gray-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#254F1A] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Marketplace</a>
+            </li>
+            <li>
+              <a href="#"
+                class="block py-2 pl-3 pr-4 text-gray-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#254F1A] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Discover</a>
+            </li>
+            <li>
+              <a href="#"
+                class="block py-2 pl-3 pr-4 text-gray-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#254F1A] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="flex items-center">
+        <button type="button"
+          class="pt-3 pb-4 mr-3 text-base font-semibold text-center text-gray-900 bg-gray-300 rounded-lg hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 px-7 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+          Log in
+        </button>
+        <button type="button"
+          class="pt-3 pb-4 mr-3 text-base font-semibold text-center text-white bg-gray-900 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 px-7 md:mr-0 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+          Sign up free
+        </button>
+        <button data-collapse-toggle="navbar-cta" type="button" id="open-menu-button"
+          class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          aria-controls="navbar-cta" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M1 1h15M1 7h15M1 13h15" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <div id="menu-container" class="hidden bg-[#43E660] w-full h-screen fixed top-0 left-0 md:hidden">
+    <div class="flex justify-end p-4">
+      <button type="button" id="close-menu-button" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <ul class="flex flex-col p-4 mt-4 text-2xl font-extrabold divide-y divide-black md:p-0">
+      <li>
+        <a href="#" class="block py-6 pl-3 pr-4 rounded hover:bg-white text-[#254F1A] md:p-0 md:dark:text-blue-500"
+          aria-current="page">Templates</a>
+      </li>
+      <li>
+        <a href="#"
+          class="block py-6 pl-3 pr-4 text-[#254F1A] rounded hover:bg-white md:hover:bg-transparent md:hover:text-[#254F1A] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Marketplace</a>
+      </li>
+      <li>
+        <a href="#"
+          class="block py-6 pl-3 pr-4 text-[#254F1A] rounded hover:bg-white md:hover:bg-transparent md:hover:text-[#254F1A] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Discover</a>
+      </li>
+      <li>
+        <a href="#"
+          class="block py-6 pl-3 pr-4 text-[#254F1A] rounded hover:bg-white md:hover:bg-transparent md:hover:text-[#254F1A] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
+      </li>
+    </ul>
+  </div>
+
+  <section class="h-screen"></section>
+  <section class="h-screen"></section>
+</div>
+<script>
+  // JavaScript to toggle the menu on button click
+  const openMenuButton = document.getElementById('open-menu-button');
+  const closeMenuButton = document.getElementById('close-menu-button');
+  const menuContainer = document.getElementById('menu-container');
+
+  openMenuButton.addEventListener('click', function () {
+    menuContainer.classList.remove('hidden');
+  });
+
+  closeMenuButton.addEventListener('click', function () {
+    menuContainer.classList.add('hidden');
+  });
+</script>

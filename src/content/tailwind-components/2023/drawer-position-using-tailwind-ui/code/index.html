@@ -1,0 +1,147 @@
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+  <button id="openTopDrawerBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+    Open Top Drawer
+  </button>
+  <button id="openRightDrawerBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-4">
+    Open Right Drawer
+  </button>
+  <button id="openBottomDrawerBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-4">
+    Open Bottom Drawer
+  </button>
+  <button id="openLeftDrawerBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-4">
+    Open Left Drawer
+  </button>
+</div>
+
+<!-- Drawer Top -->
+<div id="topDrawer"
+  class="fixed inset-x-0 top-0 h-64 bg-white shadow-lg transform -translate-y-full transition-transform ease-in-out duration-300">
+  <div class="flex items-center justify-between py-4 px-6 bg-blue-500">
+    <h2 class="text-white text-lg font-semibold">Drawer Top</h2>
+    <button id="closeTopDrawerBtn" class="text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="py-4 px-6">
+    <p>This is the content from the top drawer.</p>
+  </div>
+</div>
+
+<!-- Drawer Right -->
+<div id="rightDrawer"
+  class="fixed inset-y-0 right-0 w-64 bg-white shadow-lg transform translate-x-full transition-transform ease-in-out duration-300">
+  <div class="flex items-center justify-between py-4 px-6 bg-blue-500">
+    <h2 class="text-white text-lg font-semibold">Drawer Right</h2>
+    <button id="closeRightDrawerBtn" class="text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="py-4 px-6">
+    <p>This is the content from the right drawer.</p>
+  </div>
+</div>
+
+<!-- Drawer Bottom -->
+<div id="bottomDrawer"
+  class="fixed inset-x-0 bottom-0 h-64 bg-white shadow-lg transform translate-y-full transition-transform ease-in-out duration-300">
+  <div class="flex items-center justify-between py-4 px-6 bg-blue-500">
+    <h2 class="text-white text-lg font-semibold">Drawer Bottom</h2>
+    <button id="closeBottomDrawerBtn" class="text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="py-4 px-6">
+    <p>This is the content from the bottom drawer.</p>
+  </div>
+</div>
+
+<!-- Drawer Left -->
+<div id="leftDrawer"
+  class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform ease-in-out duration-300">
+  <div class="flex items-center justify-between py-4 px-6 bg-blue-500">
+    <h2 class="text-white text-lg font-semibold">Drawer Left</h2>
+    <button id="closeLeftDrawerBtn" class="text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="py-4 px-6">
+    <p>This is the content from the left drawer.</p>
+  </div>
+</div>
+
+<script>
+  const openTopDrawerBtn = document.getElementById('openTopDrawerBtn');
+  const closeTopDrawerBtn = document.getElementById('closeTopDrawerBtn');
+  const topDrawer = document.getElementById('topDrawer');
+
+  openTopDrawerBtn.addEventListener('click', () => {
+    topDrawer.classList.remove('-translate-y-full');
+  });
+
+  closeTopDrawerBtn.addEventListener('click', () => {
+    topDrawer.classList.add('-translate-y-full');
+  });
+
+  const openRightDrawerBtn = document.getElementById('openRightDrawerBtn');
+  const closeRightDrawerBtn = document.getElementById('closeRightDrawerBtn');
+  const rightDrawer = document.getElementById('rightDrawer');
+
+  openRightDrawerBtn.addEventListener('click', () => {
+    rightDrawer.classList.remove('translate-x-full');
+  });
+
+  closeRightDrawerBtn.addEventListener('click', () => {
+    rightDrawer.classList.add('translate-x-full');
+  });
+
+  const openBottomDrawerBtn = document.getElementById('openBottomDrawerBtn');
+  const closeBottomDrawerBtn = document.getElementById('closeBottomDrawerBtn');
+  const bottomDrawer = document.getElementById('bottomDrawer');
+
+  openBottomDrawerBtn.addEventListener('click', () => {
+    bottomDrawer.classList.remove('translate-y-full');
+  });
+
+  closeBottomDrawerBtn.addEventListener('click', () => {
+    bottomDrawer.classList.add('translate-y-full');
+  });
+
+  const openLeftDrawerBtn = document.getElementById('openLeftDrawerBtn');
+  const closeLeftDrawerBtn = document.getElementById('closeLeftDrawerBtn');
+  const leftDrawer = document.getElementById('leftDrawer');
+
+  openLeftDrawerBtn.addEventListener('click', () => {
+    leftDrawer.classList.remove('-translate-x-full');
+  });
+
+  closeLeftDrawerBtn.addEventListener('click', () => {
+    leftDrawer.classList.add('-translate-x-full');
+  });
+
+  // Closes the drawer when the user clicks outside the drawer section
+  document.addEventListener('click', (event) => {
+    if (!topDrawer.contains(event.target) && event.target !== openTopDrawerBtn) {
+      topDrawer.classList.add('-translate-y-full');
+    }
+
+    if (!rightDrawer.contains(event.target) && event.target !== openRightDrawerBtn) {
+      rightDrawer.classList.add('translate-x-full');
+    }
+
+    if (!bottomDrawer.contains(event.target) && event.target !== openBottomDrawerBtn) {
+      bottomDrawer.classList.add('translate-y-full');
+    }
+
+    if (!leftDrawer.contains(event.target) && event.target !== openLeftDrawerBtn) {
+      leftDrawer.classList.add('-translate-x-full');
+    }
+  });
+</script>

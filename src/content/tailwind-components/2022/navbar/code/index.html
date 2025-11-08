@@ -1,0 +1,397 @@
+<h1 class="text-center font-bold py-10 text-3xl dark:text-white">Navbar</h1>
+
+<div class="container mx-auto flex flex-col gap-5 px-5 md:px-0">
+  <!-- navbar -->
+  <nav class="bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between">
+        <div class="flex space-x-4">
+          <!-- logo -->
+          <div>
+            <a href="#" class="flex items-center py-5 px-2 text-gray-700">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 mr-1 text-blue-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              <span class="font-bold text-lg text-gray-700 hover:text-gray-900"
+                >Brand</span
+              >
+            </a>
+          </div>
+          <!-- primary nav -->
+          <div class="hidden md:flex items-center space-x-1">
+            <a
+              href="#"
+              class="
+                py-5
+                px-3
+                font-medium
+                text-gray-800
+                hover:text-gray-900
+                border-b-4 border-indigo-500
+              "
+              >Home</a
+            >
+            <a
+              href="#"
+              class="
+                py-5
+                px-3
+                font-medium
+                text-gray-600
+                hover:text-gray-900 hover:border-b-4 hover:border-indigo-400
+              "
+              >Features</a
+            >
+            <a
+              href="#"
+              class="
+                py-5
+                px-3
+                font-medium
+                text-gray-600
+                hover:text-gray-900 hover:border-b-4 hover:border-indigo-400
+              "
+              >Activity</a
+            >
+            <a
+              href="#"
+              class="
+                py-5
+                px-3
+                font-medium
+                text-gray-600
+                hover:text-gray-900 hover:border-b-4 hover:border-indigo-400
+              "
+              >Contact</a
+            >
+          </div>
+        </div>
+        <!-- secondary nav -->
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="#" class="py5 px-3">Log in</a>
+          <a
+            href="#"
+            class="
+              py-1
+              px-3
+              bg-indigo-500
+              hover:bg-indigo-600
+              text-white
+              hover:text-indigo-50
+              rounded-full
+              transition
+              duration-300
+            "
+            >Sign up</a
+          >
+        </div>
+        <!-- mobile button -->
+        <div class="md:hidden flex items-center">
+          <button class="mobile-menu-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="button-open h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="button-close hidden h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- mobile menu -->
+    <div class="mobile-menu hidden md:hidden ml-3 pb-3 px-3 space-y-2">
+      <a
+        href="#"
+        class="
+          block
+          py-2
+          px-4
+          font-medium
+          text-sm
+          bg-indigo-500
+          hover:bg-indigo-600
+          text-white
+          rounded
+        "
+        >Home</a
+      >
+      <a
+        href="#"
+        class="
+          block
+          py-2
+          px-4
+          font-medium
+          text-sm text-gray-700
+          hover:bg-gray-200
+          rounded
+        "
+        >Features</a
+      >
+      <a
+        href="#"
+        class="
+          block
+          py-2
+          px-4
+          font-medium
+          text-sm text-gray-700
+          hover:bg-gray-200
+        "
+        >Activity</a
+      >
+      <a
+        href="#"
+        class="
+          block
+          py-2
+          px-4
+          font-medium
+          text-sm text-gray-700
+          hover:bg-gray-200
+        "
+        >Contact</a
+      >
+    </div>
+  </nav>
+
+  <nav class="mt-1 bg-black">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between">
+        <div class="flex space-x-4">
+          <!-- logo -->
+          <div>
+            <a href="#" class="flex items-center py-5 px-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 mr-1 text-blue-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              <span class="font-bold text-lg text-gray-300 hover:text-white"
+                >Brand</span
+              >
+            </a>
+          </div>
+          <!-- primary nav -->
+          <div class="hidden md:flex items-center space-x-1">
+            <a
+              href="#"
+              class="
+                py-5
+                px-3
+                font-medium
+                text-gray-300
+                hover:text-white
+                border-b-4 border-white
+              "
+              >Home</a
+            >
+            <a
+              href="#"
+              class="
+                py-5
+                px-3
+                text-gray-300
+                hover:text-white hover:border-b-4 hover:border-gray-100
+              "
+              >Features</a
+            >
+            <a
+              href="#"
+              class="
+                py-5
+                px-3
+                text-gray-300
+                hover:text-white hover:border-b-4 hover:border-gray-100
+              "
+              >Activity</a
+            >
+            <a
+              href="#"
+              class="
+                py-5
+                px-3
+                text-gray-300
+                hover:text-white hover:border-b-4 hover:border-gray-100
+              "
+              >Contact</a
+            >
+          </div>
+        </div>
+        <!-- secondary nav -->
+        <div class="hidden md:flex items-center space-x-1 text-white">
+          <a href="#" class="py5 px-3">Log in</a>
+          <a
+            href="#"
+            class="
+              py-1
+              px-3
+              text-white
+              hover:text-black hover:bg-white
+              border border-white
+              rounded-full
+              transition
+              duration-300
+            "
+            >Sign up</a
+          >
+        </div>
+        <!-- mobile button -->
+        <div class="md:hidden flex items-center">
+          <button class="mobile-menu-button-dark">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="button-open-dark h-6 w-6 stroke-current text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="button-close-dark hidden h-6 w-6 stroke-current text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- mobile menu -->
+    <div class="mobile-menu-dark hidden md:hidden ml-3 pb-3 px-3 space-y-2">
+      <a
+        href="#"
+        class="
+          block
+          py-2
+          px-4
+          font-medium
+          text-sm
+          bg-white
+          hover:bg-gray-400
+          text-black
+          rounded
+        "
+        >Home</a
+      >
+      <a
+        href="#"
+        class="
+          block
+          py-2
+          px-4
+          font-medium
+          text-sm text-white
+          hover:bg-gray-500
+          rounded
+        "
+        >Features</a
+      >
+      <a
+        href="#"
+        class="
+          block
+          py-2
+          px-4
+          font-medium
+          text-sm text-white
+          hover:bg-gray-500
+          rounded
+        "
+        >Activity</a
+      >
+      <a
+        href="#"
+        class="
+          block
+          py-2
+          px-4
+          font-medium
+          text-sm text-white
+          hover:bg-gray-500
+          rounded
+        "
+        >Contact</a
+      >
+    </div>
+  </nav>
+</div>
+<script>
+  const btn = document.querySelector("button.mobile-menu-button")
+  const menu = document.querySelector(".mobile-menu")
+  const buttonOpen = document.querySelector(".button-open")
+  const buttonClose = document.querySelector(".button-close")
+
+  const btnDark = document.querySelector("button.mobile-menu-button-dark")
+  const menuDark = document.querySelector(".mobile-menu-dark")
+  const buttonOpenDark = document.querySelector(".button-open-dark")
+  const buttonCloseDark = document.querySelector(".button-close-dark")
+
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("hidden")
+    buttonOpen.classList.toggle("hidden"),
+      buttonClose.classList.toggle("hidden")
+  })
+
+  btnDark.addEventListener("click", () => {
+    menuDark.classList.toggle("hidden"),
+      buttonOpenDark.classList.toggle("hidden"),
+      buttonCloseDark.classList.toggle("hidden")
+  })
+</script>

@@ -1,0 +1,61 @@
+<section class="flex justify-center items-center h-screen md:-mx-4 px-4 py-8">
+  <div class="w-full mx-20 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 shadow-xl pb-4">
+    <h2 class="text-center font-bold text-3xl text-gray-100 py-4">Testimonials</h2>
+    <div class="swiper-container w-100">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide px-20 flex items-center justify-center">
+          <div class="py-4">
+            <div class="flex justify-center py-4">
+              <img alt="profil" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&q=80" class="mx-auto object-cover rounded-full h-20 w-20" />
+            </div>
+            <div class="flex jusify-center py-4 md:px-12 text-gray-200 text-center">
+              Great results. Enjoyable to work with, and most importantly, enabled us to have the presence on the web we needed to conduct business in today's market.
+            </div>
+            <div class="text-sm flex justify-center text-center font-semibold text-white">Jody Hansen, CEO, Monterey Peninsula Chamber of Commerce            </div>
+          </div>
+        </div>
+        <div class="swiper-slide px-20 flex items-center justify-center">
+          <div class="py-6">
+            <div class="flex justify-center py-4">
+              <img alt="profil" src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGF2YXRhcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=60" class="mx-auto object-cover rounded-full h-20 w-20" />
+            </div>
+            <div class="flex jusify-center py-4 md:px-12 text-gray-200 text-center">
+              Your thoughtfulness and support of MPCC is very much appreciated. You are a very dear friend to the Chamber, and I want to assure you that your confidence in MPCC will be justified.
+            </div>
+            <div class="text-sm flex justify-center text-center font-semibold text-white">Moe Ammar, President, Pacific Grove Chamber of Commerce</div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-prev text-xs rounded text-white mx-10"></div>
+      <div class="swiper-button-next text-xs rounded text-white mx-10"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var mySwiper = new Swiper('.swiper-container', {
+    direction: 'horizontal',
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  })
+</script>
+<style>
+   @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+  body{
+    font-family: 'Poppins', sans-serif;
+  }
+</style>

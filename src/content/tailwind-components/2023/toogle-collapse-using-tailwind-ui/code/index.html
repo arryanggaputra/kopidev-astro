@@ -1,0 +1,97 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+    rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+            @keyframes slideIn {
+            from {
+                transform: translateX(-13%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-13%);
+            }
+        }
+</style>
+
+<div class="max-w-xl p-8 mx-auto my-8 border rounded-xl">
+    <button class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600" id="toggleCollapse">
+        Toggle Collapse
+    </button>
+    <div class="mt-4" id="collapseContent" style="display: none;">
+
+        <p>This is the collapsible content. It serves as a dynamic and interactive section of a web page, designed
+            to expand or contract based on user interaction. This collapsible element is a versatile tool, commonly
+            used to reveal or hide additional information, keeping the main content area uncluttered and allowing
+            users to focus on what's most relevant to them. By clicking a designated button or trigger, users can
+            effortlessly toggle the visibility of this collapsible content, making it a handy feature for FAQs,
+            hidden details, or any context where space optimization and user convenience are paramount.</p>
+    </div>
+</div>
+
+<div class="relative max-w-xl px-16 py-8 mx-auto my-8 border rounded-xl">
+    <button class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600" id="toggleCollapse2">
+        Toggle Collapse Horizontal
+    </button>
+    <div class="p-4 mt-4 text-white bg-blue-600 border rounded" id="collapseContent2"
+        style="display: none;  animation-duration: 0.5s; animation-timing-function: ease-in-out;">
+        <!-- Isi dari komponen collapse di sini -->
+        <p>This is the collapsible content. It serves as a dynamic and interactive section of a web page, designed
+            to expand or contract based on user interaction. This collapsible element is a versatile tool, commonly
+            used to reveal or hide additional information, keeping the main content area uncluttered and allowing
+            users to focus on what's most relevant to them. By clicking a designated button or trigger, users can
+            effortlessly toggle the visibility of this collapsible content, making it a handy feature for FAQs,
+            hidden details, or any context where space optimization and user convenience are paramount.</p>
+    </div>
+</div>
+
+<script>
+    const toggleButton = document.getElementById('toggleCollapse');
+    const collapseContent = document.getElementById('collapseContent');
+
+    toggleButton.addEventListener('click', () => {
+        if (collapseContent.style.display === 'none') {
+            collapseContent.style.display = 'block';
+        } else {
+            collapseContent.style.display = 'none';
+        }
+    });
+
+    // Ambil elemen-elemen yang diperlukan
+    const toggle = document.getElementById('toggleCollapse2');
+    const contentCollapse = document.getElementById('collapseContent2');
+    let isOpen = false;
+
+    // Tambahkan event listener ke tombol untuk mengatur perilaku collapse
+    toggle.addEventListener('click', () => {
+        if (!isOpen) {
+            // Munculkan collapse
+            contentCollapse.style.display = 'block';
+            contentCollapse.style.animationName = 'slideIn';
+            isOpen = true;
+        } else {
+            // Sembunyikan collapse
+            contentCollapse.style.animationName = 'slideOut';
+            // Tunggu selesai animasi baris pertama sebelum menyembunyikan collapse
+            setTimeout(() => {
+                contentCollapse.style.display = 'none';
+            }, 500); // Waktu dalam milidetik (0.5 detik)
+            isOpen = false;
+        }
+    });
+</script>

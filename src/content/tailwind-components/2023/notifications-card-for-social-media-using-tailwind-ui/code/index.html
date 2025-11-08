@@ -1,0 +1,144 @@
+<!-- design inspiration by https://twitter.com/jordanphughes/status/1679523591384072192?t=qbUezVbtqiAOsOtJ0FtG0g&s=19 -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+  rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+</style>
+
+<div class="w-full h-screen mt-8 mb-24 place-items-center">
+  <div class="w-full p-4 mx-auto bg-white border shadow-sm md:p-10 sm:max-w-xl dark:bg-gray-800 rounded-xl">
+    <div class="flex-col items-center justify-between w-full mb-8 sm:inline-flex">
+      <h3 class="text-xl font-bold text-gray-800 sm:text-2xl dark:text-white">Your notifications</h3>
+      <a href="#"
+        class="inline-flex items-center px-2 py-2 text-xs font-medium text-indigo-500 sm:text-sm sm:px-3 hover:text-indigo-800 dark:text-gray-200 dark:hover:text-gray-100">
+        <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M11.602 13.7599L13.014 15.1719L21.4795 6.7063L22.8938 8.12051L13.014 18.0003L6.65 11.6363L8.06421 10.2221L10.189 12.3469L11.6025 13.7594L11.602 13.7599ZM11.6037 10.9322L16.5563 5.97949L17.9666 7.38977L13.014 12.3424L11.6037 10.9322ZM8.77698 16.5873L7.36396 18.0003L1 11.6363L2.41421 10.2221L3.82723 11.6352L3.82604 11.6363L8.77698 16.5873Z">
+          </path>
+        </svg>
+        Mark all as read
+      </a>
+    </div>
+    <nav
+      class="flex flex-col items-center justify-center px-2 py-1 mx-auto mb-4 space-y-1 text-sm font-medium text-indigo-800 bg-gray-100 sm:flex-row sm:space-x-1 rounded-2xl">
+
+      <button class="flex items-center justify-center w-full px-4 py-2 mx-auto sm:w-auto hover:bg-white rounded-2xl">
+        View all
+        <span class="p-1 ml-1 text-xs font-bold bg-gray-300 rounded-md">12</span>
+      </button>
+      <button class="flex items-center justify-center w-full px-4 py-2 mx-auto sm:w-auto hover:bg-white rounded-2xl">
+        Mentions
+        <span class="p-1 ml-1 text-xs font-bold bg-gray-300 rounded-md">6</span>
+      </button>
+      <button class="flex items-center justify-center w-full px-4 py-2 mx-auto sm:w-auto hover:bg-white rounded-2xl">
+        Followers
+        <span class="p-1 ml-1 text-xs font-bold bg-gray-300 rounded-md">4</span>
+      </button>
+      <button class="flex items-center justify-center w-full px-4 py-2 mx-auto sm:w-auto hover:bg-white rounded-2xl">
+        Invites
+        <span class="p-1 ml-1 text-xs font-bold bg-gray-300 rounded-md">2</span>
+      </button>
+    </nav>
+    <ul class="flex flex-col w-full divide-y">
+      <li class="flex flex-row">
+        <div class="flex items-center flex-1 p-4 text-sm cursor-pointer select-none hover:bg-gray-50">
+          <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
+            <a href="#" class="relative block">
+              <img alt="profil"
+                src="https://images.pexels.com/photos/7571856/pexels-photo-7571856.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                class="object-cover w-10 h-10 mx-auto rounded-full" />
+            </a>
+          </div>
+          <div class="flex-1 pl-1 mr-16">
+            <div class="mb-1 font-semibold dark:text-white">@frankiesullvian <span class="font-normal">followed
+                you</span></div>
+            <div class="text-xs text-gray-600 dark:text-gray-200">Thursday 4:20pm</div>
+          </div>
+          <div class="flex flex-row items-end">
+            <div class="w-2 h-2 mb-4 bg-indigo-500 rounded-full"></div>
+            <div class="text-xs text-gray-600 dark:text-gray-200">2 hours ago</div>
+          </div>
+        </div>
+      </li>
+      <li class="flex flex-col">
+        <div class="flex items-center flex-1 p-4 text-sm cursor-pointer select-none hover:bg-gray-50">
+          <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
+            <a href="#" class="relative block">
+              <img alt="profil"
+                src="https://images.pexels.com/photos/698532/pexels-photo-698532.jpeg?auto=compress&cs=tinysrgb&w=600"
+                class="object-cover w-10 h-10 mx-auto rounded-full" />
+            </a>
+          </div>
+          <div class="flex-1 pl-1 mr-16">
+            <div class="mb-1 font-semibold dark:text-white">@elanor_mac <span class="font-normal">comment on your
+                post</span></div>
+            <div class="text-xs text-gray-600 dark:text-gray-200">Thursday 3:12pm</div>
+          </div>
+          <div class="flex flex-row items-end">
+            <div class="w-2 h-2 mb-4 bg-indigo-500 rounded-full"></div>
+            <div class="text-xs text-gray-600 dark:text-gray-200">3 hours ago</div>
+          </div>
+        </div>
+        <div class="p-2 mb-4 ml-16 mr-1 bg-gray-100 rounded-md">
+          <p class="text-xs font-normal text-gray-600">"Love the background on this! Would love to learn how you created
+            the mesh gradient effect."</p>
+        </div>
+      </li>
+      <li class="flex flex-row">
+        <div class="flex items-center flex-1 p-4 text-sm cursor-pointer select-none hover:bg-gray-50">
+          <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
+            <a href="#" class="relative block">
+              <img alt="profil"
+                src="https://images.pexels.com/photos/698532/pexels-photo-698532.jpeg?auto=compress&cs=tinysrgb&w=600"
+                class="object-cover w-10 h-10 mx-auto rounded-full" />
+            </a>
+          </div>
+          <div class="flex-1 pl-1 mr-16">
+            <div class="mb-1 font-semibold dark:text-white">@elanor_mac <span class="font-normal">like your post</span>
+            </div>
+            <div class="text-xs text-gray-600 dark:text-gray-200">Thursday 3:11pm</div>
+          </div>
+          <div class="flex flex-row items-end">
+            <div class="w-2 h-2 mb-4 bg-indigo-500 rounded-full"></div>
+            <div class="text-xs text-gray-600 dark:text-gray-200">3 hours ago</div>
+          </div>
+        </div>
+      </li>
+      <li class="flex flex-row">
+        <div class="flex items-center flex-1 p-4 text-sm cursor-pointer select-none hover:bg-gray-50">
+          <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
+            <a href="#" class="relative block">
+              <img alt="profil"
+                src="https://images.pexels.com/photos/7562139/pexels-photo-7562139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                class="object-cover w-10 h-10 mx-auto rounded-full" />
+            </a>
+          </div>
+          <div class="flex-1 pl-1 mr-16">
+            <div class="mb-1 font-semibold dark:text-white">@ollie_diggs <span class="font-normal">invite you to</span>
+              Awesome Dashboard</div>
+            <div class="mb-2 text-xs text-gray-600 dark:text-gray-200">Thursday 2:44pm</div>
+            <div class="flex items-center space-x-2">
+              <button class="px-2 py-1 text-xs font-medium border border-gray-400 rounded-md">
+                Decline
+              </button>
+              <button class="px-2 py-1 text-xs font-medium bg-indigo-500 rounded-md text-gray-50">
+                Accept
+              </button>
+            </div>
+          </div>
+          <div class="flex flex-row items-end">
+            <div class="w-2 h-2 mb-4 bg-indigo-500 rounded-full"></div>
+            <div class="text-xs text-gray-600 dark:text-gray-200">4 hours ago</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

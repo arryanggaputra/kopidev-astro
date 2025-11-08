@@ -1,0 +1,223 @@
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<section class="container w-full mx-auto items-center py-16">
+  <div class="flex flex-col md:flex-row justify-center space-y-8 md:space-y-0 md:space-x-8">
+    <!-- Card 1 -->
+    <div class="max-w-md w-full bg-white mx-auto md:mx-0 rounded-lg shadow-md overflow-hidden md:w-1/2">
+      <div class="px-6 py-4">
+        <div class="flex flex-row justify-between">
+          <h2 class="text-3xl font-semibold text-gray-800 mb-2">Most Visited</h2>
+          <button class="text-gray-400 hover:text-gray-800 rounded-md inline-flex items-center">
+            <span class="mr-2">This Week</span>
+            <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 4 4 4-4" />
+            </svg>
+          </button>
+        </div>
+        <div id="chart" class="max-w-5xl mx-auto mt-8"></div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="max-w-md w-full bg-white rounded-lg mx-auto md:mx-0 shadow-md overflow-hidden md:w-1/2">
+      <div class="px-6 py-4">
+        <div class="flex flex-row justify-between">
+          <h2 class="text-3xl font-semibold text-gray-800 mb-2">Email Sent</h2>
+          <button class="text-gray-400 hover:text-gray-800 rounded-md inline-flex items-center">
+            <span class="mr-2">This Week</span>
+            <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 4 4 4-4" />
+            </svg>
+          </button>
+        </div>
+        <div id="chart2" class="max-w-5xl mx-auto mt-8"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="max-w-4xl md:mx-auto mx-6 bg-white rounded-lg shadow-md overflow-hidden mt-8 w-full">
+    <div class="px-6 py-4">
+      <div class="flex flex-row justify-between">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-800 mb-2">$556K</h2>
+          <p class="text-gray-600 font-normal">Overal Revenue</p>
+        </div>
+        <button class="text-gray-400 hover:text-gray-800 rounded-md inline-flex items-center">
+          <span class="mr-2">This Year</span>
+          <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m1 1 4 4 4-4" />
+          </svg>
+        </button>
+      </div>
+      <div id="chart3" class="max-w-5xl mx-auto mt-8"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // chart 1
+  var options = {
+    series: [{
+      name: 'San Francisco',
+      data: [400, 300, 150, 200, 350]
+    }, {
+      name: 'San Diego',
+      data: [420, 350, 180, 230, 380]
+    }, {
+      name: 'Los Angels',
+      data: [380, 270, 200, 180, 300]
+    }],
+    chart: {
+      type: 'bar',
+      height: 350,
+      stacked: true,
+      toolbar: {
+        show: false
+      },
+      zoom: {
+        enabled: false
+      }
+    },
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        legend: {
+          position: 'bottom',
+          offsetX: -10,
+          offsetY: 0
+        }
+      }
+    }],
+    plotOptions: {
+      bar: {
+        horizontal: false,
+
+        borderRadius: 4,
+        dataLabels: {
+          total: {
+            enabled: false,
+            style: {
+              fontSize: '12px',
+              fontWeight: 900
+            }
+          }
+        }
+      },
+    },
+    xaxis: {
+      type: 'datetime',
+      categories: ['01/02/2011 GMT', '01/03/2011 GMT', '01/04/2011 GMT',
+        '01/05/2011 GMT', '01/06/2011 GMT'
+      ],
+    },
+    legend: {
+      position: 'bottom',
+      offsetY: 10
+    },
+    fill: {
+      opacity: 1
+    }
+  };
+
+  var chart = new ApexCharts(document.querySelector("#chart"), options);
+  chart.render();
+
+  // chart 2
+  var options = {
+    series: [65, 35],
+    chart: {
+      height: 350,
+      type: 'radialBar',
+    },
+    plotOptions: {
+      radialBar: {
+        dataLabels: {
+          name: {
+            fontSize: '22px',
+          },
+          value: {
+            fontSize: '16px',
+          },
+          total: {
+            show: true,
+            label: 'Total',
+            formatter: function (w) {
+              // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+              return 539
+            }
+          }
+        }
+      }
+    },
+    colors: ['#1ab7ea', '#39539E'],
+    labels: ['Sent', 'Recive'],
+    legend: {
+      show: true,
+      floating: true,
+      fontSize: '16px',
+      position: 'bottom',
+      offsetX: 0,
+      offsetY: 5,
+      labels: {
+        useSeriesColors: true,
+      },
+      markers: {
+        size: 0
+      },
+      formatter: function (seriesName, opts) {
+        return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
+      },
+      itemMargin: {
+        vertical: 3
+      }
+    },
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        legend: {
+          show: false
+        }
+      }
+    }]
+
+  };
+
+  var chart = new ApexCharts(document.querySelector("#chart2"), options);
+  chart.render();
+
+  // chart 3
+  var options = {
+    series: [{
+      name: "Revenue ($)",
+      data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+    }],
+    chart: {
+      height: 350,
+      type: 'line',
+      zoom: {
+        enabled: false
+      }
+    },
+    stroke: {
+      curve: 'straight'
+    },
+    grid: {
+      row: {
+        colors: ['#f3f3f3', 'transparent'],
+        opacity: 0.5
+      }
+    },
+    xaxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+    }
+  };
+
+  var chart = new ApexCharts(document.querySelector("#chart3"), options);
+  chart.render();
+</script>

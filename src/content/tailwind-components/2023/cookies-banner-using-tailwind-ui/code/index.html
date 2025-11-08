@@ -1,0 +1,47 @@
+<!-- Inspired design by Ildiko Gaspar from dribbble https://dribbble.com/shots/9747148-Cookies-Banner-UI-Design -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+  rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+</style>
+
+<section class="flex items-center justify-center w-screen h-screen px-8 bg-pink-200 sm:px-0">
+  <div class="flex flex-col items-start justify-start w-full max-w-xl gap-4 p-8 bg-white rounded-xl">
+    <div class="flex items-start justify-between w-full">
+      <img class="w-14 h-14" src="https://cdn-icons-png.flaticon.com/128/1047/1047711.png" alt="" />
+      <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+          class="w-6 h-6 text-gray-800 fill-current hover:text-gray-500">
+          <path fill-rule="evenodd"
+            d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+            clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+    <div>
+      <h4 class="text-xl font-semibold text-gray-800">We another cookie disclaimer!</h4>
+      <p class="mt-2 text-sm text-gray-800 md:mt-1">
+        We use cookies to improve your experience. By using website, you are agreeing to the collection of
+        data as described in our <span class="font-semibold underline cursor-pointer hover:text-gray-500">Cookie
+          Policy</span>.
+      </p>
+    </div>
+    <div class="flex items-center">
+      <button type="button"
+        class="px-8 py-2 mr-2 text-sm font-semibold text-center text-gray-100 bg-pink-500 rounded-lg hover:bg-pink-400 focus:outline-none">
+        Go it
+      </button>
+      <button type="button"
+        class="hidden px-4 py-2 text-sm font-semibold text-center text-gray-800 rounded-lg sm:block hover:text-pink-500 focus:outline-none ">
+        Edit Setting
+      </button>
+    </div>
+  </div>
+</section>

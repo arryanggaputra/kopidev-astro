@@ -1,0 +1,54 @@
+<!-- Component Inspired design by Ildiko Gaspar from dribbble https://dribbble.com/shots/7807393-Course-Card-UI-Design  -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+    rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+</style>
+
+<div class="max-w-screen-lg mx-4 mt-24 overflow-hidden border shadow-lg rounded-xl sm:mx-auto">
+    <div class="flex flex-col overflow-hidden bg-white sm:flex-row md:h-80">
+        <div
+            class="text-white p-8 sm:p-8 bg-[#2C2760] order-first ml-auto h-48 w-full sm:order-none sm:h-auto sm:w-1/2 lg:w-2/5 flex flex-col justify-between">
+            <div class="">
+                <small class="text-xs uppercase sm:text-sm">Course</small>
+                <h2 class="mt-2 text-xl font-medium sm:mt-4 sm:text-3xl">Javascript <br> Fundamental</h2>
+            </div>
+            <button class="flex items-center mt-8 text-sm text-gray-200 sm:mt-0 text-start">View all chapters
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-5 h-5 ml-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+
+            </button>
+        </div>
+
+        <div class="flex w-full flex-col p-4 sm:w-1/2 sm:p-8 lg:w-3/5 text-[#2C2760]">
+            <div class="flex items-start justify-between mb-4">
+                <div class="text-sm font-medium uppercase sm:text-base">Chapter 4</div>
+                <div class="text-end">
+                    <div class="w-full sm:w-80 bg-[#EEEEEE] h-2 rounded-md">
+                        <div class="bg-[#2C2760] h-2 rounded-md" style="width: 67%"></div>
+                    </div>
+                    <small>6/9 Challenges</small>
+                </div>
+            </div>
+            <h2 class="text-2xl font-medium text-gray-900 lg:text-4xl">Callback & Closures</h2>
+
+            <div class="flex justify-end mt-8 sm:mt-auto">
+                <a href="#"
+                    class="group flex w-44 cursor-pointer select-none items-center justify-center rounded-full bg-[#2C2760] px-6 py-2 text-white transition">
+                    <span class="flex items-center justify-center w-full py-1 font-semibold text-center rounded group">
+                        Continue </span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

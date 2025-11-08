@@ -1,0 +1,232 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import Layout from "../../../../layouts/Layout.astro";
+import HorizontalAd from "../../../../components/Ads/horizontal.astro";
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  // Get all tailwind components
+  const tailwindComponents = await getCollection('tailwind-components');
+  
+  // Get all unique categories
+  const categories = new Set<string>();
+  tailwindComponents.forEach(component => {
+    if (component.data.categories) {
+      component.data.categories.forEach(category => {
+        categories.add(category);
+      });
+    }
+  });
+
+  // Generate paginated paths for each category
+  const allPaths = [];
+  
+  for (const category of categories) {
+    // Filter components for this category
+    const filteredComponents = tailwindComponents
+      .filter((component): component is CollectionEntry<'tailwind-components'> => {
+        return Boolean(component && component.data && component.data.categories?.includes(category));
+      })
+      .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+    // Generate paginated paths for this category
+    const categoryPaths = paginate(filteredComponents, {
+      params: { category },
+      pageSize: 24,
+    });
+
+    allPaths.push(...categoryPaths);
+  }
+
+  return allPaths;
+};
+
+const { page } = Astro.props;
+const { category } = Astro.params;
+const { data: filteredComponents } = page;
+
+// Ensure category is a string
+const categoryName = category as string;
+
+// Get all components for category counts (not paginated)
+let allComponents: CollectionEntry<'tailwind-components'>[];
+try {
+  allComponents = await getCollection('tailwind-components');
+} catch (error) {
+  console.error('Error loading tailwind components:', error);
+  allComponents = [];
+}
+
+// Get all categories for sidebar
+const categoryGroups = new Map<string, number>();
+allComponents.forEach(component => {
+  if (component.data.categories) {
+    component.data.categories.forEach(cat => {
+      categoryGroups.set(cat, (categoryGroups.get(cat) || 0) + 1);
+    });
+  }
+});
+
+const allCategories = Array.from(categoryGroups.entries()).map(([name, total]) => ({ name, total }));
+---
+
+<Layout title={`${categoryName.charAt(0).toUpperCase() + categoryName.slice(1)} Tailwind Components`} fullWidth={true}>
+  <div class="bg-black text-white min-h-screen">
+    <div class="w-full px-5 lg:px-8 py-8">
+      <div class="mb-8">
+        <nav class="text-sm text-gray-400 mb-4">
+          <a href="/tailwind/" class="hover:text-white">Tailwind Components</a>
+          <span class="mx-2">/</span>
+          <span class="text-white capitalize">{categoryName}</span>
+        </nav>
+        <h1 class="text-3xl md:text-4xl font-bold mb-4 capitalize">
+          {categoryName} Components
+        </h1>
+        <p class="text-gray-400">
+          Showing {(page.currentPage - 1) * 24 + 1}-{Math.min(page.currentPage * 24, page.total)} of {page.total} {categoryName} components
+        </p>
+      </div>
+
+      <!-- Ad Section -->
+      <div class="flex justify-center mb-8">
+        <HorizontalAd />
+      </div>
+
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Sidebar Categories -->
+        <div class="lg:w-60 flex-shrink-0">
+          <h2 class="text-xl font-semibold mb-4">Categories</h2>
+          <div class="space-y-2">
+            <a
+              href="/tailwind/"
+              class="flex justify-between items-center py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors duration-200"
+            >
+              <span>All Components</span>
+            </a>
+            {allCategories.map(cat => (
+              <a
+                href={`/tailwind/category/${cat.name}/1/`}
+                class={`flex justify-between items-center py-2 px-4 rounded-lg transition-colors duration-200 capitalize ${
+                  cat.name === categoryName 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-800 hover:bg-gray-700'
+                }`}
+                title={`${cat.name} Tailwind Component`}
+              >
+                <span>{cat.name}</span>
+                <div class="bg-blue-500 text-white text-xs font-bold rounded-full min-w-[24px] h-6 flex items-center justify-center px-2">
+                  {cat.total}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Components Grid -->
+        <div class="flex-1">
+          {filteredComponents.length > 0 ? (
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredComponents.map((component: CollectionEntry<'tailwind-components'>) => (
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  {component.data.coverImage && (
+                    <a href={`/tailwind/${component.data.slug || component.slug}`} title={component.data.title}>
+                      <Image
+                        src={component.data.coverImage}
+                        alt={component.data.title}
+                        width={300}
+                        height={192}
+                        class="w-full h-48 object-cover"
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
+                  <div class="p-5">
+                    <h3 class="text-base font-bold mb-2">
+                      <a
+                        href={`/tailwind/${component.data.slug || component.slug}`}
+                        class="text-white hover:text-blue-400 transition-colors duration-200"
+                        title={component.data.title}
+                      >
+                        {component.data.title}
+                      </a>
+                    </h3>
+                    {component.data.categories && (
+                      <div class="flex flex-wrap gap-2 mt-3">
+                        {component.data.categories.slice(0, 2).map((cat: string) => (
+                          <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded capitalize">
+                            {cat}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="text-center py-12">
+              <p class="text-gray-400 text-lg">No {categoryName} components found.</p>
+              <a 
+                href="/tailwind/" 
+                class="text-blue-400 hover:text-blue-300 mt-2 inline-block"
+              >
+                Browse all components
+              </a>
+            </div>
+          )}
+
+          <!-- Pagination -->
+          {page.lastPage > 1 && (
+            <nav class="flex justify-center mt-12" aria-label="Pagination Navigation">
+              <div class="flex items-center space-x-2">
+                <!-- Previous Page -->
+                {page.url.prev && (
+                  <a
+                    href={page.url.prev}
+                    class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors duration-200"
+                    aria-label="Previous page"
+                  >
+                    ← Previous
+                  </a>
+                )}
+
+                <!-- Page Numbers -->
+                {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum: number) => {
+                  const isCurrentPage = pageNum === page.currentPage;
+                  const href = pageNum === 1 ? `/tailwind/category/${categoryName}/` : `/tailwind/category/${categoryName}/${pageNum}/`;
+                  
+                  return (
+                    <a
+                      href={href}
+                      class={`px-4 py-2 rounded-lg transition-colors duration-200 ${
+                        isCurrentPage
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-800 hover:bg-gray-700 text-white'
+                      }`}
+                      aria-label={`Page ${pageNum}`}
+                      aria-current={isCurrentPage ? 'page' : undefined}
+                    >
+                      {pageNum}
+                    </a>
+                  );
+                })}
+
+                <!-- Next Page -->
+                {page.url.next && (
+                  <a
+                    href={page.url.next}
+                    class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors duration-200"
+                    aria-label="Next page"
+                  >
+                    Next →
+                  </a>
+                )}
+              </div>
+            </nav>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

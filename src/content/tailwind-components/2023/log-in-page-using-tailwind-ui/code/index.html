@@ -1,0 +1,105 @@
+<!-- Component Inspired design by Ildiko Gaspar from dribbble https://dribbble.com/shots/11480512-Log-In-UI-Design  -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+    rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+</style>
+
+<section class="bg-[#F8EFEF]">
+    <div class="container mx-auto">
+        <div class="flex justify-center px-6 my-12">
+            <div class="flex w-full xl:w-3/4 lg:w-11/12">
+                <div class="w-full p-5 bg-white lg:w-7/12">
+                    <h3 class="pt-6 pl-8 mb-2 text-2xl font-semibold">Log In</h3>
+                    <p class="pl-8 text-sm text-gray-600">
+                        Log in to your account to upload or download <br />
+                        pictures, video, or music.
+                    </p>
+                    <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                        <div class="mb-4">
+                            <input
+                                class="w-full px-6 py-4 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                id="email" type="email" placeholder="Enter your email address" />
+                        </div>
+
+                        <div class="flex items-center justify-between mb-6 text-center">
+                            <div class="text-center">
+                                <a class="inline-block text-sm text-green-500 align-baseline hover:text-green-800"
+                                    href="#">
+                                    Forgot Password?
+                                </a>
+                            </div>
+                            <button
+                                class="flex px-4 py-3 text-sm font-medium text-white bg-green-900 rounded-sm hover:bg-green-700 focus:outline-none focus:shadow-outline"
+                                type="button">
+                                Next
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <hr class="mb-6" />
+                        <div class="flex justify-center w-full text-center">
+                            <small class="mx-auto mb-6 text-xs font-medium text-center text-gray-500">Or log in
+                                with</small>
+                        </div>
+
+                        <div class="flex items-center justify-center px-8 mb-10 space-x-4 text-center">
+                            <button
+                                class="flex justify-center w-full px-4 py-3 text-base font-semibold text-green-600 border border-green-500 rounded-sm hover:border-green-700 focus:outline-none focus:shadow-outline"
+                                type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 mr-2">
+                                    <path
+                                        d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47062 14 5.5 16 5.5H17.5V2.1401C17.1743 2.09685 15.943 2 14.6429 2C11.9284 2 10 3.65686 10 6.69971V9.5H7V13.5H10V22H14V13.5Z">
+                                    </path>
+                                </svg>
+                                Facebook
+                            </button>
+                            <button
+                                class="flex justify-center w-full px-4 py-3 text-base font-semibold text-green-600 border border-green-500 rounded-sm hover:border-green-700 focus:outline-none focus:shadow-outline"
+                                type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 mr-2">
+                                    <path
+                                        d="M3.06364 7.50914C4.70909 4.24092 8.09084 2 12 2C14.6954 2 16.959 2.99095 18.6909 4.60455L15.8227 7.47274C14.7864 6.48185 13.4681 5.97727 12 5.97727C9.39542 5.97727 7.19084 7.73637 6.40455 10.1C6.2045 10.7 6.09086 11.3409 6.09086 12C6.09086 12.6591 6.2045 13.3 6.40455 13.9C7.19084 16.2636 9.39542 18.0227 12 18.0227C13.3454 18.0227 14.4909 17.6682 15.3864 17.0682C16.4454 16.3591 17.15 15.3 17.3818 14.05H12V10.1818H21.4181C21.5364 10.8363 21.6 11.5182 21.6 12.2273C21.6 15.2727 20.5091 17.8363 18.6181 19.5773C16.9636 21.1046 14.7 22 12 22C8.09084 22 4.70909 19.7591 3.06364 16.4909C2.38638 15.1409 2 13.6136 2 12C2 10.3864 2.38638 8.85911 3.06364 7.50914Z">
+                                    </path>
+                                </svg>
+                                Google
+                            </button>
+                        </div>
+
+                        <div class="inline-block mx-auto text-sm text-center text-gray-500 align-baseline">
+                            Don't have an account yet?
+                            <a class="text-green-500 hover:text-green-800" href="#">
+                                Sign Up
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="hidden w-full h-auto bg-gray-400 bg-cover lg:block lg:w-5/12" style="
+              background-image: url('https://images.unsplash.com/photo-1589066048404-03f2419bf7c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTE5fHxzZWElMjBiYWNrZ3JvdW5kfGVufDB8MXwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+            ">
+                    <div class="flex justify-end">
+                        <span
+                            class="flex items-center justify-center w-10 h-10 m-4 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,71 @@
+<section class="max-w-3xl mx-auto">
+  <div id="scrollToTopButton" class="fixed z-10 hidden bottom-4 right-4">
+    <button class="px-4 py-4 text-white bg-indigo-500 rounded hover:bg-indigo-600">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+      </svg>
+    </button>
+  </div>
+  <div class="p-6">
+    <h1 class="mb-8 text-2xl font-medium text-center">The Impact of Artificial Intelligence on the Workforce
+      color.</h1>
+    <p class="mb-4 leading-6 text-justify">
+      Artificial Intelligence (AI) is revolutionizing industries across the globe. From healthcare to finance and
+      manufacturing, AI has become an integral part of modern business operations. While AI offers many advantages, such
+      as increased efficiency and precision, its impact on the workforce cannot be ignored.</p>
+    <p class="mb-4 leading-6 text-justify">
+      In recent years, AI-powered automation has led to concerns about job displacement. Routine tasks that were once
+      performed by humans are now being handled by machines. While this may lead to job losses in some sectors, it also
+      creates opportunities for the workforce to upskill and transition to more specialized roles.</p>
+    <p class="mb-4 leading-6 text-justify">
+      One significant advantage of AI is its ability to augment human capabilities. AI can analyze vast amounts of data
+      quickly and accurately, enabling professionals to make more informed decisions. In the medical field, for example,
+      AI can assist doctors in diagnosing diseases and suggesting treatment options, ultimately improving patient
+      outcomes.
+    </p>
+    <p class="mb-4 leading-6 text-justify">
+      AI is also transforming the customer service industry. Chatbots and virtual assistants are now commonplace,
+      providing customers with instant support and freeing up human agents to handle more complex issues. This not only
+      improves customer satisfaction but also allows companies to allocate resources more efficiently.
+    </p>
+    <p class="mb-4 leading-6 text-justify">
+      AI is also transforming the customer service industry. Chatbots and virtual assistants are now commonplace,
+      providing customers with instant support and freeing up human agents to handle more complex issues. This not only
+      improves customer satisfaction but also allows companies to allocate resources more efficiently.
+    </p>
+    <p class="mb-4 leading-6 text-justify">
+      However, concerns about data privacy and ethics have emerged alongside AI's rapid advancement. The use of AI
+      algorithms in decision-making processes, such as hiring and lending, has raised questions about bias and fairness.
+      It's essential to develop regulations and ethical guidelines to ensure AI is used responsibly.
+    </p>
+    <p class="mb-4 leading-6 text-justify">
+      In conclusion, AI is reshaping the workforce by automating tasks, enhancing productivity, and creating new
+      opportunities. While it may lead to job displacement in some sectors, it also allows for upskilling and
+      specialization. The key to harnessing the full potential of AI lies in responsible development, ethical usage, and
+      continuous adaptation of the workforce to this transformative technology. As AI continues to advance, striking a
+      balance between automation and human involvement will be crucial for the future of work.
+    </p>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const scrollToTopButton = document.getElementById("scrollToTopButton");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollToTopButton.classList.remove("hidden");
+      } else {
+        scrollToTopButton.classList.add("hidden");
+      }
+    });
+
+    scrollToTopButton.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  });
+</script>

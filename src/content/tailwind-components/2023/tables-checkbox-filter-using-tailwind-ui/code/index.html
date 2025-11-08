@@ -1,0 +1,261 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+  rel="stylesheet">
+
+<style>
+  .body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+</style>
+
+<div class="bg-gray-100 min-h-screen flex items-center justify-center px-8">
+  <div class="items-center w-full mx-auto bg-white rounded-lg shadow-md sm:max-w-4xl">
+    <div class="mx-auto">
+      <div class="overflow-x-auto">
+        <div class="flex text-gray-700 justify-between rounded-lg p-4 bg-white w-full items-center space-x-16">
+          <div class="flex items-center">
+            <div
+              class="flex font-medium cursor-pointer text-sm items-center rounded-full bg-gray-200 px-4 py-2.5 hover:bg-gray-300">
+              <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M10 18H14V16H10V18ZM3 6V8H21V6H3ZM6 13H18V11H6V13Z"></path>
+              </svg>
+              filter
+            </div>
+          </div>
+          <div>
+            <label class="relative flex items-center border py-2 px-2 rounded-2xl gap-2 focus-within:border-gray-300"
+              for="search-bar">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 ml-2">
+                <path
+                  d="M11 2C15.968 2 20 6.032 20 11C20 15.968 15.968 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2ZM11 18C14.8675 18 18 14.8675 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18ZM19.4853 18.0711L22.3137 20.8995L20.8995 22.3137L18.0711 19.4853L19.4853 18.0711Z">
+                </path>
+              </svg>
+              <input placeholder="Search" name="" class="w-full rounded-md flex-1 outline-none placehoder:text-xs"
+                required="">
+            </label>
+          </div>
+        </div>
+        <table class="w-full table-auto">
+          <thead>
+            <tr class="text-sm font-normal text-gray-600 border-b text-left">
+              <th class="pl-8 py-3 items-center" colspan="2">
+                <input type="checkbox" name="" id="checkboxAll" class="mr-2 mx-auto justify-center w-4 h-4">
+                <small class="text-sm"><span id="selectedCount">0</span> customers selected</small>
+              </th>
+              <th class="px-4 py-3">Plan</th>
+              <th class="px-4 py-3">Billing date</th>
+              <th class="px-4 py-3">Amount</th>
+              <th class="px-4 py-3">User</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm font-medium">
+            <tr class="py-10 cursor-pointer border-b border-gray-200 text-gray-700" id="row1">
+              <td class="py-4 justify-center mx-auto pl-8">
+                <input type="checkbox" name="" id="checkbox1" class="peer/draft mx-auto justify-center w-4 h-4">
+              </td>
+              <td class="flex flex-row items-center px-4 py-4 peer-checked/draft:text-sky-500">
+                <div class="flex w-10 h-10 mr-4">
+                  <a href="#" class="relative block">
+                    <img alt="profil"
+                      src="https://images.unsplash.com/photo-1560329072-17f59dcd30a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYWNlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                      class="object-cover w-10 h-10 mx-auto rounded-md" />
+                  </a>
+                </div>
+                <div class="flex-1 pl-1">
+                  <div class="dark:text-white">Amanda Smith</div>
+                  <div class="text-xs text-gray-500 dark:text-gray-200">
+                    Mamanda.smith@example.com
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4 font-semibold">
+                Basic plan
+              </td>
+              <td>
+                Dec 1, 2022
+              </td>
+              <td>USD $10.000</td>
+              <td>10 Users</td>
+            </tr>
+            <tr class="py-10 cursor-pointer border-b border-gray-200 text-gray-700" id="row2">
+              <td class="py-4 justify-center mx-auto pl-8">
+                <input type="checkbox" name="" id="checkbox2" class="mx-auto justify-center w-4 h-4">
+              </td>
+              <td class="flex flex-row items-center px-4 py-4">
+                <div class="flex w-10 h-10 mr-4">
+                  <a href="#" class="relative block">
+                    <img alt="profil"
+                      src="https://images.unsplash.com/photo-1560329072-17f59dcd30a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYWNlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                      class="object-cover w-10 h-10 mx-auto rounded-md" />
+                  </a>
+                </div>
+                <div class="flex-1 pl-1">
+                  <div class="dark:text-white">Amanda Smith</div>
+                  <div class="text-xs text-gray-500 dark:text-gray-200">
+                    Mamanda.smith@example.com
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4 font-semibold">
+                Basic plan
+              </td>
+              <td>
+                Dec 1, 2022
+              </td>
+              <td>USD $10.000</td>
+              <td>10 Users</td>
+            </tr>
+            <tr class="py-10 cursor-pointer border-b border-gray-200 text-gray-700" id="row3">
+              <td class="py-4 justify-center mx-auto pl-8">
+                <input type="checkbox" name="" id="checkbox3" class="mx-auto justify-center w-4 h-4">
+              </td>
+              <td class="flex flex-row items-center px-4 py-4">
+                <div class="flex w-10 h-10 mr-4">
+                  <a href="#" class="relative block">
+                    <img alt="profil"
+                      src="https://images.unsplash.com/photo-1560329072-17f59dcd30a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYWNlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                      class="object-cover w-10 h-10 mx-auto rounded-md" />
+                  </a>
+                </div>
+                <div class="flex-1 pl-1">
+                  <div class="dark:text-white">Amanda Smith</div>
+                  <div class="text-xs text-gray-500 dark:text-gray-200">
+                    Mamanda.smith@example.com
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4 font-semibold">
+                Basic plan
+              </td>
+              <td>
+                Dec 1, 2022
+              </td>
+              <td>USD $10.000</td>
+              <td>10 Users</td>
+            </tr>
+            <tr class="py-10 cursor-pointer border-b border-gray-200 text-gray-700" id="row4">
+              <td class="py-4 justify-center mx-auto pl-8">
+                <input type="checkbox" name="" id="checkbox4" class="mx-auto justify-center w-4 h-4">
+              </td>
+              <td class="flex flex-row items-center px-4 py-4">
+                <div class="flex w-10 h-10 mr-4">
+                  <a href="#" class="relative block">
+                    <img alt="profil"
+                      src="https://images.unsplash.com/photo-1560329072-17f59dcd30a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYWNlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                      class="object-cover w-10 h-10 mx-auto rounded-md" />
+                  </a>
+                </div>
+                <div class="flex-1 pl-1">
+                  <div class="dark:text-white">Amanda Smith</div>
+                  <div class="text-xs text-gray-500 dark:text-gray-200">
+                    Mamanda.smith@example.com
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4 font-semibold">
+                Basic plan
+              </td>
+              <td>
+                Dec 1, 2022
+              </td>
+              <td>USD $10.000</td>
+              <td>10 Users</td>
+            </tr>
+            <tr class="py-10 cursor-pointer border-b border-gray-200 text-gray-700" id="row5">
+              <td class="py-4 justify-center mx-auto pl-8">
+                <input type="checkbox" name="" id="checkbox5" class="mx-auto justify-center w-4 h-4">
+              </td>
+              <td class="flex flex-row items-center px-4 py-4">
+                <div class="flex w-10 h-10 mr-4">
+                  <a href="#" class="relative block">
+                    <img alt="profil"
+                      src="https://images.unsplash.com/photo-1560329072-17f59dcd30a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYWNlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                      class="object-cover w-10 h-10 mx-auto rounded-md" />
+                  </a>
+                </div>
+                <div class="flex-1 pl-1">
+                  <div class="dark:text-white">Amanda Smith</div>
+                  <div class="text-xs text-gray-500 dark:text-gray-200">
+                    Mamanda.smith@example.com
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4 font-semibold">
+                Basic plan
+              </td>
+              <td>
+                Dec 1, 2022
+              </td>
+              <td>USD $10.000</td>
+              <td>10 Users</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const checkboxes = document.querySelectorAll('[id^="checkbox"]');
+    const checkboxAll = document.getElementById('checkboxAll');
+    const selectedCount = document.getElementById('selectedCount');
+
+    checkboxes.forEach(checkbox => {
+      const checkboxNumber = checkbox.id.replace('checkbox', '');
+      const row = document.getElementById('row' + checkboxNumber);
+
+      checkbox.addEventListener('change', function () {
+        if (this.checked) {
+          row.classList.remove('text-gray-700');
+          row.classList.add('bg-gray-900', 'text-gray-100');
+        } else {
+          row.classList.remove('bg-gray-900', 'text-gray-100');
+          row.classList.add('text-gray-700');
+        }
+
+        updateSelectedCount();
+      });
+    });
+
+    checkboxAll.addEventListener('change', function () {
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = checkboxAll.checked;
+
+        const checkboxNumber = checkbox.id.replace('checkbox', '');
+        const row = document.getElementById('row' + checkboxNumber);
+
+        if (checkbox.checked) {
+          row.classList.remove('text-gray-700');
+          row.classList.add('bg-gray-900', 'text-gray-100');
+        } else {
+          row.classList.remove('bg-gray-900', 'text-gray-100');
+          row.classList.add('text-gray-700');
+        }
+      });
+
+      updateSelectedCount();
+    });
+
+    function updateSelectedCount() {
+      const selectedCheckboxes = document.querySelectorAll('[id^="checkbox"]:checked');
+      selectedCount.textContent = selectedCheckboxes.length;
+      checkboxAll.checked = selectedCheckboxes.length === checkboxes.length - 1; // Minus checkboxAll
+
+      checkboxes.forEach(checkbox => {
+        const checkboxNumber = checkbox.id.replace('checkbox', '');
+        const row = document.getElementById('row' + checkboxNumber);
+
+        if (checkbox.checked && !checkboxAll.checked) {
+          row.classList.remove('bg-gray-900', 'text-gray-100');
+          row.classList.add('bg-gray-300', 'text-gray-700');
+        } else {
+          row.classList.remove('bg-gray-300', 'text-gray-700');
+        }
+      });
+    }
+  });
+</script>

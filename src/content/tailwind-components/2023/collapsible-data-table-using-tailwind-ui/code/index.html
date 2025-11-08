@@ -1,0 +1,229 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+  rel="stylesheet">
+
+<style>
+  .body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .flipped-icon {
+    transform: rotate(180deg);
+  }
+</style>
+
+<div class="bg-gray-100 min-h-screen flex items-center justify-center px-8">
+  <div class="items-center w-full mx-auto bg-white rounded-lg shadow-md sm:max-w-4xl">
+    <div class="mx-auto">
+      <div class="overflow-x-auto">
+        <div class="flex text-gray-700 justify-between rounded-lg p-4 bg-white w-full items-center space-x-16">
+          <div class="flex items-center">
+            <div class="flex font-medium text-sm rounded-full">
+              <p>Results 1 - 3 of 3</p>
+            </div>
+          </div>
+          <div>
+            <form action="">
+              <div class="relative">
+                <select
+                  class="block appearance-none w-full text-sm bg-gray-100 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                  <option selected>5</option>
+                  <option>10</option>
+                  <option>20</option>
+                  <option>50</option>
+                </select>
+                <div
+                  class="pointer-events-none absolute inset-y-0 text-sm right-0 flex items-center px-2 text-gray-700">
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 16L6 10H18L12 16Z"></path>
+                  </svg>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <table class="w-full table-auto">
+          <thead>
+            <tr class="text-sm font-normal text-gray-600 border-t border-b text-left bg-gray-50">
+              <th class="px-4 py-3">Name</th>
+              <th class="px-4 py-3">Email</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3"></th>
+            </tr>
+          </thead>
+          <tbody class="text-sm font-normal text-gray-700">
+            <tr class="py-10 cursor-pointer border-b border-gray-200 hover:bg-gray-100"
+              onclick="toggleDescription('user1')">
+              <td class="flex flex-row items-center px-4 py-4">
+                <div class="flex w-10 h-10 mr-4">
+                  <a href="#" class="relative block">
+                    <img alt="profil"
+                      src="https://images.unsplash.com/photo-1560329072-17f59dcd30a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYWNlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                      class="object-cover w-10 h-10 mx-auto rounded-md" />
+                  </a>
+                </div>
+                <div class="flex-1 pl-1">
+                  <div class="font-medium dark:text-white">Amanda Smith</div>
+                  <div class="text-sm text-blue-600 dark:text-gray-200">
+                    Marketing Coordinator
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4">
+                amanda.smith@example.com
+              </td>
+              <td>
+                <div class="flex items-center pl-1">
+                  <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                  Active
+                </div>
+              </td>
+              <td class="p-4">
+                <div id="user1Toggle"
+                  class="text-white bg-gray-100 border rounded-lg px-4 py-4 text-center inline-flex items-center">
+                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                      d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z">
+                    </path>
+                  </svg>
+                </div>
+              </td>
+            </tr>
+            <tr id="user1Description" class="hidden py-4 px-4 border-t border-gray-200">
+              <td colspan="4" class="p-8">
+                <h4 class="font-medium text-base text-blue-500 underline mb-2">Deskripsi</h4>
+                <p class="text-sm text-gray-600">
+                  Amanda Smith is a young professional in the field of marketing. She has skills in planning and
+                  executing creative digital marketing campaigns. In her free time, Amanda enjoys playing the piano and
+                  exploring nature.
+                </p>
+              </td>
+            </tr>
+            <tr class="py-10 cursor-pointer border-b border-gray-200 hover:bg-gray-100"
+              onclick="toggleDescription('user2')">
+              <td class="flex flex-row items-center p-4">
+                <div class="flex w-10 h-10 mr-4">
+                  <a href="#" class="relative block">
+                    <img alt="profil"
+                      src="https://images.pexels.com/photos/1054048/pexels-photo-1054048.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      class="object-cover w-10 h-10 mx-auto rounded-md" />
+                  </a>
+                </div>
+                <div class="flex-1 pl-1">
+                  <div class="font-medium dark:text-white">Michael Williams</div>
+                  <div class="text-sm text-blue-600 dark:text-gray-200">
+                    Software Engineer
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4">
+                michael.williams@example.com
+              </td>
+              <td>
+                <div class="flex items-center pl-1">
+                  <div class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
+                  Inactive
+                </div>
+              </td>
+              <td class="p-4">
+                <div id="user2Toggle"
+                  class="text-white bg-gray-100 border rounded-lg px-4 py-4 text-center inline-flex items-center">
+                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                      d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z">
+                    </path>
+                  </svg>
+                </div>
+              </td>
+            </tr>
+            <tr id="user2Description" class="hidden py-4 px-4 border-t border-gray-200">
+              <td colspan="4" class="p-8">
+                <h4 class="font-medium text-base text-blue-500 underline mb-2">Deskripsi</h4>
+                <p class="text-sm text-gray-600">
+                  Michael Williams is a software engineer with an in-depth knowledge of web and application development.
+                  He is often involved in creating innovative technological solutions. During his leisure time, Michael
+                  enjoys playing video games and participating in local chess tournaments.
+                </p>
+              </td>
+            </tr>
+            </tr>
+            <tr class="py-10 cursor-pointer border-b border-gray-200 hover:bg-gray-100"
+              onclick="toggleDescription('user3')">
+              <td class="flex flex-row items-center px-4 py-4">
+                <div class="flex w-10 h-10 mr-4">
+                  <a href="#" class="relative block">
+                    <img alt="profil"
+                      src="https://images.pexels.com/photos/3756907/pexels-photo-3756907.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      class="object-cover w-10 h-10 mx-auto rounded-md" />
+                  </a>
+                </div>
+                <div class="flex-1 pl-1">
+                  <div class="font-medium dark:text-white">Sophia Brown</div>
+                  <div class="text-sm text-blue-600 dark:text-gray-200">
+                    Freelance Writer
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4">
+                sophia.brown@example.com
+              </td>
+              <td>
+                <div class="flex items-center pl-1">
+                  <div class="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                  Suspend
+                </div>
+              </td>
+              <td class="p-4">
+                <div id="user3Toggle"
+                  class="text-white bg-gray-100 border rounded-lg px-4 py-4 text-center inline-flex items-center">
+                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                      d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z">
+                    </path>
+                  </svg>
+                </div>
+              </td>
+            </tr>
+            <tr id="user3Description" class="hidden py-4 px-4 border-t border-gray-200">
+              <td colspan="4" class="p-8">
+                <h4 class="font-medium text-base text-blue-500 underline mb-2">Deskripsi</h4>
+                <p class="text-sm text-gray-600">
+                  Sophia Brown is a prolific freelance writer, crafting informative articles and creative content for
+                  various clients. In her life, she's always seeking new inspiration by attending art exhibitions and
+                  literary events.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let activeDescriptionId = null;
+
+  function toggleDescription(userId) {
+    const descriptionRow = document.getElementById(`${userId}Description`);
+    const toggleIcon = document.getElementById(`${userId}Toggle`).querySelector('svg');
+
+    if (activeDescriptionId !== null && activeDescriptionId !== userId) {
+      const activeDescriptionRow = document.getElementById(`${activeDescriptionId}Description`);
+      const activeToggleIcon = document.getElementById(`${activeDescriptionId}Toggle`).querySelector('svg');
+      activeDescriptionRow.classList.add('hidden');
+      activeToggleIcon.classList.remove('flipped-icon');
+    }
+
+    descriptionRow.classList.toggle('hidden');
+    toggleIcon.classList.toggle('flipped-icon');
+
+    if (!descriptionRow.classList.contains('hidden')) {
+      activeDescriptionId = userId;
+    } else {
+      activeDescriptionId = null;
+    }
+  }
+</script>

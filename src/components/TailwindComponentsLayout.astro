@@ -1,0 +1,380 @@
+---
+import { type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import HorizontalAd from "./Ads/horizontal.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+  breadcrumbs?: Array<{ name: string; href?: string }>;
+  page: {
+    data: CollectionEntry<'tailwind-components'>[];
+    currentPage: number;
+    lastPage: number;
+    total: number;
+    url: {
+      prev?: string;
+      next?: string;
+    };
+  };
+  allComponents: CollectionEntry<'tailwind-components'>[];
+  categories: Array<{ name: string; total: number }>;
+  currentCategory?: string;
+}
+
+const { 
+  title, 
+  description, 
+  breadcrumbs = [], 
+  page, 
+  allComponents, 
+  categories, 
+  currentCategory 
+} = Astro.props;
+
+const { data: components } = page;
+---
+
+<Layout title={title} fullWidth={true}>
+  <div class="bg-black text-white min-h-screen">
+    <div class="w-full px-5 lg:px-8 py-8">
+      <div class="mb-8">
+        <!-- Breadcrumbs -->
+        {breadcrumbs.length > 0 && (
+          <nav class="text-sm text-gray-400 mb-4">
+            {breadcrumbs.map((crumb, index) => (
+              <span>
+                {crumb.href ? (
+                  <a href={crumb.href} class="hover:text-white">{crumb.name}</a>
+                ) : (
+                  <span class="text-white">{crumb.name}</span>
+                )}
+                {index < breadcrumbs.length - 1 && <span class="mx-2">/</span>}
+              </span>
+            ))}
+          </nav>
+        )}
+
+        <h1 class="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
+        <p class="text-gray-400">{description}</p>
+        <p class="text-gray-300 text-sm mt-2">
+          Showing {(page.currentPage - 1) * 24 + 1}-{Math.min(page.currentPage * 24, page.total)} of {page.total} components
+        </p>
+      </div>
+
+      <!-- Ad Section -->
+      <div class="flex justify-center mb-8">
+        <HorizontalAd />
+      </div>
+
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Enhanced Sidebar Categories -->
+        <div class="lg:w-72 flex-shrink-0">
+          <div class="bg-gray-900 rounded-lg p-6 sticky top-8">
+            <h2 class="text-xl font-semibold mb-4 text-white flex items-center">
+              <svg class="w-5 h-5 mr-2 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-6H5m14 12H5"></path>
+              </svg>
+              Categories
+            </h2>
+            
+            <!-- Search Categories -->
+            <div class="mb-4">
+              <div class="relative">
+                <input
+                  type="text"
+                  placeholder="Search categories..."
+                  id="categorySearch"
+                  class="w-full bg-gray-800 text-white placeholder-gray-400 border border-gray-600 rounded-lg px-4 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+                <svg class="w-4 h-4 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Categories Container -->
+            <div class="space-y-3 max-h-96 overflow-y-auto custom-scrollbar" id="categoriesContainer">
+              <!-- All Components Link -->
+              <a
+                href="/tailwind/"
+                class={`flex justify-between items-center py-3 px-4 rounded-lg transition-all duration-200 shadow-sm border ${
+                  !currentCategory 
+                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 border-blue-500 shadow-md' 
+                    : 'bg-gray-800 hover:bg-gray-700 border-gray-700 hover:border-gray-600'
+                }`}
+              >
+                <span class={`font-medium flex items-center ${
+                  !currentCategory 
+                    ? 'text-white' 
+                    : 'text-gray-200 hover:text-white'
+                }`}>
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-6H5m14 12H5"></path>
+                  </svg>
+                  All Components
+                </span>
+                <div class={`text-xs font-bold rounded-full min-w-[28px] h-7 flex items-center justify-center px-2 ${
+                  !currentCategory 
+                    ? 'bg-white bg-opacity-20 text-white' 
+                    : 'bg-gray-700 text-gray-300'
+                }`}>
+                  {allComponents.length}
+                </div>
+              </a>
+
+              <!-- Category Items -->
+              {categories.sort((a, b) => b.total - a.total).map(category => {
+                const isCurrentCategory = category.name === currentCategory;
+                return (
+                  <a
+                    href={`/tailwind/category/${category.name}/`}
+                    class={`category-item flex justify-between items-center py-3 px-4 rounded-lg transition-all duration-200 group border ${
+                      isCurrentCategory 
+                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 border-blue-500 shadow-md' 
+                        : 'bg-gray-800 hover:bg-gray-700 border-gray-700 hover:border-gray-600'
+                    }`}
+                    title={`${category.name} Components (${category.total})`}
+                    data-category={category.name.toLowerCase()}
+                  >
+                    <span class={`capitalize font-medium flex items-center ${
+                      isCurrentCategory 
+                        ? 'text-white' 
+                        : 'text-gray-200 group-hover:text-white'
+                    }`}>
+                      <div class={`w-2 h-2 rounded-full mr-3 transition-colors ${
+                        isCurrentCategory 
+                          ? 'bg-white' 
+                          : 'bg-blue-400 group-hover:bg-blue-300'
+                      }`}></div>
+                      {category.name}
+                    </span>
+                    <div class={`text-xs font-bold rounded-full min-w-[28px] h-7 flex items-center justify-center px-2 transition-all duration-200 ${
+                      isCurrentCategory 
+                        ? 'bg-white bg-opacity-20 text-white' 
+                        : 'bg-gray-700 group-hover:bg-blue-600 text-gray-300 group-hover:text-white'
+                    }`}>
+                      {category.total}
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="mt-6 pt-4 border-t border-gray-700">
+              <div class="text-sm text-gray-400 text-center">
+                <span class="font-medium text-blue-400">{categories.length}</span> categories • 
+                <span class="font-medium text-blue-400">{allComponents.length}</span> components
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Components Grid -->
+        <div class="flex-1">
+          {components.length > 0 ? (
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {components.map((component: CollectionEntry<'tailwind-components'>) => (
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  {component.data.coverImage && (
+                    <a href={`/tailwind/${component.data.slug || component.slug}`} title={component.data.title}>
+                      <Image
+                        src={component.data.coverImage}
+                        alt={component.data.title}
+                        width={300}
+                        height={192}
+                        class="w-full h-48 object-cover"
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
+                  <div class="p-5">
+                    <h3 class="text-base font-bold mb-2">
+                      <a
+                        href={`/tailwind/${component.data.slug || component.slug}`}
+                        class="text-white hover:text-blue-400 transition-colors duration-200"
+                        title={component.data.title}
+                      >
+                        {component.data.title}
+                      </a>
+                    </h3>
+                    {component.data.categories && (
+                      <div class="flex flex-wrap gap-2 mt-3">
+                        {component.data.categories.slice(0, 2).map((cat: string) => (
+                          <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded capitalize">
+                            {cat}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="text-center py-12">
+              <p class="text-gray-400 text-lg">No components found.</p>
+              {currentCategory && (
+                <a 
+                  href="/tailwind/" 
+                  class="text-blue-400 hover:text-blue-300 mt-2 inline-block"
+                >
+                  Browse all components
+                </a>
+              )}
+            </div>
+          )}
+
+          <!-- Pagination -->
+          {page.lastPage > 1 && (
+            <nav class="flex justify-center mt-12" aria-label="Pagination Navigation">
+              <div class="flex items-center space-x-2">
+                <!-- Previous Page -->
+                {page.url.prev && (
+                  <a
+                    href={page.url.prev}
+                    class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors duration-200"
+                    aria-label="Previous page"
+                  >
+                    ← Previous
+                  </a>
+                )}
+
+                <!-- Page Numbers -->
+                {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum: number) => {
+                  const isCurrentPage = pageNum === page.currentPage;
+                  let href: string;
+                  
+                  if (currentCategory) {
+                    href = pageNum === 1 ? `/tailwind/category/${currentCategory}/` : `/tailwind/category/${currentCategory}/${pageNum}/`;
+                  } else {
+                    href = pageNum === 1 ? '/tailwind/' : `/tailwind/${pageNum}/`;
+                  }
+                  
+                  return (
+                    <a
+                      href={href}
+                      class={`px-4 py-2 rounded-lg transition-colors duration-200 ${
+                        isCurrentPage
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-800 hover:bg-gray-700 text-white'
+                      }`}
+                      aria-label={`Page ${pageNum}`}
+                      aria-current={isCurrentPage ? 'page' : undefined}
+                    >
+                      {pageNum}
+                    </a>
+                  );
+                })}
+
+                <!-- Next Page -->
+                {page.url.next && (
+                  <a
+                    href={page.url.next}
+                    class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors duration-200"
+                    aria-label="Next page"
+                  >
+                    Next →
+                  </a>
+                )}
+              </div>
+            </nav>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #374151;
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #6b7280;
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  /* Smooth transitions */
+  .category-item {
+    transform: translateY(0);
+  }
+  
+  .category-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+</style>
+
+<script>
+  // Category search functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('categorySearch');
+    const categoriesContainer = document.getElementById('categoriesContainer');
+    
+    if (searchInput && categoriesContainer) {
+      searchInput.addEventListener('input', function() {
+        const searchTerm = (this as HTMLInputElement).value.toLowerCase().trim();
+        const categoryItems = categoriesContainer.querySelectorAll('.category-item');
+        
+        categoryItems.forEach(item => {
+          const htmlItem = item as HTMLElement;
+          const categoryName = htmlItem.getAttribute('data-category') || '';
+          const categoryText = htmlItem.textContent?.toLowerCase() || '';
+          
+          if (categoryName.includes(searchTerm) || categoryText.includes(searchTerm)) {
+            htmlItem.style.display = 'flex';
+            htmlItem.style.opacity = '1';
+          } else {
+            htmlItem.style.display = 'none';
+            htmlItem.style.opacity = '0';
+          }
+        });
+
+        // Show "no results" message if no categories match
+        const visibleItems = Array.from(categoryItems).filter(item => 
+          (item as HTMLElement).style.display !== 'none'
+        );
+        
+        let noResultsMsg = categoriesContainer.querySelector('.no-results');
+        if (visibleItems.length === 0 && searchTerm) {
+          if (!noResultsMsg) {
+            noResultsMsg = document.createElement('div');
+            noResultsMsg.className = 'no-results text-center py-4 text-gray-400';
+            noResultsMsg.innerHTML = `
+              <svg class="w-8 h-8 mx-auto mb-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m-6-8h6m-3 0V4"></path>
+              </svg>
+              No categories found for "${searchTerm}"
+            `;
+            categoriesContainer.appendChild(noResultsMsg);
+          }
+        } else if (noResultsMsg) {
+          noResultsMsg.remove();
+        }
+      });
+
+      // Clear search on escape key
+      searchInput.addEventListener('keydown', function(e: KeyboardEvent) {
+        if (e.key === 'Escape') {
+          (this as HTMLInputElement).value = '';
+          this.dispatchEvent(new Event('input'));
+          (this as HTMLInputElement).blur();
+        }
+      });
+    }
+  });
+</script>

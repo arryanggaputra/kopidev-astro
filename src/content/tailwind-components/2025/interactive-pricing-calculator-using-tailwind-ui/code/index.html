@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Pricing Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .slider-thumb::-webkit-slider-thumb {
+            appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-thumb::-moz-range-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .number-animation {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Calculate Your Perfect Plan</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Customize your experience and see real-time pricing based on your needs
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Calculator Section -->
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6">Configure Your Plan</h2>
+
+                <!-- Users Slider -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <label class="text-lg font-medium text-gray-700">Number of Users</label>
+                        <span id="userCount" class="text-2xl font-bold text-blue-600 number-animation">10</span>
+                    </div>
+                    <input type="range" id="userSlider" min="1" max="100" value="10"
+                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-thumb">
+                    <div class="flex justify-between text-sm text-gray-500 mt-2">
+                        <span>1 user</span>
+                        <span>100 users</span>
+                    </div>
+                </div>
+
+                <!-- Storage Slider -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <label class="text-lg font-medium text-gray-700">Storage (GB)</label>
+                        <span id="storageCount" class="text-2xl font-bold text-blue-600 number-animation">50</span>
+                    </div>
+                    <input type="range" id="storageSlider" min="10" max="1000" value="50" step="10"
+                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-thumb">
+                    <div class="flex justify-between text-sm text-gray-500 mt-2">
+                        <span>10 GB</span>
+                        <span>1000 GB</span>
+                    </div>
+                </div>
+
+                <!-- Features Toggle -->
+                <div class="space-y-6 mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900">Additional Features</h3>
+
+                    <!-- Premium Support -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-medium text-gray-900">Premium Support</h4>
+                            <p class="text-sm text-gray-500">24/7 priority customer support</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="premiumSupport" class="sr-only peer">
+                            <div
+                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Advanced Analytics -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-medium text-gray-900">Advanced Analytics</h4>
+                            <p class="text-sm text-gray-500">Detailed insights and reporting</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="analytics" class="sr-only peer">
+                            <div
+                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- API Access -->
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-medium text-gray-900">API Access</h4>
+                            <p class="text-sm text-gray-500">Full REST API integration</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="apiAccess" class="sr-only peer">
+                            <div
+                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Billing Period -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Billing Period</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button id="monthlyBtn"
+                            class="billing-btn bg-blue-600 text-white px-4 py-3 rounded-lg font-medium transition-all">
+                            Monthly
+                        </button>
+                        <button id="yearlyBtn"
+                            class="billing-btn bg-gray-200 text-gray-700 px-4 py-3 rounded-lg font-medium transition-all">
+                            Yearly <span class="text-sm">(Save 20%)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Display -->
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-2">Your Custom Plan</h2>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-5xl font-bold text-blue-600 number-animation" id="totalPrice">$49</span>
+                        <span class="text-2xl text-gray-500 ml-2" id="billingPeriod">/month</span>
+                    </div>
+                    <p class="text-gray-600" id="yearlyNote" style="display: none;">
+                        Billed annually ($<span id="yearlyTotal">588</span>/year)
+                    </p>
+                </div>
+
+                <!-- Price Breakdown -->
+                <div class="space-y-4 mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900">Price Breakdown</h3>
+
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span class="text-gray-600">Base plan (up to 5 users)</span>
+                        <span class="font-medium">$<span id="basePrice">29</span></span>
+                    </div>
+
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100" id="extraUsersRow">
+                        <span class="text-gray-600">Extra users (<span id="extraUsers">5</span> × $4)</span>
+                        <span class="font-medium">$<span id="extraUsersPrice">20</span></span>
+                    </div>
+
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100" id="extraStorageRow">
+                        <span class="text-gray-600">Extra storage (<span id="extraStorage">20</span>GB × $0.10)</span>
+                        <span class="font-medium">$<span id="extraStoragePrice">2</span></span>
+                    </div>
+
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100" id="premiumSupportRow"
+                        style="display: none;">
+                        <span class="text-gray-600">Premium Support</span>
+                        <span class="font-medium">$<span id="premiumSupportPrice">15</span></span>
+                    </div>
+
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100" id="analyticsRow"
+                        style="display: none;">
+                        <span class="text-gray-600">Advanced Analytics</span>
+                        <span class="font-medium">$<span id="analyticsPrice">25</span></span>
+                    </div>
+
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100" id="apiRow"
+                        style="display: none;">
+                        <span class="text-gray-600">API Access</span>
+                        <span class="font-medium">$<span id="apiPrice">10</span></span>
+                    </div>
+
+                    <div class="flex justify-between items-center py-2 text-green-600" id="discountRow"
+                        style="display: none;">
+                        <span>Yearly discount (20% off)</span>
+                        <span class="font-medium">-$<span id="discountAmount">0</span></span>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <button
+                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg">
+                    Start Your Free Trial
+                </button>
+
+                <p class="text-center text-sm text-gray-500 mt-4">
+                    No credit card required • Cancel anytime
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Pricing configuration
+        const pricing = {
+            basePrice: 29,
+            userPrice: 4,
+            storagePrice: 0.10,
+            premiumSupport: 15,
+            analytics: 25,
+            apiAccess: 10,
+            yearlyDiscount: 0.20
+        };
+
+        let isYearly = false;
+
+        // Get DOM elements
+        const userSlider = document.getElementById('userSlider');
+        const storageSlider = document.getElementById('storageSlider');
+        const userCount = document.getElementById('userCount');
+        const storageCount = document.getElementById('storageCount');
+        const totalPrice = document.getElementById('totalPrice');
+        const billingPeriod = document.getElementById('billingPeriod');
+        const yearlyNote = document.getElementById('yearlyNote');
+        const yearlyTotal = document.getElementById('yearlyTotal');
+        const monthlyBtn = document.getElementById('monthlyBtn');
+        const yearlyBtn = document.getElementById('yearlyBtn');
+
+        // Feature toggles
+        const premiumSupportToggle = document.getElementById('premiumSupport');
+        const analyticsToggle = document.getElementById('analytics');
+        const apiAccessToggle = document.getElementById('apiAccess');
+
+        // Breakdown elements
+        const basePrice = document.getElementById('basePrice');
+        const extraUsers = document.getElementById('extraUsers');
+        const extraUsersPrice = document.getElementById('extraUsersPrice');
+        const extraStorage = document.getElementById('extraStorage');
+        const extraStoragePrice = document.getElementById('extraStoragePrice');
+        const premiumSupportRow = document.getElementById('premiumSupportRow');
+        const analyticsRow = document.getElementById('analyticsRow');
+        const apiRow = document.getElementById('apiRow');
+        const discountRow = document.getElementById('discountRow');
+        const discountAmount = document.getElementById('discountAmount');
+        const extraUsersRow = document.getElementById('extraUsersRow');
+        const extraStorageRow = document.getElementById('extraStorageRow');
+
+        function calculatePrice() {
+            let total = pricing.basePrice;
+            const users = parseInt(userSlider.value);
+            const storage = parseInt(storageSlider.value);
+
+            // Update display values
+            userCount.textContent = users;
+            storageCount.textContent = storage;
+            basePrice.textContent = pricing.basePrice;
+
+            // Calculate extra users (base includes 5 users)
+            const extraUserCount = Math.max(0, users - 5);
+            const extraUsersCost = extraUserCount * pricing.userPrice;
+            extraUsers.textContent = extraUserCount;
+            extraUsersPrice.textContent = extraUsersCost;
+            extraUsersRow.style.display = extraUserCount > 0 ? 'flex' : 'none';
+
+            // Calculate extra storage (base includes 30GB)
+            const extraStorageAmount = Math.max(0, storage - 30);
+            const extraStorageCost = extraStorageAmount * pricing.storagePrice;
+            extraStorage.textContent = extraStorageAmount;
+            extraStoragePrice.textContent = extraStorageCost.toFixed(2);
+            extraStorageRow.style.display = extraStorageAmount > 0 ? 'flex' : 'none';
+
+            total += extraUsersCost + extraStorageCost;
+
+            // Add features
+            if (premiumSupportToggle.checked) {
+                total += pricing.premiumSupport;
+                premiumSupportRow.style.display = 'flex';
+            } else {
+                premiumSupportRow.style.display = 'none';
+            }
+
+            if (analyticsToggle.checked) {
+                total += pricing.analytics;
+                analyticsRow.style.display = 'flex';
+            } else {
+                analyticsRow.style.display = 'none';
+            }
+
+            if (apiAccessToggle.checked) {
+                total += pricing.apiAccess;
+                apiRow.style.display = 'flex';
+            } else {
+                apiRow.style.display = 'none';
+            }
+
+            // Apply yearly discount
+            if (isYearly) {
+                const discount = total * pricing.yearlyDiscount;
+                discountAmount.textContent = Math.round(discount);
+                discountRow.style.display = 'flex';
+                total = total * (1 - pricing.yearlyDiscount);
+                billingPeriod.textContent = '/month';
+                yearlyNote.style.display = 'block';
+                yearlyTotal.textContent = Math.round(total * 12);
+            } else {
+                discountRow.style.display = 'none';
+                billingPeriod.textContent = '/month';
+                yearlyNote.style.display = 'none';
+            }
+
+            totalPrice.textContent = Math.round(total);
+        }
+
+        // Event listeners
+        userSlider.addEventListener('input', calculatePrice);
+        storageSlider.addEventListener('input', calculatePrice);
+        premiumSupportToggle.addEventListener('change', calculatePrice);
+        analyticsToggle.addEventListener('change', calculatePrice);
+        apiAccessToggle.addEventListener('change', calculatePrice);
+
+        monthlyBtn.addEventListener('click', () => {
+            isYearly = false;
+            monthlyBtn.className = 'billing-btn bg-blue-600 text-white px-4 py-3 rounded-lg font-medium transition-all';
+            yearlyBtn.className = 'billing-btn bg-gray-200 text-gray-700 px-4 py-3 rounded-lg font-medium transition-all';
+            calculatePrice();
+        });
+
+        yearlyBtn.addEventListener('click', () => {
+            isYearly = true;
+            yearlyBtn.className = 'billing-btn bg-blue-600 text-white px-4 py-3 rounded-lg font-medium transition-all';
+            monthlyBtn.className = 'billing-btn bg-gray-200 text-gray-700 px-4 py-3 rounded-lg font-medium transition-all';
+            calculatePrice();
+        });
+
+        // Initial calculation
+        calculatePrice();
+    </script>
+</body>
+
+</html>

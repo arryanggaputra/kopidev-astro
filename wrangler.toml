@@ -1,0 +1,31 @@
+name = "kopidev-astro"
+compatibility_date = "2024-11-09"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "kopidev-components"
+database_id = "cf51a188-026e-4399-b071-c83097d55ec4"
+
+[build]
+command = "npm run build:with-generation"
+
+[build.environment_variables]
+NODE_VERSION = "20"
+ENABLE_AUTO_GENERATION = "true"
+MAX_COMPONENTS_PER_BUILD = "2"
+SKIP_IF_RECENT_COMMIT = "true"
+COMMIT_MESSAGE_PATTERN = "🤖"
+
+# Environment variables for auto-generation
+# CLOUDFLARE_ACCOUNT_ID = "your-account-id"
+# CLOUDFLARE_API_TOKEN = "your-api-token" 
+# GITHUB_TOKEN = "your-github-token"
+
+[env.preview.vars]
+ENVIRONMENT = "preview"
+ENABLE_AUTO_GENERATION = "false"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+ENABLE_AUTO_GENERATION = "true"

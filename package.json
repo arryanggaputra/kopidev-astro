@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "build:with-generation": "npm run generate:content && npm run build",
     "preview": "astro preview",
+    "generate:content": "tsx scripts/local-content-generator.ts",
     "astro": "astro"
   },
   "dependencies": {
@@ -14,12 +16,16 @@
     "@astrojs/mdx": "^4.3.10",
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/tailwind": "^6.0.2",
+    "@octokit/rest": "^22.0.1",
     "astro": "^5.15.4",
     "dayjs": "^1.11.13",
+    "dotenv": "^17.2.3",
     "is-mobile": "^5.0.0",
     "mobile-detect": "^1.4.5",
+    "playwright": "^1.40.0",
     "react": "^19.2.0",
     "tailwindcss": "^3.4.18",
+    "tsx": "^4.20.6",
     "typescript": "^5.6.3"
   },
   "devDependencies": {

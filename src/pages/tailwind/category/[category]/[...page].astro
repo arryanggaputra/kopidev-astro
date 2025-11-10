@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import TailwindComponentsLayout from "../../../../components/TailwindComponentsLayout.astro";
 import type { GetStaticPaths } from 'astro';
+import { SITE_CONFIG } from "~/config/site";
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   // Get all tailwind components
@@ -45,6 +46,15 @@ const { category } = Astro.params;
 
 // Ensure category is a string
 const categoryName = category as string;
+const categoryTitle = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+
+// Build canonical URL
+const canonicalUrl = `${SITE_CONFIG.url}/tailwind/category/${categoryName}/${page.currentPage > 1 ? page.currentPage + '/' : ''}`;
+
+// Build description
+const pageDescription = page.currentPage === 1
+  ? `Browse ${page.total} free ${categoryTitle} Tailwind CSS components. Copy-paste ready UI elements for your next project.`
+  : `Page ${page.currentPage} of ${categoryTitle} Tailwind CSS components - showing ${(page.currentPage - 1) * 24 + 1}-${Math.min(page.currentPage * 24, page.total)} of ${page.total} components`;
 
 // Get all components for category counts (not paginated)
 let allComponents: CollectionEntry<'tailwind-components'>[];
@@ -69,14 +79,15 @@ const allCategories = Array.from(categoryGroups.entries()).map(([name, total]) =
 ---
 
 <TailwindComponentsLayout
-  title={`${categoryName.charAt(0).toUpperCase() + categoryName.slice(1)} Tailwind Components`}
-  description={`Showing ${(page.currentPage - 1) * 24 + 1}-${Math.min(page.currentPage * 24, page.total)} of ${page.total} ${categoryName} components`}
+  title={`${categoryTitle} Tailwind Components${page.currentPage > 1 ? ` - Page ${page.currentPage}` : ''}`}
+  description={pageDescription}
   breadcrumbs={[
     { name: "Tailwind Components", href: "/tailwind/" },
-    { name: categoryName.charAt(0).toUpperCase() + categoryName.slice(1) }
+    { name: categoryTitle }
   ]}
   page={page}
   allComponents={allComponents}
   categories={allCategories}
   currentCategory={categoryName}
+  canonical={canonicalUrl}
 />

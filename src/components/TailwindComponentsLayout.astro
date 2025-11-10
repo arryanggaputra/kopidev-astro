@@ -3,6 +3,7 @@ import { type CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import HorizontalAd from "./Ads/horizontal.astro";
+import { SITE_CONFIG } from "~/config/site";
 
 export interface Props {
   title: string;
@@ -21,6 +22,7 @@ export interface Props {
   allComponents: CollectionEntry<'tailwind-components'>[];
   categories: Array<{ name: string; total: number }>;
   currentCategory?: string;
+  canonical?: string;
 }
 
 const { 
@@ -30,13 +32,101 @@ const {
   page, 
   allComponents, 
   categories, 
-  currentCategory 
+  currentCategory,
+  canonical
 } = Astro.props;
 
 const { data: components } = page;
+
+// Build the canonical URL
+const pageUrl = canonical || (currentCategory 
+  ? `${SITE_CONFIG.url}/tailwind/category/${currentCategory}/${page.currentPage > 1 ? page.currentPage + '/' : ''}`
+  : `${SITE_CONFIG.url}/tailwind/${page.currentPage > 1 ? page.currentPage + '/' : ''}`);
+
+// Create ItemList structured data for the component listing
+const itemListStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": title,
+  "description": description,
+  "url": pageUrl,
+  "numberOfItems": page.total,
+  "itemListElement": components.map((component, index) => ({
+    "@type": "ListItem",
+    "position": (page.currentPage - 1) * 24 + index + 1,
+    "url": `${SITE_CONFIG.url}/tailwind/${component.data.slug || component.slug}`,
+    "name": component.data.title,
+    "description": `Free ${component.data.categories?.join(', ') || ''} Tailwind CSS component`
+  }))
+};
+
+// Create breadcrumb structured data if breadcrumbs exist
+const breadcrumbStructuredData = breadcrumbs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": SITE_CONFIG.url
+    },
+    ...breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 2,
+      "name": crumb.name,
+      ...(crumb.href && { "item": `${SITE_CONFIG.url}${crumb.href}` })
+    }))
+  ]
+} : null;
+
+// Create CollectionPage structured data
+const collectionPageStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": title,
+  "description": description,
+  "url": pageUrl,
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": SITE_CONFIG.title,
+    "url": SITE_CONFIG.url
+  },
+  "breadcrumb": breadcrumbStructuredData || {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": SITE_CONFIG.url
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tailwind Components",
+        "item": `${SITE_CONFIG.url}/tailwind/`
+      }
+    ]
+  },
+  "mainEntity": itemListStructuredData
+};
+
+// Combine all structured data
+const structuredData = [
+  collectionPageStructuredData,
+  ...(breadcrumbStructuredData ? [breadcrumbStructuredData] : [])
+];
 ---
 
-<Layout title={title} fullWidth={true}>
+<Layout 
+  title={title} 
+  description={description}
+  canonical={pageUrl}
+  fullWidth={true}
+  structuredData={structuredData}
+>
   <div class="bg-black text-white min-h-screen">
     <div class="w-full px-5 lg:px-8 py-8">
       <div class="mb-8">

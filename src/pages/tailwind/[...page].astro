@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import TailwindComponentsLayout from "../../components/TailwindComponentsLayout.astro";
 import type { GetStaticPaths } from 'astro';
+import { SITE_CONFIG } from "~/config/site";
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   // Get all tailwind components
@@ -22,6 +23,18 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 };
 
 const { page } = Astro.props;
+
+// Build canonical URL
+const canonicalUrl = `${SITE_CONFIG.url}/tailwind/${page.currentPage > 1 ? page.currentPage + '/' : ''}`;
+
+// Build title and description
+const pageTitle = page.currentPage === 1 
+  ? "Tailwind Components & Templates"
+  : `Tailwind Components & Templates - Page ${page.currentPage}`;
+
+const pageDescription = page.currentPage === 1
+  ? "Free collection of 600+ Tailwind CSS components and templates. Copy-paste ready UI elements, forms, cards, navigation, and more for your next web project."
+  : `Page ${page.currentPage} of Tailwind CSS components - showing ${(page.currentPage - 1) * 24 + 1}-${Math.min(page.currentPage * 24, page.total)} of ${page.total} components`;
 
 // Get all components for category counts (not paginated)
 let allComponents: CollectionEntry<'tailwind-components'>[];
@@ -46,9 +59,10 @@ const categories = Array.from(categoryGroups.entries()).map(([name, total]) => (
 ---
 
 <TailwindComponentsLayout
-  title="Tailwind Components & Templates"
-  description="Free collection of Tailwind CSS components and templates"
+  title={pageTitle}
+  description={pageDescription}
   page={page}
   allComponents={allComponents}
   categories={categories}
+  canonical={canonicalUrl}
 />

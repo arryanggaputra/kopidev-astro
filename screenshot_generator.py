@@ -87,41 +87,85 @@ def capture_component_screenshot(html_file_path, output_path, component_name):
     finally:
         driver.quit()
 
-def generate_screenshots():
-    """Generate screenshots for both components."""
-    base_path = "/Users/arry/Project/Personal/KopiAstro/src/content/tailwind-components/2023"
+def generate_screenshots(year="2025", component_names=None):
+    """
+    Generate screenshots for Tailwind components.
     
-    components = [
-        {
-            "name": "modern-card-slider-using-tailwind-ui",
-            "title": "Modern Card Slider"
-        },
-        {
-            "name": "advanced-dashboard-widget-using-tailwind-ui", 
-            "title": "Advanced Dashboard Widget"
-        }
-    ]
+    Args:
+        year: The year folder to scan (default: "2025")
+        component_names: Optional list of specific component names to generate.
+                        If None, generates for all components in the year folder.
+    """
+    base_path = f"src/content/tailwind-components/{year}"
     
-    for component in components:
-        html_path = os.path.join(base_path, component["name"], "code", "index.html")
-        image_path = os.path.join(base_path, component["name"], "images", f"tailwind-component-{component['name']}.png")
+    # If no specific components provided, scan all directories
+    if component_names is None:
+        if not os.path.exists(base_path):
+            print(f"❌ Path not found: {base_path}")
+            return
+        
+        # Get all component directories
+        component_names = [
+            d for d in os.listdir(base_path)
+            if os.path.isdir(os.path.join(base_path, d)) and not d.startswith('.')
+        ]
+        
+        if not component_names:
+            print(f"❌ No components found in {base_path}")
+            return
+        
+        print(f"📁 Found {len(component_names)} components in {year}:")
+        for name in component_names:
+            print(f"   - {name}")
+        print()
+    
+    # Generate screenshots for each component
+    for component_name in component_names:
+        html_path = os.path.join(base_path, component_name, "code", "index.html")
+        image_path = os.path.join(base_path, component_name, "images", f"tailwind-component-{component_name}.png")
+        
+        # Check if HTML file exists
+        if not os.path.exists(html_path):
+            print(f"⚠️  Skipping {component_name}: HTML file not found")
+            continue
+        
+        # Skip if screenshot already exists
+        if os.path.exists(image_path):
+            print(f"⏭️  Skipping {component_name}: Screenshot already exists")
+            continue
         
         # Create images directory if it doesn't exist
         os.makedirs(os.path.dirname(image_path), exist_ok=True)
         
-        print(f"📸 Generating screenshot for {component['title']}...")
-        capture_component_screenshot(html_path, image_path, component["title"])
+        # Convert component name to title
+        title = component_name.replace('-', ' ').title()
+        
+        print(f"📸 Generating screenshot for {title}...")
+        capture_component_screenshot(html_path, image_path, title)
 
 if __name__ == "__main__":
+    import sys
+    
     print("🚀 Starting automated screenshot generation...")
     print("📋 This will generate high-quality screenshots for Tailwind components")
-    print("⏱️  Please wait while we capture the screenshots...")
+    print("⏱️  Please wait while we capture the screenshots...\n")
     
     try:
-        generate_screenshots()
+        # You can specify year and/or specific components as command line arguments
+        # Usage: python3 screenshot_generator.py [year] [component1] [component2] ...
+        # Example: python3 screenshot_generator.py 2025 modern-contact-form
+        # Example: python3 screenshot_generator.py 2025  (all components in 2025)
+        
+        year = sys.argv[1] if len(sys.argv) > 1 else "2025"
+        component_names = sys.argv[2:] if len(sys.argv) > 2 else None
+        
+        generate_screenshots(year=year, component_names=component_names)
+        
         print("\n✨ Screenshot generation completed!")
         print("🎯 All component images have been saved to their respective directories")
     except Exception as e:
         print(f"\n❌ An error occurred: {str(e)}")
         print("💡 Make sure you have Chrome and ChromeDriver installed")
-        print("💡 Install requirements: pip install selenium pillow")
+        print("💡 Install requirements: pip install selenium pillow webdriver-manager")
+        import traceback
+        traceback.print_exc()
